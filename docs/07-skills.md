@@ -8,6 +8,16 @@
 
 スキルの形式（`SKILL.md`）はエージェント間で共通ですが、読みにいく場所が違います。このガイドでは、**同じスキルを2か所に置く**ことで、どのエージェントからも使えるようにしています。
 
+```mermaid
+flowchart LR
+    skill["同じスキル<br>（SKILL.md）"]
+    skill --> a[".agents/skills/"]
+    skill --> c[".claude/skills/"]
+    a -- "読む" --> codex["Codex"]
+    a -- "読む" --> ag["Antigravity"]
+    c -- "読む" --> cc["Claude Code"]
+```
+
 | エージェント | プロジェクトのスキル | 自分の全プロジェクト共通のスキル |
 |---|---|---|
 | Claude Code | `.claude/skills/<スキル名>/` | `~/.claude/skills/<スキル名>/` |
@@ -40,6 +50,16 @@ my-app/
 ### 方法1: AI に頼む（おすすめ・Node.js 不要）
 
 Orca で `ai-dev-setup` を開き、エージェントに頼みます。`import-skill` スキルの手順に沿って、AI が次の順で進めます。
+
+```mermaid
+flowchart TD
+    remote["GitHub などの<br>スキルのリポジトリ"] -- "① 一時フォルダに取得" --> tmp["一時フォルダ"]
+    tmp --> check["② 中身を確認して報告<br>（スクリプト・外部通信・怪しい指示）"]
+    check --> ok{"③ あなたが了承？"}
+    ok -- "しない" --> stop["取り込まずに終了<br>（一時フォルダを削除）"]
+    ok -- "する" --> copy["④ .agents/skills と<br>.claude/skills にコピー"]
+    copy --> log["⑤ SOURCES.md に記録して<br>コミット"]
+```
 
 1. 取り込み元のリポジトリを一時フォルダに取得し、入っているスキルの一覧を見せる
 2. 中身を確認し、スクリプトや外部への通信など**注意が必要な点を報告する**

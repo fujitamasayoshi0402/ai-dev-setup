@@ -3,6 +3,24 @@
 [Orca](https://github.com/stablyai/orca) は、**Git worktree を単位に複数の AI エージェントを並行で動かす**ためのデスクトップアプリです。
 「1タスク = 1 worktree = 1 エージェント」で作業を分けるので、エージェント同士がファイルを取り合わず、並行作業が安全にできます。
 
+## worktree とは
+
+**worktree（ワークツリー）** は、1つのプロジェクトから作る「作業ごとの分身フォルダ」です。作業ごとにフォルダが分かれるので、AI が同時に別々の作業をしても変更が混ざりません。終わった作業だけを本体（main）に取り込みます。
+
+```mermaid
+flowchart LR
+    main[("本体（main）<br>orca/projects/<br>my-app")]
+    a["作業フォルダ A<br>orca/workspaces/my-app/<br>login-page<br><br>エージェントA が作業"]
+    b["作業フォルダ B<br>orca/workspaces/my-app/<br>fix-header<br><br>エージェントB が作業"]
+    done[("本体（main）<br>A と B の変更が<br>反映される")]
+    main -- "worktree を作る" --> a
+    main -- "worktree を作る" --> b
+    a -- "終わったら取り込む<br>（マージ）" --> done
+    b -- "終わったら取り込む<br>（マージ）" --> done
+```
+
+Orca は、この worktree の作成・エージェントの起動・取り込み・削除を、画面から操作できるようにしたアプリです。
+
 ## なぜ Orca を使うのか
 
 | 課題 | Orca での解決 |
@@ -103,11 +121,18 @@ GitHub を使っている場合は、`--issue 12` を付けると Issue の情�
 
 ## 5. 基本の作業フロー
 
+```mermaid
+flowchart TD
+    s1["① 作業ごとに worktree を作る"] --> s2["② エージェントに指示する"]
+    s2 --> s3["③ 入力待ちになったら確認・返答"]
+    s3 --> s2
+    s3 --> s4{"④ 変更内容は OK？"}
+    s4 -- "直してほしい" --> s2
+    s4 -- "OK" --> s5["⑤ main に取り込む<br>（GitHub を使うなら PR 経由）"]
+    s5 --> s6["⑥ worktree を削除"]
 ```
-main ─┬─ worktree: feature-a  ← エージェントA が実装
-      ├─ worktree: feature-b  ← エージェントA が別機能を実装
-      └─ worktree: review-a   ← エージェントB が feature-a をレビュー
-```
+
+①〜③は、別の worktree で並行して進められます。
 
 1. タスクごとに worktree を作る（名前は `feature-xxx` / `fix-xxx` など）
 2. エージェントに指示 → 他の worktree で別タスクを並行
