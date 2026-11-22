@@ -64,10 +64,10 @@ my-app の 〇〇 スキルを、取り込み元の最新版に更新して
 
 [skills CLI](https://github.com/vercel-labs/skills) を使うと、取り込みとエージェントごとの配置をまとめて行えます。
 
-```zsh
-npx skills add owner/repo --list              # 入っているスキルの一覧
-npx skills add owner/repo --skill <スキル名>   # 指定したスキルを取り込む
-```
+| コマンド | 用途 |
+|---|---|
+| `npx skills add owner/repo --list` | 入っているスキルの一覧を見る |
+| `npx skills add owner/repo --skill <スキル名>` | 指定したスキルを取り込む |
 
 インストール先のエージェントは、実行時に選べます。公開されているスキルは [skills.sh](https://skills.sh/) で探せます。
 

@@ -50,6 +50,8 @@ git config --global init.defaultBranch main
 
 #### Claude Code（Anthropic）
 
+公式の手順: [Claude Code のセットアップ](https://code.claude.com/docs/en/setup)
+
 ```zsh
 curl -fsSL https://claude.ai/install.sh | bash
 ```
@@ -62,17 +64,28 @@ claude
 
 #### Antigravity（Google）
 
-[antigravity.google/download](https://antigravity.google/download) から Mac 版をダウンロードしてインストールします。エディタ一体型のアプリで、Google アカウントでログインします。
+Antigravity には、エディタ一体型のアプリ版と、ターミナルで使う CLI 版（`agy`）があります。**Orca から使うには CLI 版が必要**です。
 
-ターミナルで使う CLI 版（`agy`）もあります。入れ方は [公式のインストール手順](https://antigravity.google/docs/cli/install) を参照してください。
+1. アプリ版: [antigravity.google/download](https://antigravity.google/download) から Mac 版をダウンロードしてインストールし、Google アカウントでログインします
+2. CLI 版: [公式のインストール手順](https://antigravity.google/docs/cli/install) に従って入れます
+3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です
+
+```zsh
+agy --help
+```
 
 #### Codex（OpenAI）
 
-Codex の CLI 版は、Homebrew または Node.js（npm）を使って入れます。先に [ステップアップ](#ステップアップ) の Homebrew を入れてから、次を実行します。
+Codex の CLI 版は、Homebrew または Node.js（npm）を使って入れます（公式の手順: [Codex CLI](https://developers.openai.com/codex/cli)）。先に [ステップアップ](#ステップアップ) の Homebrew を入れてから、次を実行します。
 
 ```zsh
 brew install --cask codex
-codex           # 初回起動で ChatGPT アカウントにログイン
+```
+
+起動すると、初回は ChatGPT アカウントでのログインを求められます。
+
+```zsh
+codex
 ```
 
 #### 「command not found」と出たら
@@ -93,10 +106,15 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
 
 ```zsh
 git --version
-claude --version    # 入れたエージェントに合わせて（codex --version / agy --help）
 ```
 
-ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます。
+続けて、入れたエージェントのコマンドを実行します（Claude Code なら `claude --version`、Codex なら `codex --version`、Antigravity なら `agy --help`）。
+
+```zsh
+claude --version
+```
+
+ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます（エージェントの違いを先に知りたい場合は [03-tools.md](03-tools.md)）。
 
 ### 5. 効率化アプリ（任意・おすすめ）
 
@@ -115,6 +133,8 @@ claude --version    # 入れたエージェントに合わせて（codex --versi
 ## ステップアップ
 
 ### Homebrew（アプリをコマンドで入れる仕組み）
+
+公式サイト: [brew.sh](https://brew.sh/ja/)
 
 ```zsh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -135,7 +155,17 @@ GitHub を使うと、作ったものを**ネット上にバックアップ**し
 
 ```zsh
 brew install gh
-gh auth login       # GitHub.com → HTTPS → Login with a web browser の順に選ぶ
+```
+
+ログインします。質問には `GitHub.com` → `HTTPS` → `Login with a web browser` の順に答えます。
+
+```zsh
+gh auth login
+```
+
+ログインできたか確認します。
+
+```zsh
 gh auth status
 ```
 

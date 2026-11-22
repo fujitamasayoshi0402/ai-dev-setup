@@ -69,25 +69,34 @@ Orca では、作業するフォルダを「プロジェクト」として登録
 
 ### CLI で登録する場合
 
+Git で管理しているフォルダを登録する場合：
+
 ```zsh
-orca repo add --path ~/orca/projects/my-app                 # Git 管理のフォルダ
-orca repo add --path ~/orca/projects/notes --kind folder    # 普通のフォルダ
-orca repo list
+orca repo add --path ~/orca/projects/my-app
 ```
+
+```powershell
+orca repo add --path C:\dev\orca\projects\my-app
+```
+
+Git で管理していない普通のフォルダは、最後に `--kind folder` を付けます。登録できたかは `orca repo list` で確認できます。
 
 ## 4. worktree を作ってエージェントを起動
 
-GUI ではプロジェクトの「＋」から新しい workspace（worktree）を作成し、エージェントを選びます。CLI の場合：
+GUI ではプロジェクトの「＋」から新しい workspace（worktree）を作成し、エージェントを選びます。
+
+CLI の場合は次のとおりです。`<agent>` には、`orca agent installed` で表示された ID（例: `claude`）を入れます。コマンドは1行なので、Mac・Windows のどちらでもそのまま使えます。
+
+worktree を作成し、そのままエージェントに指示を渡して起動する：
 
 ```zsh
-# worktree を作成し、そのままエージェントに指示を渡して起動
-# <agent> は orca agent installed で表示された ID
-orca worktree create --repo name:my-app --name login-page \
-  --agent <agent> --prompt "ログイン画面を作って"
+orca worktree create --repo name:my-app --name login-page --agent <agent> --prompt "ログイン画面を作って"
+```
 
-# 既存の worktree で、別のエージェントを追加起動
-orca agent launch --agent <別のagent> --worktree name:login-page \
-  --prompt "この変更をレビューして"
+既存の worktree で、別のエージェントを追加で起動する：
+
+```zsh
+orca agent launch --agent <別のagent> --worktree name:login-page --prompt "この変更をレビューして"
 ```
 
 GitHub を使っている場合は、`--issue 12` を付けると Issue の情報を参照しながら作業できます。
@@ -108,7 +117,7 @@ main ─┬─ worktree: feature-a  ← エージェントA が実装
    - GitHub を使っている場合: PR を作ってレビューしてからマージ（エージェントに「PR を作って」と頼んでもOK）
 5. 取り込んだら worktree を削除
    ```zsh
-   orca worktree rm name:feature-a
+   orca worktree rm --worktree name:feature-a
    ```
 
 ## 6. よく使う CLI

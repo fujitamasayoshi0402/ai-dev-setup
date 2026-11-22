@@ -75,6 +75,8 @@ winget install --id Obsidian.Obsidian -e
 ```
 
 > 保管庫も Git で管理されるので、AI がメモを壊しても元に戻せます。GitHub を使うなら、**非公開（Private）リポジトリ**にバックアップしましょう。
+>
+> コミュニティプラグインの中には、設定ファイル（`.obsidian/plugins/<プラグイン名>/data.json`）に API キーやトークンを保存するものがあります。雛形の `.gitignore` ではこれを除外しています。
 
 ### B. プロジェクトの docs をそのまま開く
 

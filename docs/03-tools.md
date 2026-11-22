@@ -18,9 +18,11 @@
 
 どのエージェントでも、次の流れは共通です。
 
+作業したいフォルダに移動して、エージェントのコマンド（`claude` / `codex` / `agy` など）を実行すると、対話モードで起動します。
+
 ```zsh
 cd your-repo
-<エージェントのコマンド>              # 対話モードで起動
+claude
 ```
 
 | やりたいこと | Claude Code | Codex | Antigravity CLI |
@@ -102,14 +104,14 @@ cd your-repo
 
 GitHub を使う場合に入れます。GitHub を使わないなら不要です。
 
-```zsh
-gh repo create my-app --private --clone   # リポジトリを作成
-gh pr create --fill                       # PR を作成
-gh pr list                                # PR の一覧
-gh pr checkout 12                         # PR をローカルに取得
-gh issue list                             # Issue の一覧
-gh run watch                              # CI の進捗を見る
-```
+| コマンド | 用途 |
+|---|---|
+| `gh repo create my-app --private --clone` | 非公開のリポジトリを作成して手元に取得 |
+| `gh pr create --fill` | PR を作成 |
+| `gh pr list` | PR の一覧 |
+| `gh pr checkout 12` | 12番の PR を手元に取得 |
+| `gh issue list` | Issue の一覧 |
+| `gh run watch` | CI（自動チェック）の進捗を見る |
 
 AIエージェントも `gh` を使って PR の作成や CI の確認ができるので、ログインしておくと任せられる範囲が広がります。
 
@@ -117,19 +119,19 @@ AIエージェントも `gh` を使って PR の作成や CI の確認ができ�
 
 プロジェクトごとにランタイムのバージョンを固定します。
 
-```zsh
-mise use node@22          # このディレクトリで Node 22 を使う（mise.toml が作られる）
-mise install              # mise.toml に書かれたバージョンをまとめてインストール
-```
+| コマンド | 用途 |
+|---|---|
+| `mise use node@22` | このフォルダで Node 22 を使う（`mise.toml` が作られる） |
+| `mise install` | `mise.toml` に書かれたバージョンをまとめてインストール |
 
 `mise.toml` をコミットしておけば、メンバー全員（と AI）が同じバージョンで動かせます。
 
 ## ripgrep / jq — 開発者向け
 
-```zsh
-rg "useState" src/        # 高速なコード検索
-cat data.json | jq '.items[0]'
-```
+| コマンド | 用途 |
+|---|---|
+| `rg "useState" src/` | `src/` の中から `useState` を高速に検索 |
+| `jq '.items[0]' data.json` | JSON ファイルの一部を取り出して見やすく表示 |
 
 ## 効率化アプリ
 

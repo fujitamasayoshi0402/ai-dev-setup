@@ -27,13 +27,20 @@
 
 > Windows の場合は `C:\dev\orca\projects\...` のように短いパスを推奨します。
 
-Orca を使わずに手動で worktree を作る場合：
+Orca を使わずに手動で worktree を作る場合（作成 → 一覧 → 削除）：
 
 ```zsh
 cd ~/orca/projects/my-app
 git worktree add ../../workspaces/my-app/login-page -b feature/login-page
 git worktree list
 git worktree remove ../../workspaces/my-app/login-page
+```
+
+```powershell
+cd C:\dev\orca\projects\my-app
+git worktree add ..\..\workspaces\my-app\login-page -b feature/login-page
+git worktree list
+git worktree remove ..\..\workspaces\my-app\login-page
 ```
 
 ## 2. リポジトリ内の構成例
@@ -85,23 +92,37 @@ templates の new-project を使って、my-app という名前で新しいプ�
 
 #### 方法2: 自分でコピーする
 
+**1. コピーする。** 同じ名前のフォルダがすでにある場合は、上書きしないように何もせず止まります。
+
 ```zsh
-# Mac
-mkdir ~/orca/projects/my-app
-cp -R ~/orca/projects/ai-dev-setup/templates/new-project/. ~/orca/projects/my-app/
-cd ~/orca/projects/my-app && git init
+mkdir ~/orca/projects/my-app && cp -R ~/orca/projects/ai-dev-setup/templates/new-project/. ~/orca/projects/my-app/
 ```
 
 ```powershell
-# Windows
-mkdir C:\dev\orca\projects\my-app
-Copy-Item -Path C:\dev\orca\projects\ai-dev-setup\templates\new-project\* -Destination C:\dev\orca\projects\my-app -Recurse -Force
-cd C:\dev\orca\projects\my-app; git init
+$dest = "C:\dev\orca\projects\my-app"; if (Test-Path $dest) { Write-Host "すでに $dest があります。別の名前にしてください" } else { New-Item -ItemType Directory $dest | Out-Null; Copy-Item -Path C:\dev\orca\projects\ai-dev-setup\templates\new-project\* -Destination $dest -Recurse; Write-Host "コピーしました" }
 ```
 
-> `.gitignore` など、名前が `.` で始まるファイルもコピーされているか確認してください（Mac は `ls -a`、Windows は `ls -Force`）。
+> Mac で `File exists` と出た場合も、同じ名前のフォルダがすでにあります。別の名前にしてやり直してください。
 
-コピーしたら、Orca の「Add project」で `my-app` を登録し、エージェントに次のように頼むと `AGENTS.md` の「〇〇」を埋めてくれます。
+**2. Git で管理を始めて、最初のコミットをする。** これをしないと、Orca で作る作業フォルダ（worktree）に雛形のファイルが入りません。
+
+```zsh
+cd ~/orca/projects/my-app
+git init
+git add .
+git commit -m "最初のコミット"
+```
+
+```powershell
+cd C:\dev\orca\projects\my-app
+git init
+git add .
+git commit -m "最初のコミット"
+```
+
+> `Please tell me who you are` と出た場合は、名前とメールアドレスの設定がまだです。セットアップの「Git を入れる」にある `git config --global user.name ...` を実行してから、もう一度 `git commit` します。
+
+**3. Orca に登録する。** Orca の「Add project」で `my-app` を登録し、エージェントに次のように頼むと `AGENTS.md` の「〇〇」を埋めてくれます。
 
 ```
 AGENTS.md の「〇〇」の部分を、作りたいものに合わせて埋めて。わからないところは質問して
@@ -162,5 +183,6 @@ Git の操作は AI に頼めば大丈夫です。覚えておくのは「いつ
 | 禁止する | `rm -rf`、`git push --force`、`.env` の読み取り |
 
 - 取り返しのつかない操作は禁止（deny）にしておく
+- 禁止の設定は**最低限の安全策**です。別の書き方のコマンド（例: `rm -fr`）や別のツール経由では防げないことがあるので、「全部許可」に頼りすぎないようにします
 - 「全部許可」するモードは、worktree の中など影響範囲が限られた場所でだけ使う
 - 設定ファイルの場所と書き方はエージェントごとに違います（例: Claude Code は `.claude/settings.json`、Codex は `~/.codex/config.toml`）。各公式ドキュメントを確認してください

@@ -8,16 +8,16 @@ AIコーディングエージェントを使った開発を始めるための、
 
 | # | ドキュメント | 内容 |
 |---|---|---|
-| 1 | [Mac セットアップ](docs/01-setup-mac.md) | 基本コース（Git・AIエージェント・Orca）→ ステップアップ → 開発者向け |
-| 1 | [Windows セットアップ](docs/02-setup-windows.md) | 基本コース（Git・AIエージェント・Orca）→ ステップアップ → 開発者向け |
-| 2 | [便利ツールの紹介と使い方](docs/03-tools.md) | AIエージェントの比較と共通の使い方、CLI・効率化アプリ、タイピング練習 |
-| 3 | [Orca のセットアップ](docs/04-orca.md) | worktree ベースで複数のエージェントを並行して動かす |
-| 4 | [ディレクトリ管理と Tips](docs/05-directory-and-tips.md) | フォルダ構成・ブランチ運用・AIへの指示のコツ |
-| 5 | [Obsidian（オプション）](docs/06-obsidian-optional.md) | ナレッジ管理とAIの組み合わせ |
-| 6 | [スキルの取り込みと共有](docs/07-skills.md) | 他のリポジトリのスキルを取り込む・自分のスキルを共有する |
-| 7 | [複数のエージェントを使うときの Tips](docs/08-multi-agent.md) | 使い分けのパターン・引き継ぎ・料金と利用枠の管理 |
+| 01 | [Mac セットアップ](docs/01-setup-mac.md) | 基本コース（Git・AIエージェント・Orca）→ ステップアップ → 開発者向け |
+| 02 | [Windows セットアップ](docs/02-setup-windows.md) | 基本コース（Git・AIエージェント・Orca）→ ステップアップ → 開発者向け |
+| 03 | [便利ツールの紹介と使い方](docs/03-tools.md) | AIエージェントの比較と共通の使い方、CLI・効率化アプリ、タイピング練習 |
+| 04 | [Orca のセットアップ](docs/04-orca.md) | worktree ベースで複数のエージェントを並行して動かす |
+| 05 | [ディレクトリ管理と Tips](docs/05-directory-and-tips.md) | フォルダ構成・ブランチ運用・AIへの指示のコツ |
+| 06 | [Obsidian（オプション）](docs/06-obsidian-optional.md) | ナレッジ管理とAIの組み合わせ |
+| 07 | [スキルの取り込みと共有](docs/07-skills.md) | 他のリポジトリのスキルを取り込む・自分のスキルを共有する |
+| 08 | [複数のエージェントを使うときの Tips](docs/08-multi-agent.md) | 使い分けのパターン・引き継ぎ・料金と利用枠の管理 |
 
-> Mac と Windows の手順は、使う方だけ読めばOKです。
+> 01（Mac）と 02（Windows）は、使う方だけ読めばOKです。
 > **プログラミング経験がなくても大丈夫です。** まずは各セットアップの「基本コース」だけ進めてください。
 
 ## AI と一緒に読み進める
@@ -51,15 +51,17 @@ GitHub 上で読むだけでも進められます。手元に置くと、`templa
 
 推奨のディレクトリ構成（[05-directory-and-tips.md](docs/05-directory-and-tips.md)）に合わせて、`orca/projects/` の下に置きます。
 
+Mac（Git を入れたあと）：
+
 ```zsh
-# Mac（Git を入れたあと）
 mkdir -p ~/orca/projects ~/orca/workspaces
 cd ~/orca/projects
 git clone https://github.com/fujitamasayoshi0402/ai-dev-setup.git
 ```
 
+Windows（Git for Windows を入れたあと）：
+
 ```powershell
-# Windows（Git for Windows を入れたあと）
 mkdir C:\dev\orca\projects, C:\dev\orca\workspaces -Force
 cd C:\dev\orca\projects
 git clone https://github.com/fujitamasayoshi0402/ai-dev-setup.git
@@ -72,7 +74,12 @@ git clone https://github.com/fujitamasayoshi0402/ai-dev-setup.git
 このガイドは随時更新されます。`ai-dev-setup` でエージェントに「このガイドを最新にして」と頼むと、最新版を取り込みます。自分で行う場合は次のとおりです。
 
 ```zsh
-cd ~/orca/projects/ai-dev-setup   # Windows: cd C:\dev\orca\projects\ai-dev-setup
+cd ~/orca/projects/ai-dev-setup
+git pull
+```
+
+```powershell
+cd C:\dev\orca\projects\ai-dev-setup
 git pull
 ```
 

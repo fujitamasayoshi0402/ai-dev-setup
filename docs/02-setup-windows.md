@@ -13,7 +13,7 @@ Windows 10 / 11 で AI 駆動開発を始めるための手順です。**プロ�
 ## ターミナルの開き方
 
 スタートメニューで「ターミナル」（Windows Terminal）と検索して開きます。Windows 10 で見つからない場合は、Microsoft Store から「Windows Terminal」を入れてください。
-以降のコマンドは、ここ（PowerShell）にコピー＆ペーストして Enter で実行します。**管理者として実行する必要はありません。**
+以降のコマンドは、ここ（PowerShell）にコピー＆ペーストして Enter で実行します。**管理者として実行する必要はありません**（WSL2 の手順だけは例外です）。
 
 ---
 
@@ -56,6 +56,8 @@ git config --global core.longpaths true
 
 #### Claude Code（Anthropic）
 
+公式の手順: [Claude Code のセットアップ](https://code.claude.com/docs/en/setup)
+
 ```powershell
 irm https://claude.ai/install.ps1 | iex
 ```
@@ -68,13 +70,19 @@ claude
 
 #### Antigravity（Google）
 
-[antigravity.google/download](https://antigravity.google/download) から Windows 版をダウンロードしてインストールします。エディタ一体型のアプリで、Google アカウントでログインします。
+Antigravity には、エディタ一体型のアプリ版と、ターミナルで使う CLI 版（`agy`）があります。**Orca から使うには CLI 版が必要**です。
 
-ターミナルで使う CLI 版（`agy`）もあります。入れ方は [公式のインストール手順](https://antigravity.google/docs/cli/install) を参照してください。
+1. アプリ版: [antigravity.google/download](https://antigravity.google/download) から Windows 版をダウンロードしてインストールし、Google アカウントでログインします
+2. CLI 版: [公式のインストール手順](https://antigravity.google/docs/cli/install) に従って入れます
+3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です
+
+```powershell
+agy --help
+```
 
 #### Codex（OpenAI）
 
-Codex の CLI 版は Node.js（npm）を使って入れます。先に [開発者向け](#開発者向け) の Node.js を入れてから、次を実行します。
+Codex の CLI 版は Node.js（npm）を使って入れます（公式の手順: [Codex CLI](https://developers.openai.com/codex/cli)）。先に [開発者向け](#開発者向け) の Node.js を入れてから、次を実行します。
 
 ```powershell
 npm install -g @openai/codex
@@ -89,6 +97,9 @@ codex
 [Environment]::SetEnvironmentVariable("Path", "$env:USERPROFILE\.local\bin;" + [Environment]::GetEnvironmentVariable("Path", "User"), "User")
 ```
 
+- 実行したら、**ターミナルを閉じて開き直して**ください
+- このコマンドは**1回だけ**実行します（くり返すと、同じ場所が何度も登録されてしまいます）
+
 ### 3. Orca を入れる
 
 [onOrca.dev/download](https://onorca.dev/download) または [GitHub Releases](https://github.com/stablyai/orca/releases) から Windows 版（`.exe`）をダウンロードして実行します。
@@ -101,10 +112,15 @@ codex
 
 ```powershell
 git --version
-claude --version    # 入れたエージェントに合わせて（codex --version / agy --help）
 ```
 
-ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます。
+続けて、入れたエージェントのコマンドを実行します（Claude Code なら `claude --version`、Codex なら `codex --version`、Antigravity なら `agy --help`）。
+
+```powershell
+claude --version
+```
+
+ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます（エージェントの違いを先に知りたい場合は [03-tools.md](03-tools.md)）。
 
 ### 5. 効率化アプリ（任意・おすすめ）
 
@@ -123,11 +139,16 @@ claude --version    # 入れたエージェントに合わせて（codex --versi
 GitHub を使うと、作ったものを**ネット上にバックアップ**したり、**他の人と共有・レビュー**したりできます。1人で手元だけで作るなら、なくても困りません。
 
 1. [github.com](https://github.com/) でアカウントを作成
-2. GitHub CLI を入れてログイン（入れたらターミナルを開き直す）
+2. GitHub CLI を入れます
 
 ```powershell
 winget install --id GitHub.cli -e
-gh auth login       # GitHub.com → HTTPS → Login with a web browser の順に選ぶ
+```
+
+**ターミナルを閉じて開き直してから**、ログインします。質問には `GitHub.com` → `HTTPS` → `Login with a web browser` の順に答えます。
+
+```powershell
+gh auth login
 gh auth setup-git
 ```
 
@@ -159,7 +180,7 @@ winget install --id Microsoft.VisualStudioCode -e
 | jq | JSON の整形 |
 | VS Code | AI が書いたコードを確認するエディタ |
 
-> Node のバージョンを複数使い分けたい場合は、`winget install jdx.mise` で mise も使えます。
+> Node のバージョンを複数使い分けたい場合は、`winget install --id jdx.mise -e` で mise も使えます。
 
 ### PowerShell の実行ポリシー（エラーが出た場合のみ）
 
@@ -172,6 +193,8 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 ### WSL2（Linux 環境が必要な場合のみ）
 
 Docker を使う開発など、Linux 前提のツールが必要なときだけ使います。
+
+**この手順だけは管理者権限が必要です。** スタートメニューで「ターミナル」を右クリック →「管理者として実行」で開いてから実行し、終わったらパソコンを再起動します（公式の手順: [WSL のインストール](https://learn.microsoft.com/ja-jp/windows/wsl/install)）。
 
 ```powershell
 wsl --install
