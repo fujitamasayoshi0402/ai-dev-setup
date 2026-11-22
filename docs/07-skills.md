@@ -25,7 +25,7 @@ my-app/
 
 > 名前が `.` で始まるフォルダは、Mac の Finder では表示されません。`⌘ + Shift + .` で表示・非表示を切り替えられます。
 
-雛形（`templates/new-project/`、`templates/obsidian-vault/`）には、このフォルダ構成があらかじめ入っています。
+雛形（`templates/new-project/`、`templates/obsidian-vault/`）には、このフォルダ構成と `handoff` スキルがあらかじめ入っています。
 
 ## このガイドに入っているスキル
 
@@ -33,6 +33,7 @@ my-app/
 |---|---|---|
 | `create-from-template` | 雛形から新しいプロジェクトや保管庫を、正しい場所に作る | 「templates の new-project を使って my-app を作って」 |
 | `import-skill` | 他のリポジトリのスキルを、安全確認したうえで取り込む | 「https://github.com/owner/repo のスキルを取り込んで」 |
+| `handoff` | 別のエージェントに作業を引き継ぐメモを作る・読む（[08-multi-agent.md](08-multi-agent.md#作業を引き継ぐ)） | 「別のエージェントに引き継ぐので、引き継ぎメモを作って」 |
 
 ## 他のリポジトリからスキルを取り込む
 

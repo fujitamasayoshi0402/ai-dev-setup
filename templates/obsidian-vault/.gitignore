@@ -10,3 +10,6 @@ Thumbs.db
 # AI エージェントの個人用設定
 CLAUDE.local.md
 .claude/settings.local.json
+
+# 作業の引き継ぎメモ（作業フォルダごとの一時ファイル）
+HANDOFF.md

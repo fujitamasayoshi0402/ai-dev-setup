@@ -32,6 +32,7 @@
 | 「セットアップを手伝って」 | `docs/01-setup-mac.md` または `docs/02-setup-windows.md` の基本コースを順に案内する |
 | 「雛形から〇〇を作って」 | スキル `create-from-template`（`.agents/skills/create-from-template/SKILL.md`）の手順に従う |
 | 「〇〇のスキルを取り込んで」 | スキル `import-skill`（`.agents/skills/import-skill/SKILL.md`）の手順に従う |
+| 「引き継ぎメモを作って」「HANDOFF.md を読んで続けて」 | スキル `handoff`（`.agents/skills/handoff/SKILL.md`）の手順に従う |
 | 「このガイドを最新にして」 | 未コミットの変更がないか確認してから `git pull` する。変更があれば先に利用者に確認する |
 
 ## このリポジトリを編集するとき（メンテナー向け）
@@ -49,6 +50,7 @@
 ### スキルを追加・変更するとき
 - `.agents/skills/<名前>/` と `.claude/skills/<名前>/` の両方を同じ内容にする
 - 外部から取り込んだスキルは `.agents/skills/SOURCES.md` に記録する
+- `handoff` スキルは `templates/new-project/` と `templates/obsidian-vault/` にも同じものがある。変更したらすべて揃える
 
 ### Git
 - `main` に直接コミットしない。ブランチを切って PR を出す
