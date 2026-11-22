@@ -74,6 +74,26 @@ flowchart TD
 
 > 料金や、どのプランで使えるか・使える量の上限は、よく変わります。契約する前に、必ず各公式の料金ページで確認してください。
 
+#### それぞれの特徴
+
+性能の優劣はアップデートで入れ替わるので、ここでは**製品としての特徴**（変わりにくい部分）をまとめます。
+
+| エージェント | 特徴 | 向いている人 |
+|---|---|---|
+| **Claude Code** | ターミナル中心。スキル・自動処理（Hooks）・サブエージェント・外部連携（MCP）・計画モードなど、**カスタマイズの幅が広い**。エディタ拡張やデスクトップ版もある | 自分好みに作り込みたい人、Orca で並行作業したい人 |
+| **Codex** | CLI 版は[オープンソース](https://github.com/openai/codex)。AI が実行できる範囲を制限する**サンドボックスと、実行前の承認の設定**が用意されている。ChatGPT のプランで使え、クラウド上で作業させる使い方もある | ChatGPT を契約している人、安全側の設定で使いたい人 |
+| **Antigravity** | **エディタ一体型のアプリ**で、ファイルを見ながら使える。複数のエージェントの作業をまとめて管理する画面や、[ブラウザを操作して画面を確かめる機能](https://antigravity.google/docs/browser)がある | ターミナルが苦手な人、画面を見ながら進めたい人、Web サイトを作る人 |
+| **GitHub Copilot** | **GitHub との連携が深い**。[Issue を Copilot に割り当てると PR を作ってくれる](https://docs.github.com/ja/copilot/how-tos/use-copilot-agents/cloud-agent/create-a-pr)機能や、[PR のレビュー](https://docs.github.com/ja/copilot/concepts/agents/code-review)がある（使えるプランや条件は公式で確認）。VS Code などのエディタの中でも使える | GitHub をよく使う人、まず無料で試したい人 |
+
+#### 選んだあとにつまずきやすい点
+
+| エージェント | つまずきやすい点 | 対処 |
+|---|---|---|
+| Claude Code | 有料プランが前提。使える量の上限に達すると、しばらく待つ必要がある | 上限のリセット時間を把握しておく。2つ目のエージェントで続ける（[08-multi-agent.md](08-multi-agent.md)） |
+| Codex | Windows では Node.js が必要。`CLAUDE.md` は初期設定では読まない | ルールは `AGENTS.md` に書く（このガイドの構成ならそのまま使える） |
+| Antigravity | Orca から使うには、アプリとは別に CLI 版（`agy`）が必要。無料プランの上限は変わりやすい | CLI 版も入れておく。上限は[公式の料金ページ](https://antigravity.google/pricing)で確認 |
+| GitHub Copilot | GitHub アカウントが必要。GitHub 上で Issue を任せる機能は、プランや設定によって使えないことがある | まずはターミナル（CLI 版）やエディタの中で使ってみる |
+
 #### 選ぶ前のチェックリスト
 
 - [ ] すでに契約している AI サービスはあるか（Claude / ChatGPT / Google / GitHub Copilot）
