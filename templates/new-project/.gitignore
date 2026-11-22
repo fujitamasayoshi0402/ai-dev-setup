@@ -14,6 +14,7 @@ build/
 # エディタの個人設定
 .vscode/
 .idea/
+.obsidian/
 
 # AI エージェントの個人用設定
 CLAUDE.local.md

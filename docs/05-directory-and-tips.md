@@ -6,9 +6,10 @@
 
 ```
 ~/orca/
-├── projects/                 # 各リポジトリの本体（main ブランチ）
-│   ├── my-app/
-│   └── ai-dev-setup/
+├── projects/                 # 各プロジェクトの本体（main ブランチ）
+│   ├── ai-dev-setup/         # このガイド（雛形の置き場所）
+│   ├── my-app/               # 雛形 new-project から作ったプロジェクト
+│   └── my-vault/             # 雛形 obsidian-vault から作った保管庫（任意）
 └── workspaces/               # worktree（タスクごとの作業フォルダ）
     ├── my-app/
     │   ├── login-page/       # feature ブランチ
@@ -63,27 +64,47 @@ my-app/
 
 ### テンプレートから新しいプロジェクトを作る
 
+雛形は `ai-dev-setup/templates/` にあります。**中身をまるごと、`ai-dev-setup` の隣にコピー**します。
+
+```
+~/orca/projects/
+├── ai-dev-setup/templates/new-project/   ← コピー元
+└── my-app/                                ← コピー先（新しく作る）
+```
+
+#### 方法1: AI に頼む（おすすめ）
+
+Orca で `ai-dev-setup` を開き、エージェントに頼みます。正しい場所に作る手順は `ai-dev-setup/AGENTS.md` に書いてあります。
+
+```
+templates の new-project を使って、my-app という名前で新しいプロジェクトを作って
+```
+
+#### 方法2: 自分でコピーする
+
 ```zsh
 # Mac
-cd ~/orca/projects
-mkdir my-app && cd my-app && git init
-cp -R ~/orca/projects/ai-dev-setup/templates/new-project/. .
+mkdir ~/orca/projects/my-app
+cp -R ~/orca/projects/ai-dev-setup/templates/new-project/. ~/orca/projects/my-app/
+cd ~/orca/projects/my-app && git init
 ```
 
 ```powershell
 # Windows
-cd C:\dev\orca\projects
-mkdir my-app; cd my-app; git init
-Copy-Item -Recurse -Force C:\dev\orca\projects\ai-dev-setup\templates\new-project\* .
+mkdir C:\dev\orca\projects\my-app
+Copy-Item -Path C:\dev\orca\projects\ai-dev-setup\templates\new-project\* -Destination C:\dev\orca\projects\my-app -Recurse -Force
+cd C:\dev\orca\projects\my-app; git init
 ```
 
-> PowerShell の `*` は隠しファイル（`.gitignore` など）も対象に含みます。コピー後に `ls -Force` で確認してください。
+> `.gitignore` など、名前が `.` で始まるファイルもコピーされているか確認してください（Mac は `ls -a`、Windows は `ls -Force`）。
 
-コピーしたら、エージェントに次のように頼むと `AGENTS.md` の「〇〇」を埋めてくれます。
+コピーしたら、Orca の「Add project」で `my-app` を登録し、エージェントに次のように頼むと `AGENTS.md` の「〇〇」を埋めてくれます。
 
 ```
-このリポジトリの AGENTS.md の「〇〇」の部分を、プロジェクトの内容に合わせて埋めて
+AGENTS.md の「〇〇」の部分を、作りたいものに合わせて埋めて。わからないところは質問して
 ```
+
+Obsidian の保管庫を作る場合は、`new-project` を `obsidian-vault`、`my-app` を `my-vault` に読み替えます（[06-obsidian-optional.md](06-obsidian-optional.md)）。
 
 ## 3. 変更の保存（コミット）と作業の分け方
 

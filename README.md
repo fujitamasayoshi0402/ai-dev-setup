@@ -63,11 +63,12 @@ ai-dev-setup/
 ├── .gitattributes            # 改行コードを LF に統一
 ├── .editorconfig             # 文字コード・インデントを統一
 ├── docs/                     # 本文（番号順に読む）
-└── templates/
-    └── new-project/          # 新しいプロジェクトにコピーして使う雛形
+└── templates/                # 雛形（コピーして使う。ここでは作業しない）
+    ├── new-project/          # アプリ・ツールを作るとき用
+    └── obsidian-vault/       # Obsidian でメモを管理するとき用
 ```
 
-新しいプロジェクトを始めるときは `templates/new-project/` の中身をコピーし、`AGENTS.md` の「〇〇」をプロジェクトに合わせて書き換えます（手順は [05-directory-and-tips.md](docs/05-directory-and-tips.md#2-リポジトリ内の構成例)）。
+新しく何かを始めるときは、雛形をこのリポジトリの**隣**（`orca/projects/` の下）にコピーして使います。AI に「templates の new-project を使って my-app を作って」と頼むのがいちばん簡単です。詳しくは [templates/README.md](templates/README.md) を参照してください。
 
 ## 前提
 

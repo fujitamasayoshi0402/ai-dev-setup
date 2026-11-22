@@ -1,0 +1,12 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Obsidian の個人的な画面状態（共有しない）
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.trash/
+
+# AI エージェントの個人用設定
+CLAUDE.local.md
+.claude/settings.local.json
