@@ -34,7 +34,6 @@
 | 「雛形から〇〇を作って」 | スキル `create-from-template`（`.agents/skills/create-from-template/SKILL.md`）の手順に従う |
 | 「〇〇のスキルを取り込んで」 | スキル `import-skill`（`.agents/skills/import-skill/SKILL.md`）の手順に従う |
 | 「引き継ぎメモを作って」「HANDOFF.md を読んで続けて」 | スキル `handoff`（`.agents/skills/handoff/SKILL.md`）の手順に従う |
-| 「秘書型 AI（Muse など）と組み合わせたい」 | `docs/09-advanced-secretary-ai.md` に沿って案内する。Muse の機能・提供地域は変わりやすいので、断定せず公式の情報を確認するよう伝える |
 | 「このガイドを最新にして」 | 未コミットの変更がないか確認してから `git pull` する。変更があれば先に利用者に確認する |
 
 ## このリポジトリを編集するとき（メンテナー向け）

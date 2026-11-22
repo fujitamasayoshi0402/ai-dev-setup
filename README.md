@@ -16,7 +16,6 @@ AIコーディングエージェントを使った開発を始めるための、
 | 06 | [Obsidian（オプション）](docs/06-obsidian-optional.md) | ナレッジ管理とAIの組み合わせ |
 | 07 | [スキルの取り込みと共有](docs/07-skills.md) | 他のリポジトリのスキルを取り込む・自分のスキルを共有する |
 | 08 | [複数のエージェントを使うときの Tips](docs/08-multi-agent.md) | 使い分けのパターン・引き継ぎ・料金と利用枠の管理 |
-| 09 | [上級編: 秘書型 AI（Muse）と組み合わせる](docs/09-advanced-secretary-ai.md) | 予定・調べものは秘書型 AI、作るのはエージェントで分担する |
 
 > 01（Mac）と 02（Windows）は、使う方だけ読めばOKです。
 > 図は GitHub 上と Obsidian でそのまま表示されます（Mermaid という書き方で作っています）。

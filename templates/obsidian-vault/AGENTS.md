@@ -16,7 +16,6 @@
 - 先頭に `90_templates/` の該当テンプレートと同じ項目（frontmatter）をつける
 - 調べた結果は「結論 → 根拠 → 参考URL」の順で書く
 - 関連するメモへのリンクは `[[ファイル名]]` 形式で張る
-- 秘書型 AI（Muse など）から受け取った内容は `00_inbox/` に置き、`90_templates/from-secretary.md` の形にそろえる。タグ `from-secretary` のメモの「次にやること」を頼まれたら、その順に進める
 
 ## スキル
 - スキルは `.agents/skills/<名前>/` と `.claude/skills/<名前>/` の両方に同じ内容で置く
