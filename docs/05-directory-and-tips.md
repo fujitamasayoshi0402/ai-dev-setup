@@ -99,13 +99,13 @@ mkdir ~/orca/projects/my-app && cp -R ~/orca/projects/ai-dev-setup/templates/new
 ```
 
 ```powershell
-$src = "C:\dev\orca\projects\ai-dev-setup\templates\new-project"; $dest = "C:\dev\orca\projects\my-app"; if (Test-Path $dest) { Write-Host "すでに $dest があります。別の名前にしてください" } else { try { New-Item -ItemType Directory $dest -ErrorAction Stop | Out-Null; Copy-Item -Path "$src\*" -Destination $dest -Recurse -ErrorAction Stop; git -C $dest init; git -C $dest add .; git -C $dest commit -m "最初のコミット"; if ($LASTEXITCODE -eq 0) { Write-Host "完了しました" } else { Write-Host "コミットに失敗しました" } } catch { Write-Host "失敗しました: $_" } }
+$src = "C:\dev\orca\projects\ai-dev-setup\templates\new-project"; $dest = "C:\dev\orca\projects\my-app"; if (Test-Path $dest) { Write-Host "すでに $dest があります。別の名前にしてください" } else { try { New-Item -ItemType Directory $dest -ErrorAction Stop | Out-Null; Copy-Item -Path "$src\*" -Destination $dest -Recurse -ErrorAction Stop; git -C $dest init; if ($LASTEXITCODE -ne 0) { throw "git init に失敗しました" }; git -C $dest add .; if ($LASTEXITCODE -ne 0) { throw "git add に失敗しました" }; git -C $dest commit -m "最初のコミット"; if ($LASTEXITCODE -ne 0) { throw "git commit に失敗しました" }; Write-Host "完了しました" } catch { Write-Host "失敗しました: $_" } }
 ```
 
 - 最初のコミットまで行うのは、これをしないと Orca で作る作業フォルダ（worktree）に雛形のファイルが入らないためです
 - Mac で `File exists` と出た場合は、同じ名前のフォルダがすでにあります。別の名前にしてやり直してください
 
-> `Please tell me who you are` と出た場合は、名前とメールアドレスの設定がまだです。セットアップの「Git を入れる」にある `git config --global user.name ...` を実行してから、`my-app` フォルダで `git commit -m "最初のコミット"` をもう一度実行します。
+> `Please tell me who you are` と出た場合は、名前とメールアドレスの設定がまだです。セットアップの「Git を入れる」にある `git config --global user.name ...` と `git config --global user.email ...` の**両方**を実行してから、`my-app` フォルダで `git commit -m "最初のコミット"` をもう一度実行します。
 
 **2. Orca に登録する。** Orca の「Add project」で `my-app` を登録し、エージェントに次のように頼むと `AGENTS.md` の「〇〇」を埋めてくれます。
 
