@@ -14,9 +14,28 @@ AIコーディングエージェントを使った開発を始めるための、
 | 3 | [Orca のセットアップ](docs/04-orca.md) | worktree ベースで複数のエージェントを並行して動かす |
 | 4 | [ディレクトリ管理と Tips](docs/05-directory-and-tips.md) | フォルダ構成・ブランチ運用・AIへの指示のコツ |
 | 5 | [Obsidian（オプション）](docs/06-obsidian-optional.md) | ナレッジ管理とAIの組み合わせ |
+| 6 | [スキルの取り込みと共有](docs/07-skills.md) | 他のリポジトリのスキルを取り込む・自分のスキルを共有する |
 
 > Mac と Windows の手順は、使う方だけ読めばOKです。
 > **プログラミング経験がなくても大丈夫です。** まずは各セットアップの「基本コース」だけ進めてください。
+
+## AI と一緒に読み進める
+
+このリポジトリを手元に置いて（下の「このリポジトリを手元に置く」）Orca に登録すると、**AI がガイド役**になります。`ai-dev-setup` でエージェントを起動して、次のように話しかけてみてください。
+
+```
+Mac で基本コースのセットアップを手伝って
+```
+
+```
+Orca の使い方を、最初から順番に教えて
+```
+
+```
+templates の new-project を使って、my-app という名前で新しいプロジェクトを作って
+```
+
+AI は `docs/` の内容に沿って、1〜2ステップずつ案内してくれます（ルールは `AGENTS.md` に書いてあります）。
 
 ## 最短ルート
 
@@ -47,6 +66,17 @@ git clone https://github.com/fujitamasayoshi0402/ai-dev-setup.git
 
 > Git をまだ入れていない場合は、GitHub のページ右上の「Code」→「Download ZIP」でダウンロードし、展開したフォルダを `ai-dev-setup` という名前で上の場所に置いても構いません。
 
+### 最新版にする
+
+このガイドは随時更新されます。`ai-dev-setup` でエージェントに「このガイドを最新にして」と頼むと、最新版を取り込みます。自分で行う場合は次のとおりです。
+
+```zsh
+cd ~/orca/projects/ai-dev-setup   # Windows: cd C:\dev\orca\projects\ai-dev-setup
+git pull
+```
+
+> 雛形からコピーして作ったプロジェクトは、更新しても影響を受けません。ZIP でダウンロードした場合は、新しい ZIP を取り直してください。
+
 ## このリポジトリの構成
 
 このリポジトリ自体を、AI駆動開発のディレクトリ構成のお手本にしています。
@@ -56,7 +86,10 @@ ai-dev-setup/
 ├── README.md                 # 目次（このファイル）
 ├── AGENTS.md                 # AI エージェント共通の指示書
 ├── CLAUDE.md                 # Claude Code 用（AGENTS.md を読み込むだけ）
-├── .claude/settings.json     # Claude Code の許可・禁止コマンド（チーム共有）
+├── .agents/skills/           # スキル（Codex・Antigravity など）と取り込み元の記録
+├── .claude/
+│   ├── settings.json         # Claude Code の許可・禁止コマンド（チーム共有）
+│   └── skills/               # スキル（Claude Code 用。中身は .agents/skills と同じ）
 ├── .github/
 │   └── pull_request_template.md
 ├── .gitignore                # 秘密情報・個人設定を除外

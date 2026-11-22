@@ -45,8 +45,10 @@ my-app/
 ├── README.md
 ├── AGENTS.md          # AI エージェント共通の指示書（コミットする）
 ├── CLAUDE.md          # Claude Code 用。中身は「@AGENTS.md」の1行だけ
+├── .agents/skills/    # スキル（Codex・Antigravity など）→ 07-skills.md
 ├── .claude/
-│   └── settings.json  # Claude Code の許可・禁止コマンド（チーム共有）
+│   ├── settings.json  # Claude Code の許可・禁止コマンド（チーム共有）
+│   └── skills/        # スキル（Claude Code 用。中身は .agents/skills と同じ）
 ├── .gitignore         # .env・個人用の設定ファイルを除外
 ├── .gitattributes     # 改行コードを LF に統一
 ├── .editorconfig      # 文字コード・インデントを統一
@@ -59,6 +61,7 @@ my-app/
 | `AGENTS.md` | ルールの本体。Codex などはこのファイルを直接読む |
 | `CLAUDE.md` など | エージェントごとの指示ファイルは、`AGENTS.md` を参照するだけにして二重管理を防ぐ |
 | `.claude/settings.json` など | エージェントの設定。使うエージェントの分だけ置く |
+| `.agents/skills/`・`.claude/skills/` | スキルの置き場所。同じスキルを両方に置く（[07-skills.md](07-skills.md)） |
 | `.gitignore` | `.env` と個人用の設定（`CLAUDE.local.md`、`.claude/settings.local.json`）は必ず除外 |
 | `.gitattributes` | Windows と Mac が混ざるチームでは必須 |
 
@@ -74,7 +77,7 @@ my-app/
 
 #### 方法1: AI に頼む（おすすめ）
 
-Orca で `ai-dev-setup` を開き、エージェントに頼みます。正しい場所に作る手順は `ai-dev-setup/AGENTS.md` に書いてあります。
+Orca で `ai-dev-setup` を開き、エージェントに頼みます。正しい場所に作る手順は、スキル `create-from-template`（[07-skills.md](07-skills.md)）に書いてあります。
 
 ```
 templates の new-project を使って、my-app という名前で新しいプロジェクトを作って

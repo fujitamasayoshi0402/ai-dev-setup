@@ -25,7 +25,7 @@
 
 ## いちばん簡単な方法: AI に頼む
 
-Orca で `ai-dev-setup` を開き、エージェントに次のように頼みます。手順は `AGENTS.md` に書いてあるので、正しい場所に作ってくれます。
+Orca で `ai-dev-setup` を開き、エージェントに次のように頼みます。手順はスキル `create-from-template` に書いてあるので、正しい場所に作ってくれます。
 
 ```
 templates の new-project を使って、my-app という名前で新しいプロジェクトを作って

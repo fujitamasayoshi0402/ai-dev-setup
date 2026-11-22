@@ -43,6 +43,13 @@ brew install --cask stablyai/orca/orca
    ```zsh
    orca skills install --all
    ```
+4. **作業フォルダ（worktree）の保存先を設定します**。[ディレクトリ構成](05-directory-and-tips.md#1-推奨ディレクトリ構成)に合わせるため、Orca の設定（Settings）で次のようにします
+   - ワークスペースの保存先（Workspace directory）: `~/orca/workspaces`（Windows は `C:\dev\orca\workspaces`）
+   - プロジェクトごとにフォルダを分ける設定（Nest workspaces）: オン
+
+   これで、worktree が `orca/workspaces/<プロジェクト名>/<作業名>/` に作られます。
+
+   > 設定項目の名前は、Orca のバージョンによって違う場合があります（要確認）。見つからない場合は、Orca の設定画面で「workspace」と検索してください。
 
 ## 3. フォルダ（プロジェクト）を登録する
 
