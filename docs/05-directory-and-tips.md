@@ -39,14 +39,11 @@ git worktree remove ../../workspaces/my-app/login-page
 
 ```
 my-app/
-├── CLAUDE.md          # AI への常設指示（コミットする）
-├── AGENTS.md          # Codex 等向けの指示（共通化してもOK）
-├── .claude/
-│   ├── settings.json  # 許可コマンド・hooks（チーム共有）
-│   ├── skills/        # プロジェクト固有のスキル
-│   └── agents/        # サブエージェント定義
+├── AGENTS.md          # AI への共通の常設指示（コミットする）
+├── CLAUDE.md など     # 各エージェント用。中身は AGENTS.md を参照するだけ
+├── .claude/ .codex/ など  # 各エージェントの設定（使うものだけ）
 ├── docs/              # 仕様・設計メモ（AI にも読ませる）
-├── .gitignore         # CLAUDE.local.md, .env, settings.local.json を除外
+├── .gitignore         # .env や個人用の設定ファイルを除外
 └── src/
 ```
 
@@ -55,6 +52,7 @@ my-app/
 ```gitignore
 .env
 .env.*
+# 各エージェントの個人用設定（使うエージェントに合わせて）
 CLAUDE.local.md
 .claude/settings.local.json
 ```
@@ -83,32 +81,22 @@ CLAUDE.local.md
 | まず計画させる | 大きな作業は Plan モード（`Shift+Tab`）で計画→確認→実装 |
 | 完了条件を明示する | 「テストが通るまで」「lint エラー0まで」と書くと自走してくれる |
 | タスクが変わったら `/clear` | 古い文脈が残ると精度が落ちる |
-| 繰り返し伝えることは CLAUDE.md へ | 毎回言っていることはルール化する |
+| 繰り返し伝えることは指示ファイルへ | 毎回言っていることは `AGENTS.md` などにルールとして書く |
 | 手順化できる作業は Skill へ | リリース手順・レビュー観点などを再利用 |
 | 差分は必ず人が読む | AI の変更をそのままマージしない |
-| 別モデルでレビュー | Claude が書いて Codex がレビュー（またはその逆） |
+| 別モデルでレビュー | エージェントA が書いて、エージェントB がレビューする |
 | 秘密情報を貼らない | API キーは `.env` に置き、プロンプトに直接書かない |
 
 ## 5. 権限設定の考え方
 
-`.claude/settings.json` でよく使う安全なコマンドを許可しておくと、確認ダイアログが減って作業が速くなります。
+どのエージェントにも、「どのコマンドを確認なしで実行してよいか」を決める設定があります。よく使う安全なコマンドを許可しておくと、確認が減って作業が速くなります。
 
-```json
-{
-  "permissions": {
-    "allow": [
-      "Bash(npm run lint)",
-      "Bash(npm test)",
-      "Bash(git status)",
-      "Bash(git diff:*)"
-    ],
-    "deny": [
-      "Read(./.env)",
-      "Bash(git push --force:*)"
-    ]
-  }
-}
-```
+| 方針 | 例 |
+|---|---|
+| 許可してよい | `npm test`、`npm run lint`、`git status`、`git diff` など読み取り・検証系 |
+| 毎回確認する | パッケージの追加、`git push`、外部サービスへの書き込み |
+| 禁止する | `rm -rf`、`git push --force`、`.env` の読み取り |
 
-- `rm -rf` や `git push --force` など**取り返しのつかない操作は deny** に
-- 全許可モードは worktree 内など影響範囲が限定された場所でのみ使う
+- 取り返しのつかない操作は禁止（deny）にしておく
+- 「全部許可」するモードは、worktree の中など影響範囲が限られた場所でだけ使う
+- 設定ファイルの場所と書き方はエージェントごとに違います（例: Claude Code は `.claude/settings.json`、Codex は `~/.codex/config.toml`）。各公式ドキュメントを確認してください

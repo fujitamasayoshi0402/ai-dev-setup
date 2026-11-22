@@ -12,7 +12,7 @@
 | エージェントの状態（作業中/入力待ち）がわからない | サイドバーで状態を一覧表示・通知 |
 | 差分確認や PR 作成が面倒 | アプリ内でファイル差分・Source Control を確認 |
 
-Claude Code・Codex など、ターミナルで動く CLI エージェントなら基本的に何でも使えます。
+Claude Code・Codex・Antigravity など、ターミナルで動く CLI エージェントなら基本的に何でも使えます。特定のエージェントに縛られないので、複数を並べて使い分けられます。
 
 ## 1. インストール
 
@@ -33,10 +33,11 @@ brew install --cask stablyai/orca/orca
 ## 2. 初期設定
 
 1. Orca を起動
-2. 使うエージェント（Claude / Codex など）がインストール済みであることを確認
+2. 使うエージェントがインストール済みであることを確認
    ```zsh
    orca agent installed
    ```
+   表示された ID（例: `claude` / `codex` / `antigravity`）を、後で `--agent` に指定します。
    `orca` コマンドが使えない場合は、Orca の設定から CLI をインストールしてください。
 3. Orca のスキルを各エージェントに入れておくと、エージェント自身が Orca を操作できるようになります
    ```zsh
@@ -57,12 +58,13 @@ orca repo list
 GUI ではプロジェクトの「＋」から新しい workspace（worktree）を作成し、エージェントを選びます。CLI の場合：
 
 ```zsh
-# worktree を作成し、そのまま Claude に指示を渡して起動
+# worktree を作成し、そのままエージェントに指示を渡して起動
+# <agent> は orca agent installed で表示された ID
 orca worktree create --repo name:my-app --name login-page \
-  --agent claude --prompt "ログイン画面を作って"
+  --agent <agent> --prompt "ログイン画面を作って"
 
-# 既存の worktree でエージェントを追加起動
-orca agent launch --agent codex --worktree name:login-page \
+# 既存の worktree で、別のエージェントを追加起動
+orca agent launch --agent <別のagent> --worktree name:login-page \
   --prompt "この変更をレビューして"
 ```
 
@@ -71,9 +73,9 @@ GitHub Issue と紐づける場合は `--issue 12` を付けると、Issue の�
 ## 5. 基本の作業フロー
 
 ```
-main ─┬─ worktree: feature-a  ← Claude が実装
-      ├─ worktree: feature-b  ← Claude が別機能を実装
-      └─ worktree: review-a   ← Codex が feature-a をレビュー
+main ─┬─ worktree: feature-a  ← エージェントA が実装
+      ├─ worktree: feature-b  ← エージェントA が別機能を実装
+      └─ worktree: review-a   ← エージェントB が feature-a をレビュー
 ```
 
 1. タスクごとに worktree を作る（名前は `feature-xxx` / `fix-xxx` など）
@@ -103,4 +105,4 @@ main ─┬─ worktree: feature-a  ← Claude が実装
 - **並行数は 2〜3 から**。人間のレビューが追いつく数に抑えるのがコツです
 - **セットアップスクリプト**を設定しておくと、worktree 作成時に `npm install` や `.env` のコピーを自動実行できます
 - `.env` は worktree に自動でコピーされないことがあるので、上記スクリプトで対応するのがおすすめ
-- 実装は Claude、レビューは Codex のように**別モデルで相互チェック**すると品質が上がります
+- 実装とレビューを**別のエージェント（別モデル）で相互チェック**すると品質が上がります

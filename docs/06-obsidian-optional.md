@@ -39,12 +39,12 @@ winget install --id Obsidian.Obsidian -e
 ├── 10_daily/        # 日報（YYYY-MM-DD.md）
 ├── 20_research/     # AI の調査結果
 ├── 30_prompts/      # プロンプト集
-└── CLAUDE.md        # この Vault での AI のルール
+└── AGENTS.md        # この Vault での AI のルール（必要なら CLAUDE.md などから参照）
 ```
 
-Vault 内で `claude` を起動すれば、「今週の日報をまとめて」「research の中から○○に関するメモを探して」などが可能になります。
+Vault のフォルダで好きなエージェントを起動すれば、「今週の日報をまとめて」「research の中から○○に関するメモを探して」などが可能になります。
 
-`CLAUDE.md` の例：
+`AGENTS.md` の例：
 
 ```markdown
 - メモは日本語で書く
