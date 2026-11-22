@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | Claude Code | Anthropic | CLI（＋IDE拡張・デスクトップ版） | `claude` | `CLAUDE.md` |
 | Codex | OpenAI | CLI（＋IDE拡張） | `codex` | `AGENTS.md` |
-| Antigravity | Google | エディタ一体型アプリ ＋ CLI | `agy` | ルールファイル（公式ドキュメント参照） |
+| Antigravity | Google | エディタ一体型アプリ ＋ CLI | `agy` | `AGENTS.md`（または `GEMINI.md`、`.agents/rules/*.md`） |
 
 > この他にも Gemini CLI、GitHub Copilot、Cursor など、さまざまなツールがあります。Orca などでターミナルから起動できる CLI 型なら、このガイドの手順はほぼそのまま使えます。
 
@@ -68,10 +68,18 @@ cd your-repo
 
 | 置き場所 | 効く範囲 |
 |---|---|
-| ホームディレクトリ配下（例: `~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`） | 自分の全プロジェクト（例: 「日本語で回答して」） |
+| ホームディレクトリ配下（例: `~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`、`~/.gemini/AGENTS.md`） | 自分の全プロジェクト（例: 「日本語で回答して」） |
 | リポジトリのルート | そのリポジトリ（チームで共有するのでコミットする） |
 
-> どのファイルを読むかはエージェントによって違います。Antigravity のルールの書き方は公式ドキュメントを確認してください。
+> どのファイルを自動で読むかは、エージェントによって違います。
+>
+> | エージェント | 自動で読むファイル | `CLAUDE.md` を読むか |
+> |---|---|---|
+> | Claude Code | `CLAUDE.md` | ✅ 読む（`AGENTS.md` は直接は読まない） |
+> | Codex | `AGENTS.md` | ❌ 初期設定では読まない |
+> | Antigravity | `AGENTS.md`、`GEMINI.md`、`.agents/rules/*.md` | ❌ 読まない |
+>
+> そのため、**ルールの本体は `AGENTS.md` に書き、`CLAUDE.md` には `@AGENTS.md` の1行だけを書く**のがおすすめです。これで3つとも同じルールを読みます。
 
 ### 拡張機能（共通の考え方）
 
