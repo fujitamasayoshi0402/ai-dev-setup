@@ -88,7 +88,9 @@ cd your-repo
 - 得意分野や利用枠の残りに合わせて切り替えられるようにしておくと、作業が止まりません
 - [Orca](04-orca.md) を使うと、複数のエージェントを1つの画面で並べて管理できます
 
-## GitHub CLI（gh）
+## GitHub CLI（gh）— ステップアップ
+
+GitHub を使う場合に入れます。GitHub を使わないなら不要です。
 
 ```zsh
 gh repo create my-app --private --clone   # リポジトリを作成
@@ -101,7 +103,7 @@ gh run watch                              # CI の進捗を見る
 
 AIエージェントも `gh` を使って PR の作成や CI の確認ができるので、ログインしておくと任せられる範囲が広がります。
 
-## mise
+## mise — 開発者向け
 
 プロジェクトごとにランタイムのバージョンを固定します。
 
@@ -112,7 +114,7 @@ mise install              # mise.toml に書かれたバージョンをまとめ
 
 `mise.toml` をコミットしておけば、メンバー全員（と AI）が同じバージョンで動かせます。
 
-## ripgrep / jq
+## ripgrep / jq — 開発者向け
 
 ```zsh
 rg "useState" src/        # 高速なコード検索

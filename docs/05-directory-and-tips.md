@@ -89,7 +89,7 @@ Copy-Item -Recurse -Force C:\dev\orca\projects\ai-dev-setup\templates\new-projec
 
 - ブランチ名: `feature/xxx` / `fix/xxx` / `docs/xxx`
 - コミットは小さく。AI には「1つの変更ごとにコミットして」と指示する
-- main への直接 push は禁止し、必ず PR 経由にする（GitHub のブランチ保護を設定）
+- （GitHub を使う場合）main への直接 push は禁止し、必ず PR 経由にする（GitHub のブランチ保護を設定）
 
 ## 4. AI への指示のコツ
 

@@ -1,151 +1,193 @@
 # Windows セットアップ
 
-Windows 10 / 11 で AI 駆動開発を始めるための手順です。基本は **PowerShell（管理者権限は不要）** で作業します。ターミナルは「Windows Terminal」がおすすめです（Windows 11 には標準で入っています）。
+Windows 10 / 11 で AI 駆動開発を始めるための手順です。**プログラミング経験がなくても進められる**ように、3つのコースに分けています。
 
-## 0. 全体像
-
-| ツール | 用途 | 必須 |
+| コース | 対象 | 入れるもの |
 |---|---|---|
-| winget | パッケージ管理（Windows 標準） | ✅ |
-| Git for Windows | git と Git Bash | ✅ |
-| GitHub CLI (`gh`) | PR操作など | ✅ |
-| Node.js | ランタイム | ✅ |
-| AIコーディングエージェント | Claude Code / Codex / Antigravity など | ✅（1つ以上） |
-| Orca | worktree × 複数エージェントの管理 | 推奨（[04-orca.md](04-orca.md)） |
-| WSL2 | Linux 環境が必要な場合のみ | 任意 |
+| [基本コース](#基本コース全員) | 全員 | Git for Windows ＋ AIエージェント1つ ＋ Orca |
+| [ステップアップ](#ステップアップ) | バックアップ・共有もしたい人 | GitHub アカウント、GitHub CLI |
+| [開発者向け](#開発者向け) | Web アプリなどを本格的に作る人 | Node.js、ripgrep / jq、WSL2、エディタ |
 
-## 1. winget の確認
+まずは **基本コースだけ** で大丈夫です。足りないものが出てきたら、その時点で AI に「〇〇を入れて」と頼めば入れてくれます。
 
-```powershell
-winget --version
-```
+## ターミナルの開き方
 
-表示されない場合は、Microsoft Store で「アプリ インストーラー」を更新してください。
+スタートメニューで「ターミナル」（Windows Terminal）と検索して開きます。Windows 10 で見つからない場合は、Microsoft Store から「Windows Terminal」を入れてください。
+以降のコマンドは、ここ（PowerShell）にコピー＆ペーストして Enter で実行します。**管理者として実行する必要はありません。**
 
-## 2. 基本ツール
+---
+
+## 基本コース（全員）
+
+### 1. Git for Windows を入れる
+
+Git は「ファイルの変更履歴を残す仕組み」です。**AI が変更を壊しても元に戻せる、取り消しボタン**の役割をします。Orca が1タスクごとに作業フォルダを分ける機能（worktree）も Git を使っています。また、AIエージェントの多くは Git for Windows に入っている「Git Bash」を使ってコマンドを実行します。
 
 ```powershell
 winget install --id Git.Git -e
-winget install --id GitHub.cli -e
-winget install --id OpenJS.NodeJS.LTS -e
-winget install --id BurntSushi.ripgrep.MSVC -e
-winget install --id jqlang.jq -e
 ```
 
-**インストールしたら Windows Terminal を一度閉じて開き直してください**（PATH を反映させるため）。
+> `winget` が使えない場合は、[git-scm.com](https://git-scm.com/downloads/win) からインストーラーをダウンロードし、設定はすべて初期値のまま「Next」で進めます。
+
+**インストールしたら、ターミナルを一度閉じて開き直してください。**
 
 ```powershell
 git --version
-gh --version
-node -v
 ```
 
-> Node のバージョンを複数使い分けたい場合は、`winget install jdx.mise` で mise も使えます。
-
-## 3. Git の初期設定
+続けて、変更履歴に残す名前などを設定します（メールアドレスは、後で GitHub を使うときに変更できます）。
 
 ```powershell
 git config --global user.name "あなたの名前"
 git config --global user.email "you@example.com"
 git config --global init.defaultBranch main
-git config --global push.autoSetupRemote true
 git config --global core.autocrlf input
 git config --global core.longpaths true
 ```
 
-- `core.autocrlf input` … 改行コードを LF に揃えて、Mac のメンバーとの差分トラブルを防ぎます
-- `core.longpaths true` … `node_modules` などの長いパスで起きるエラーを防ぎます
+- `core.autocrlf input` … 改行コードを揃えて、Mac のメンバーとのトラブルを防ぎます
+- `core.longpaths true` … 長いファイル名でのエラーを防ぎます
 
-## 4. GitHub にログイン
+> Git のコマンドを覚える必要はありません。「ここまでの変更を保存して（コミットして）」「さっきの状態に戻して」と AI に頼めば操作してくれます。
 
-```powershell
-gh auth login
-gh auth setup-git
-```
+### 2. AIコーディングエージェントを1つ入れる
 
-## 5. AIコーディングエージェント（1つ以上）
+どれか1つあれば始められます。違いは [03-tools.md](03-tools.md#aiコーディングエージェント) を参照してください。迷ったら、インストールが簡単な **Claude Code** か **Antigravity** がおすすめです。
 
-どれか1つあれば始められます。違いは [03-tools.md](03-tools.md#aiコーディングエージェント) を参照してください。
-
-### Claude Code（Anthropic）
+#### Claude Code（Anthropic）
 
 ```powershell
 irm https://claude.ai/install.ps1 | iex
+```
+
+ターミナルを開き直してから起動します。初回はブラウザが開いてログインを求められます。
+
+```powershell
 claude
 ```
 
-### Codex CLI（OpenAI）
+#### Antigravity（Google）
+
+[antigravity.google/download](https://antigravity.google/download) から Windows 版をダウンロードしてインストールします。エディタ一体型のアプリで、Google アカウントでログインします。
+
+ターミナルで使う CLI 版（`agy`）もあります。入れ方は [公式のインストール手順](https://antigravity.google/docs/cli/install) を参照してください。
+
+#### Codex（OpenAI）
+
+Codex の CLI 版は Node.js（npm）を使って入れます。先に [開発者向け](#開発者向け) の Node.js を入れてから、次を実行します。
 
 ```powershell
 npm install -g @openai/codex
 codex
 ```
 
-### Antigravity（Google）
+#### 「認識されません」と出たら
 
-- アプリ版: [antigravity.google/download](https://antigravity.google/download) からインストーラーをダウンロードします
-- CLI 版（`agy`）: [公式のインストール手順](https://antigravity.google/docs/cli/install) に従います
-
-### コマンドが見つからない場合
-
-ターミナルを開き直しても見つからない場合は、インストール先をユーザー環境変数 PATH に追加します。Claude Code の例です（インストール先はエージェントによって異なります）。
+ターミナルを開き直しても見つからない場合は、インストール先を PATH に追加します。Claude Code の例です（インストール先はエージェントによって違います）。
 
 ```powershell
 [Environment]::SetEnvironmentVariable("Path", "$env:USERPROFILE\.local\bin;" + [Environment]::GetEnvironmentVariable("Path", "User"), "User")
 ```
 
-### Git Bash について
+### 3. Orca を入れる
 
-多くのエージェントは、Git for Windows の Git Bash があると Bash でコマンドを実行できます。Mac のメンバーとスクリプトを共有しやすくなるので、**Git for Windows は必ず入れておく** ことをおすすめします。
+[onOrca.dev/download](https://onorca.dev/download) または [GitHub Releases](https://github.com/stablyai/orca/releases) から Windows 版（`.exe`）をダウンロードして実行します。
 
-## 6. PowerShell の実行ポリシー（エラーが出た場合のみ）
+> Windows 向けの修正が RC（リリース候補）版にだけ入っている時期があります。うまく動かない場合は、Releases ページで最新の RC 版を試してください。
 
-`npm` や `.ps1` を実行して「スクリプトの実行が無効」と出る場合：
+使い方は [04-orca.md](04-orca.md) を参照してください。
+
+### 4. 動作確認
+
+```powershell
+git --version
+claude --version    # 入れたエージェントに合わせて（codex --version / agy --help）
+```
+
+ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます。
+
+### 5. 効率化アプリ（任意・おすすめ）
+
+| アプリ | 用途 |
+|---|---|
+| PowerToys（`winget install --id Microsoft.PowerToys -e`） | ランチャー（`Alt + Space`）、ウィンドウ整列、画面上の文字のコピー（OCR）など |
+| Snipping Tool（標準） | スクリーンショット（`Win + Shift + S`） |
+| クリップボード履歴（標準） | `Win + V`。最初に一度オンにしておく |
+
+---
+
+## ステップアップ
+
+### GitHub アカウントと GitHub CLI
+
+GitHub を使うと、作ったものを**ネット上にバックアップ**したり、**他の人と共有・レビュー**したりできます。1人で手元だけで作るなら、なくても困りません。
+
+1. [github.com](https://github.com/) でアカウントを作成
+2. GitHub CLI を入れてログイン（入れたらターミナルを開き直す）
+
+```powershell
+winget install --id GitHub.cli -e
+gh auth login       # GitHub.com → HTTPS → Login with a web browser の順に選ぶ
+gh auth setup-git
+```
+
+3. 変更履歴のメールアドレスを、GitHub の非公開用アドレスに変更（公開リポジトリでメールアドレスを出さないため）
+   - GitHub の Settings → Emails にある `xxxx+ユーザー名@users.noreply.github.com` を使います
+
+```powershell
+git config --global user.email "xxxx+ユーザー名@users.noreply.github.com"
+git config --global push.autoSetupRemote true
+```
+
+---
+
+## 開発者向け
+
+Web アプリなどを本格的に作るときに使います。入れたらターミナルを開き直してください。
+
+```powershell
+winget install --id OpenJS.NodeJS.LTS -e
+winget install --id BurntSushi.ripgrep.MSVC -e
+winget install --id jqlang.jq -e
+winget install --id Microsoft.VisualStudioCode -e
+```
+
+| ツール | 説明 |
+|---|---|
+| Node.js | プログラムの実行環境。Web アプリ開発や、npm でツールを入れるときに必要 |
+| ripgrep (`rg`) | 高速なファイル検索 |
+| jq | JSON の整形 |
+| VS Code | AI が書いたコードを確認するエディタ |
+
+> Node のバージョンを複数使い分けたい場合は、`winget install jdx.mise` で mise も使えます。
+
+### PowerShell の実行ポリシー（エラーが出た場合のみ）
+
+`npm` などを実行して「このシステムではスクリプトの実行が無効になっている」と出る場合：
 
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 ```
 
-## 7. WSL2 を使う場合（任意）
+### WSL2（Linux 環境が必要な場合のみ）
 
-Linux 前提のツールチェーン（Docker を使う開発など）が必要なときだけ使います。
+Docker を使う開発など、Linux 前提のツールが必要なときだけ使います。
 
 ```powershell
 wsl --install
 ```
 
-再起動後の Ubuntu の中では、[Mac 版](01-setup-mac.md) の手順のうち Homebrew 以外（`curl ... | bash` 形式のインストールなど）がほぼそのまま使えます。
-**注意:** リポジトリは Windows 側（`C:\`）ではなく WSL 側（`~/`）に clone すると高速です。
+再起動後の Ubuntu の中では、[Mac 版](01-setup-mac.md) の手順のうち Homebrew 以外（`curl ... | bash` 形式のインストールなど）がほぼそのまま使えます。リポジトリは Windows 側（`C:\`）ではなく WSL 側（`~/`）に置くと高速です。
 
-## 8. エディタ・効率化アプリ（任意）
-
-```powershell
-winget install --id Microsoft.VisualStudioCode -e
-winget install --id Microsoft.PowerToys -e
-```
-
-| アプリ | 用途 |
-|---|---|
-| PowerToys | ランチャー（`Alt + Space`）、ウィンドウ整列、画面上の文字認識（OCR）など |
-| Snipping Tool（標準） | スクリーンショット（`Win + Shift + S`）。画像内の文字もコピーできる |
-| クリップボード履歴（標準） | `Win + V`。最初に一度オンにしておく |
-
-## 9. 動作確認チェックリスト
-
-```powershell
-git --version; gh auth status; node -v
-# 入れたエージェントに合わせて
-claude --version   # / codex --version / agy --help
-```
-
-すべて通れば完了です。次は [便利ツールの紹介](03-tools.md) → [Orca のセットアップ](04-orca.md) へ進みます。
+---
 
 ## よくあるトラブル
 
 | 症状 | 対処 |
 |---|---|
-| インストールしたコマンドが見つからない | ターミナルを開き直す。それでもダメなら PATH を確認 |
-| 「スクリプトの実行が無効」 | 手順6の実行ポリシー変更 |
-| 改行コードの差分が大量に出る | `core.autocrlf input` を設定し、リポジトリに `.gitattributes`（`* text=auto eol=lf`）を置く |
+| 「〇〇 は認識されません」 | ターミナルを開き直す。それでもダメなら PATH を確認 |
+| 「スクリプトの実行が無効」 | 開発者向けの「実行ポリシー」を実行 |
+| 改行コードの違いで大量の差分が出る | `core.autocrlf input` を設定し、リポジトリに `.gitattributes`（`* text=auto eol=lf`）を置く |
 | `Filename too long` | `git config --global core.longpaths true` |
-| ユーザー名が日本語で動作が不安定 | 日本語や空白を含まないパスの作業フォルダ（例: `C:\dev`）を使う |
+| ユーザー名が日本語で動作が不安定 | 日本語や空白を含まない作業フォルダ（例: `C:\dev`）を使う |
+| 何をすればいいかわからない | エラー文をそのまま AI に貼って「どうすればいい？」と聞く |

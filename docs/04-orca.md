@@ -44,12 +44,27 @@ brew install --cask stablyai/orca/orca
    orca skills install --all
    ```
 
-## 3. リポジトリを登録する
+## 3. フォルダ（プロジェクト）を登録する
 
-GUI のサイドバーから「Add project」でクローン済みフォルダを選ぶか、リポジトリ URL からクローンします。CLI の場合：
+Orca では、作業するフォルダを「プロジェクト」として登録します。**GitHub は不要**で、手元のフォルダをそのまま登録できます。
+
+### 新しく始める場合
+
+1. 作業用フォルダを作ります（例: `~/orca/projects/my-first-app`、Windows は `C:\dev\orca\projects\my-first-app`）
+2. Orca のサイドバーの「Add project」から、そのフォルダを選びます
+3. Git の管理がまだなら、エージェントに「このフォルダを Git で管理できるようにして（git init して最初のコミットをして）」と頼みます
+
+> Git で管理していないフォルダも登録できますが、その場合は次の「worktree（タスクごとの作業フォルダ）」が使えません。AI の変更を取り消せるようにするためにも、Git での管理をおすすめします。
+
+### GitHub のリポジトリを使う場合
+
+「Add project」でリポジトリの URL を指定してクローンするか、クローン済みのフォルダを選びます。
+
+### CLI で登録する場合
 
 ```zsh
-orca repo add --path ~/orca/projects/my-app
+orca repo add --path ~/orca/projects/my-app                 # Git 管理のフォルダ
+orca repo add --path ~/orca/projects/notes --kind folder    # 普通のフォルダ
 orca repo list
 ```
 
@@ -68,7 +83,7 @@ orca agent launch --agent <別のagent> --worktree name:login-page \
   --prompt "この変更をレビューして"
 ```
 
-GitHub Issue と紐づける場合は `--issue 12` を付けると、Issue の情報を参照しながら作業できます。
+GitHub を使っている場合は、`--issue 12` を付けると Issue の情報を参照しながら作業できます。
 
 ## 5. 基本の作業フロー
 
@@ -81,8 +96,10 @@ main ─┬─ worktree: feature-a  ← エージェントA が実装
 1. タスクごとに worktree を作る（名前は `feature-xxx` / `fix-xxx` など）
 2. エージェントに指示 → 他の worktree で別タスクを並行
 3. サイドバーで「入力待ち」になったものから順に確認・返答
-4. 差分を確認して PR 作成（エージェントに `gh pr create` を頼んでもOK）
-5. マージしたら worktree を削除
+4. 差分（変更内容）を確認して、問題なければ取り込む
+   - GitHub を使っていない場合: エージェントに「この変更を main に取り込んで（マージして）」と頼む
+   - GitHub を使っている場合: PR を作ってレビューしてからマージ（エージェントに「PR を作って」と頼んでもOK）
+5. 取り込んだら worktree を削除
    ```zsh
    orca worktree rm name:feature-a
    ```
