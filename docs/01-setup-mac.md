@@ -46,7 +46,7 @@ git config --global init.defaultBranch main
 
 ### 2. AIコーディングエージェントを1つ入れる
 
-どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](03-tools.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。
+どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](03-tools.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。GitHub アカウントがあれば、無料プランのある **GitHub Copilot** も選べます。
 
 #### Claude Code（Anthropic）
 
@@ -88,6 +88,20 @@ brew install --cask codex
 codex
 ```
 
+#### GitHub Copilot（GitHub）
+
+GitHub Copilot の CLI 版です。**GitHub アカウントが必要**です（[ステップアップ](#ステップアップ) の手順でアカウントを作っておきます）。先に [ステップアップ](#ステップアップ) の Homebrew も入れてから、Homebrew で入れます（公式の手順: [Copilot CLI のインストール](https://docs.github.com/ja/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli)）。
+
+```zsh
+brew install copilot-cli
+```
+
+起動すると、初回は GitHub アカウントでのログインを求められます（画面の案内に沿って `/login` を実行します）。
+
+```zsh
+copilot
+```
+
 #### 「command not found」と出たら
 
 多くのエージェントは `~/.local/bin` にインストールされます。次を実行してから、ターミナルを開き直してください。
@@ -108,7 +122,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
 git --version
 ```
 
-続けて、入れたエージェントのコマンドを実行します（Claude Code なら `claude --version`、Codex なら `codex --version`、Antigravity なら `agy --help`）。
+続けて、入れたエージェントのコマンドを実行します（Claude Code なら `claude --version`、Codex なら `codex --version`、Antigravity なら `agy --help`、GitHub Copilot なら `copilot --version`）。
 
 ```zsh
 claude --version

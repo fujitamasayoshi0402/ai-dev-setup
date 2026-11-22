@@ -15,6 +15,7 @@ flowchart LR
     skill --> c[".claude/skills/"]
     a -- "読む" --> codex["Codex"]
     a -- "読む" --> ag["Antigravity"]
+    a -- "読む" --> cop["GitHub Copilot"]
     c -- "読む" --> cc["Claude Code"]
 ```
 
@@ -23,12 +24,13 @@ flowchart LR
 | Claude Code | `.claude/skills/<スキル名>/` | `~/.claude/skills/<スキル名>/` |
 | Codex | `.agents/skills/<スキル名>/` | `~/.agents/skills/<スキル名>/` |
 | Antigravity | `.agents/skills/<スキル名>/` | 公式ドキュメント参照（アプリ版と CLI 版で場所が違う） |
+| GitHub Copilot（CLI） | `.agents/skills/<スキル名>/`（`.claude/skills/`・`.github/skills/` も読む） | `~/.copilot/skills/` または `~/.agents/skills/` |
 
 ```
 my-app/
 ├── .agents/skills/
 │   ├── SOURCES.md            # 外部から取り込んだスキルの記録
-│   └── <スキル名>/SKILL.md    # Codex・Antigravity などが読む
+│   └── <スキル名>/SKILL.md    # Codex・Antigravity・Copilot などが読む
 └── .claude/skills/
     └── <スキル名>/SKILL.md    # Claude Code が読む（中身は同じ）
 ```

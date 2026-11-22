@@ -13,7 +13,7 @@
 - `docs/` … 本文。ファイル名は `NN-内容.md`（読む順番の番号つき）
 - `templates/new-project/` … アプリなどを作るときにコピーする雛形
 - `templates/obsidian-vault/` … Obsidian の保管庫にコピーする雛形
-- `.agents/skills/` … スキル（Codex・Antigravity などが読む）。`SOURCES.md` に取り込み元を記録
+- `.agents/skills/` … スキル（Codex・Antigravity・GitHub Copilot などが読む）。`SOURCES.md` に取り込み元を記録
 - `.claude/skills/` … Claude Code 用のスキル。`.agents/skills/` と同じ内容に保つ
 
 ## 利用者から質問・相談されたとき（ガイド役）
@@ -29,7 +29,7 @@
 ### よくある依頼と対応
 | 依頼 | 対応 |
 |---|---|
-| 「どのエージェントを入れればいい？」 | `docs/03-tools.md` の「どのエージェントを選ぶか」の流れに沿って、仕事で使うか → 契約中のサービス → 予算 → 使いたい画面 の順に1つずつ質問して提案する。料金は断定せず、公式の料金ページを案内する |
+| 「どのエージェントを入れればいい？」 | `docs/03-tools.md` の「どのエージェントを選ぶか」の流れに沿って、仕事で使うか → 契約中のサービス → 予算（無料で試すなら GitHub アカウントの有無も）→ 使いたい画面 の順に1つずつ質問して提案する。料金は断定せず、公式の料金ページを案内する |
 | 「セットアップを手伝って」 | `docs/01-setup-mac.md` または `docs/02-setup-windows.md` の基本コースを順に案内する |
 | 「雛形から〇〇を作って」 | スキル `create-from-template`（`.agents/skills/create-from-template/SKILL.md`）の手順に従う |
 | 「〇〇のスキルを取り込んで」 | スキル `import-skill`（`.agents/skills/import-skill/SKILL.md`）の手順に従う |
@@ -42,7 +42,7 @@
 - 日本語で書く。です・ます調
 - 専門用語には短い説明を添え、必須の手順は最小限にする
 - GitHub・Node.js など、なくても始められるものは「ステップアップ」「開発者向け」に分ける
-- 特定の AI エージェントに依存しない書き方にする（Claude Code / Codex / Antigravity などを並べて扱う）
+- 特定の AI エージェントに依存しない書き方にする（Claude Code / Codex / Antigravity / GitHub Copilot などを並べて扱う）
 - コマンドは OS ごとにコードブロックを分ける（Mac は `zsh`、Windows は `powershell`）
 - インストールコマンドなど変わりやすい情報は、公式ドキュメントへのリンクも添える
 - 確認できていない情報は書かない。書く場合は「要確認」と明記する

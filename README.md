@@ -2,7 +2,7 @@
 
 AIコーディングエージェントを使った開発を始めるための、環境構築の手順とノウハウをまとめたリポジトリです。
 
-特定のエージェントに依存しない構成にしています。Claude Code・Codex・Antigravity など、**好きなものを1つ以上選んで**進めてください。
+特定のエージェントに依存しない構成にしています。Claude Code・Codex・Antigravity・GitHub Copilot など、**好きなものを1つ以上選んで**進めてください。
 
 ## 読む順番
 
@@ -95,7 +95,7 @@ ai-dev-setup/
 ├── README.md                 # 目次（このファイル）
 ├── AGENTS.md                 # AI エージェント共通の指示書
 ├── CLAUDE.md                 # Claude Code 用（AGENTS.md を読み込むだけ）
-├── .agents/skills/           # スキル（Codex・Antigravity など）と取り込み元の記録
+├── .agents/skills/           # スキル（Codex・Antigravity・Copilot など）と取り込み元の記録
 ├── .claude/
 │   ├── settings.json         # Claude Code の許可・禁止コマンド（チーム共有）
 │   └── skills/               # スキル（Claude Code 用。中身は .agents/skills と同じ）
@@ -116,7 +116,7 @@ ai-dev-setup/
 
 - Mac または Windows のパソコン
 - 使いたい AI エージェントのアカウント（どれか1つでOK）
-  - 例: Claude（Claude Code）/ ChatGPT（Codex）/ Google アカウント（Antigravity）
+  - 例: Claude（Claude Code）/ ChatGPT（Codex）/ Google アカウント（Antigravity）/ GitHub アカウント（GitHub Copilot）
   - 無料枠の有無や料金プランはエージェントごとに違うので、各公式サイトで確認してください
 - GitHub アカウントは**任意**です（バックアップ・共有をしたくなったら作れば十分です）
 

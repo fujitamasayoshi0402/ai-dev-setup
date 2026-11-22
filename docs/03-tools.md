@@ -28,6 +28,7 @@ flowchart LR
 | Claude Code | Anthropic | CLI（＋IDE拡張・デスクトップ版） | `claude` | `CLAUDE.md` |
 | Codex | OpenAI | CLI（＋IDE拡張） | `codex` | `AGENTS.md` |
 | Antigravity | Google | エディタ一体型アプリ ＋ CLI | `agy` | `AGENTS.md`（または `GEMINI.md`、`.agents/rules/*.md`） |
+| GitHub Copilot | GitHub（Microsoft） | CLI（＋VS Code などのエディタ拡張） | `copilot` | `AGENTS.md`（`CLAUDE.md`・`.github/copilot-instructions.md` も読む） |
 
 > この他にも Gemini CLI、GitHub Copilot、Cursor など、さまざまなツールがあります。Orca などでターミナルから起動できる CLI 型なら、このガイドの手順はほぼそのまま使えます。
 
@@ -45,8 +46,11 @@ flowchart TD
     q1 -- "Claude" --> cc["Claude Code"]
     q1 -- "ChatGPT" --> codex["Codex"]
     q1 -- "Google（Google AI など）" --> ag["Antigravity"]
+    q1 -- "GitHub Copilot" --> cop["GitHub Copilot"]
     q1 -- "ない" --> q2{"まずはお金をかけずに<br>試したい？"}
-    q2 -- "はい" --> ag2["Antigravity<br>（無料プランあり）"]
+    q2 -- "はい" --> q2b{"GitHub アカウントを<br>持っている？"}
+    q2b -- "はい" --> cop2["GitHub Copilot<br>または Antigravity<br>（どちらも無料プランあり）"]
+    q2b -- "いいえ" --> ag2["Antigravity<br>（無料プランあり）"]
     q2 -- "いいえ" --> q3{"どんな画面で使いたい？"}
     q3 -- "エディタで<br>ファイルを見ながら" --> ag3["Antigravity"]
     q3 -- "ターミナル（Orca）で<br>複数の作業を並べて" --> cli["Claude Code または Codex"]
@@ -54,24 +58,25 @@ flowchart TD
 
 - **すでに契約しているサービスがあれば、まずそれを使う**のがいちばん無駄がありません（契約しているプランで使えるかは、下の料金ページで確認してください）
 - 迷ったときは、インストールが簡単な **Claude Code** か **Antigravity** から始めると、つまずきにくいです
+- GitHub アカウントを持っているなら、無料プランのある **GitHub Copilot** から試すのも手です
 - 1〜2週間使ってみて、合わなければ別のものに乗り換えれば大丈夫です。このガイドの構成（`AGENTS.md` やスキル）は、どのエージェントでもそのまま使えます
 
 #### 比べるときのポイント
 
-| 観点 | Claude Code | Codex | Antigravity |
-|---|---|---|---|
-| 提供元・使うアカウント | Anthropic（Claude） | OpenAI（ChatGPT） | Google |
-| 無料で試せるか | 有料プランが前提 | 無料プランでも一部使える場合あり | 無料プランあり（使える量は少なめ・変わることがある） |
-| 主な使い方 | ターミナル中心 | ターミナル中心 | エディタ一体型のアプリ（ターミナル用の CLI もある） |
-| インストール | Mac・Windows とも、コマンド1行 | Mac は Homebrew、Windows は Node.js が必要 | アプリはダウンロードするだけ。Orca で使うには CLI も入れる |
-| Orca で使えるか | 使える | 使える | 使える（CLI 版が必要） |
-| 料金・プランの確認先 | [Claude の料金](https://claude.com/pricing) | [Codex の料金](https://developers.openai.com/codex/pricing) | [Antigravity の料金](https://antigravity.google/pricing) |
+| 観点 | Claude Code | Codex | Antigravity | GitHub Copilot |
+|---|---|---|---|---|
+| 提供元・使うアカウント | Anthropic（Claude） | OpenAI（ChatGPT） | Google | GitHub（GitHub アカウントが必要） |
+| 無料で試せるか | 有料プランが前提 | 無料プランでも一部使える場合あり | 無料プランあり（使える量は少なめ・変わることがある） | 無料プラン（Copilot Free）あり（使える量に上限あり） |
+| 主な使い方 | ターミナル中心 | ターミナル中心 | エディタ一体型のアプリ（ターミナル用の CLI もある） | ターミナル（CLI）、または VS Code などのエディタの中 |
+| インストール | Mac・Windows とも、コマンド1行 | Mac は Homebrew、Windows は Node.js が必要 | アプリはダウンロードするだけ。Orca で使うには CLI も入れる | Mac は Homebrew、Windows は winget でコマンド1行 |
+| Orca で使えるか | 使える | 使える | 使える（CLI 版が必要） | Orca のターミナルで `copilot` を起動して使える（エージェント一覧から選べるかは要確認） |
+| 料金・プランの確認先 | [Claude の料金](https://claude.com/pricing) | [Codex の料金](https://developers.openai.com/codex/pricing) | [Antigravity の料金](https://antigravity.google/pricing) | [Copilot のプラン](https://docs.github.com/ja/copilot/get-started/plans) |
 
 > 料金や、どのプランで使えるか・使える量の上限は、よく変わります。契約する前に、必ず各公式の料金ページで確認してください。
 
 #### 選ぶ前のチェックリスト
 
-- [ ] すでに契約している AI サービスはあるか（Claude / ChatGPT / Google）
+- [ ] すでに契約している AI サービスはあるか（Claude / ChatGPT / Google / GitHub Copilot）
 - [ ] 月にいくらまでなら払えるか（まずは無料・月額 20 ドル前後のプランが目安）
 - [ ] エディタで見ながら使いたいか、ターミナルで使いたいか
 - [ ] **仕事で使う場合**、会社が許可しているサービスか（社外秘のコードや情報を扱ってよいか）
@@ -91,11 +96,11 @@ cd your-repo
 claude
 ```
 
-| やりたいこと | Claude Code | Codex | Antigravity CLI |
-|---|---|---|---|
-| 対話モードで起動 | `claude` | `codex` | `agy` |
-| 1回だけ実行して結果を表示 | `claude -p "..."` | `codex exec "..."` | `agy -p "..."` |
-| 直前の会話を再開 | `claude -c` | `codex resume --last` | `agy -c` |
+| やりたいこと | Claude Code | Codex | Antigravity CLI | GitHub Copilot CLI |
+|---|---|---|---|---|
+| 対話モードで起動 | `claude` | `codex` | `agy` | `copilot` |
+| 1回だけ実行して結果を表示 | `claude -p "..."` | `codex exec "..."` | `agy -p "..."` | `copilot -p "..."` |
+| 直前の会話を再開 | `claude -c` | `codex resume --last` | `agy -c` | [公式ドキュメント](https://docs.github.com/ja/copilot/reference/copilot-cli-reference/cli-command-reference)参照 |
 
 起動後によく使う操作（名前は違っても、どのエージェントにもだいたいあります）：
 
@@ -122,6 +127,7 @@ flowchart LR
     cc["Claude Code"] -- "読む" --> claudemd
     codex["Codex"] -- "読む" --> rules
     ag["Antigravity"] -- "読む" --> rules
+    cop["GitHub Copilot"] -- "読む" --> rules
 ```
 
 ルールを書き直すのは `AGENTS.md` だけで済み、どのエージェントにも同じルールが伝わります。
@@ -148,7 +154,7 @@ flowchart LR
 
 | 置き場所 | 効く範囲 |
 |---|---|
-| ホームディレクトリ配下（例: `~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`。Antigravity は `~/.gemini/` 配下で、場所はバージョンによって違うため[公式ドキュメント](https://antigravity.google/docs/rules)を参照） | 自分の全プロジェクト（例: 「日本語で回答して」） |
+| ホームディレクトリ配下（例: `~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`、`~/.copilot/copilot-instructions.md`。Antigravity は `~/.gemini/` 配下で、場所はバージョンによって違うため[公式ドキュメント](https://antigravity.google/docs/rules)を参照） | 自分の全プロジェクト（例: 「日本語で回答して」） |
 | リポジトリのルート | そのリポジトリ（チームで共有するのでコミットする） |
 
 > どのファイルを自動で読むかは、エージェントによって違います。
@@ -158,8 +164,9 @@ flowchart LR
 > | Claude Code | `CLAUDE.md` | ✅ 読む（`AGENTS.md` は直接は読まない） |
 > | Codex | `AGENTS.md` | ❌ 初期設定では読まない |
 > | Antigravity | `AGENTS.md`、`GEMINI.md`、`.agents/rules/*.md` | ❌ 読まない |
+> | GitHub Copilot（CLI） | `AGENTS.md`、`.github/copilot-instructions.md` など | ✅ 読む |
 >
-> そのため、**ルールの本体は `AGENTS.md` に書き、`CLAUDE.md` には `@AGENTS.md` の1行だけを書く**のがおすすめです。これで3つとも同じルールを読みます。
+> そのため、**ルールの本体は `AGENTS.md` に書き、`CLAUDE.md` には `@AGENTS.md` の1行だけを書く**のがおすすめです。これでどのエージェントも同じルールを読みます。
 
 ### 拡張機能（共通の考え方）
 

@@ -52,7 +52,7 @@ git config --global core.longpaths true
 
 ### 2. AIコーディングエージェントを1つ入れる
 
-どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](03-tools.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。
+どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](03-tools.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。GitHub アカウントがあれば、無料プランのある **GitHub Copilot** も選べます。
 
 #### Claude Code（Anthropic）
 
@@ -89,6 +89,20 @@ npm install -g @openai/codex
 codex
 ```
 
+#### GitHub Copilot（GitHub）
+
+GitHub Copilot の CLI 版です。**GitHub アカウントが必要**です（[ステップアップ](#ステップアップ) の手順でアカウントを作っておきます）。winget で入れます（公式の手順: [Copilot CLI のインストール](https://docs.github.com/ja/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli)）。
+
+```powershell
+winget install --id GitHub.Copilot -e
+```
+
+ターミナルを開き直してから起動します。初回は GitHub アカウントでのログインを求められます（画面の案内に沿って `/login` を実行します）。
+
+```powershell
+copilot
+```
+
 #### 「認識されません」と出たら
 
 ターミナルを開き直しても見つからない場合は、インストール先を PATH に追加します。Claude Code の例です（インストール先はエージェントによって違います）。
@@ -114,7 +128,7 @@ codex
 git --version
 ```
 
-続けて、入れたエージェントのコマンドを実行します（Claude Code なら `claude --version`、Codex なら `codex --version`、Antigravity なら `agy --help`）。
+続けて、入れたエージェントのコマンドを実行します（Claude Code なら `claude --version`、Codex なら `codex --version`、Antigravity なら `agy --help`、GitHub Copilot なら `copilot --version`）。
 
 ```powershell
 claude --version
