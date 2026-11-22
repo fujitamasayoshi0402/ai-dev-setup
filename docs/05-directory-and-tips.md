@@ -8,13 +8,13 @@
 ~/orca/
 ├── projects/                 # 各リポジトリの本体（main ブランチ）
 │   ├── my-app/
-│   └── tutorial-documento/
+│   └── ai-dev-setup/
 └── workspaces/               # worktree（タスクごとの作業フォルダ）
     ├── my-app/
     │   ├── login-page/       # feature ブランチ
     │   └── fix-header/
-    └── tutorial-documento/
-        └── docs-setup/
+    └── ai-dev-setup/
+        └── docs-add-tips/
 ```
 
 | ルール | 理由 |
@@ -37,24 +37,52 @@ git worktree remove ../../workspaces/my-app/login-page
 
 ## 2. リポジトリ内の構成例
 
+このリポジトリ（`ai-dev-setup`）自体がお手本の構成になっています。新しいプロジェクトでは、`templates/new-project/` の中身をコピーして使います。
+
 ```
 my-app/
-├── AGENTS.md          # AI への共通の常設指示（コミットする）
-├── CLAUDE.md など     # 各エージェント用。中身は AGENTS.md を参照するだけ
-├── .claude/ .codex/ など  # 各エージェントの設定（使うものだけ）
+├── README.md
+├── AGENTS.md          # AI エージェント共通の指示書（コミットする）
+├── CLAUDE.md          # Claude Code 用。中身は「@AGENTS.md」の1行だけ
+├── .claude/
+│   └── settings.json  # Claude Code の許可・禁止コマンド（チーム共有）
+├── .gitignore         # .env・個人用の設定ファイルを除外
+├── .gitattributes     # 改行コードを LF に統一
+├── .editorconfig      # 文字コード・インデントを統一
 ├── docs/              # 仕様・設計メモ（AI にも読ませる）
-├── .gitignore         # .env や個人用の設定ファイルを除外
 └── src/
 ```
 
-`.gitignore` に入れておくもの：
+| ファイル | ポイント |
+|---|---|
+| `AGENTS.md` | ルールの本体。Codex などはこのファイルを直接読む |
+| `CLAUDE.md` など | エージェントごとの指示ファイルは、`AGENTS.md` を参照するだけにして二重管理を防ぐ |
+| `.claude/settings.json` など | エージェントの設定。使うエージェントの分だけ置く |
+| `.gitignore` | `.env` と個人用の設定（`CLAUDE.local.md`、`.claude/settings.local.json`）は必ず除外 |
+| `.gitattributes` | Windows と Mac が混ざるチームでは必須 |
 
-```gitignore
-.env
-.env.*
-# 各エージェントの個人用設定（使うエージェントに合わせて）
-CLAUDE.local.md
-.claude/settings.local.json
+### テンプレートから新しいプロジェクトを作る
+
+```zsh
+# Mac
+cd ~/orca/projects
+mkdir my-app && cd my-app && git init
+cp -R ~/orca/projects/ai-dev-setup/templates/new-project/. .
+```
+
+```powershell
+# Windows
+cd C:\dev\orca\projects
+mkdir my-app; cd my-app; git init
+Copy-Item -Recurse -Force C:\dev\orca\projects\ai-dev-setup\templates\new-project\* .
+```
+
+> PowerShell の `*` は隠しファイル（`.gitignore` など）も対象に含みます。コピー後に `ls -Force` で確認してください。
+
+コピーしたら、エージェントに次のように頼むと `AGENTS.md` の「〇〇」を埋めてくれます。
+
+```
+このリポジトリの AGENTS.md の「〇〇」の部分を、プロジェクトの内容に合わせて埋めて
 ```
 
 ## 3. ブランチ・コミット運用

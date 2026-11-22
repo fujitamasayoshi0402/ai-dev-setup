@@ -1,4 +1,16 @@
+# OS
 .DS_Store
+Thumbs.db
+
+# 秘密情報
+.env
+.env.*
+
+# エディタ・Obsidian の個人設定
+.vscode/
+.idea/
 .obsidian/
+
+# AI エージェントの個人用設定（チームで共有しないもの）
 CLAUDE.local.md
 .claude/settings.local.json

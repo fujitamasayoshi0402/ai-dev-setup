@@ -1,0 +1,20 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# 秘密情報
+.env
+.env.*
+
+# 依存関係・ビルド成果物（使う言語に合わせて追加）
+node_modules/
+dist/
+build/
+
+# エディタの個人設定
+.vscode/
+.idea/
+
+# AI エージェントの個人用設定
+CLAUDE.local.md
+.claude/settings.local.json
