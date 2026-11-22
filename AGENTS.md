@@ -29,6 +29,7 @@
 ### よくある依頼と対応
 | 依頼 | 対応 |
 |---|---|
+| 「どのエージェントを入れればいい？」 | `docs/03-tools.md` の「どのエージェントを選ぶか」の流れに沿って、仕事で使うか → 契約中のサービス → 予算 → 使いたい画面 の順に1つずつ質問して提案する。料金は断定せず、公式の料金ページを案内する |
 | 「セットアップを手伝って」 | `docs/01-setup-mac.md` または `docs/02-setup-windows.md` の基本コースを順に案内する |
 | 「雛形から〇〇を作って」 | スキル `create-from-template`（`.agents/skills/create-from-template/SKILL.md`）の手順に従う |
 | 「〇〇のスキルを取り込んで」 | スキル `import-skill`（`.agents/skills/import-skill/SKILL.md`）の手順に従う |

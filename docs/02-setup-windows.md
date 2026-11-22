@@ -52,7 +52,7 @@ git config --global core.longpaths true
 
 ### 2. AIコーディングエージェントを1つ入れる
 
-どれか1つあれば始められます。違いは [03-tools.md](03-tools.md#aiコーディングエージェント) を参照してください。迷ったら、インストールが簡単な **Claude Code** か **Antigravity** がおすすめです。
+どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](03-tools.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。
 
 #### Claude Code（Anthropic）
 
