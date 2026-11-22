@@ -80,13 +80,17 @@ worktree: feature-b  ← エージェントB がデータの保存を作る
 
 → 作業中の内容をコミットし、`HANDOFF.md` に「目的・やったこと・次にやること・注意点」をまとめます。
 
-**受け取る側（新しく使うエージェント）に：**
+**受け取る側（新しく使うエージェント）は、引き継ぐ側と同じ作業フォルダで起動します。** `HANDOFF.md` は作業フォルダの中にだけあるメモなので、別の worktree やフォルダで起動すると見つかりません。Orca なら、同じ worktree の中で新しいエージェントを起動します（`orca agent launch --agent <別のID> --worktree name:<作業名>`）。
+
+**受け取る側に：**
 
 ```
 HANDOFF.md を読んで、作業の続きをして
 ```
 
-> `HANDOFF.md` は作業フォルダごとの一時的なメモなので、Git には保存しない設定（`.gitignore`）にしています。
+> `HANDOFF.md` は作業フォルダごとの一時的なメモなので、Git には保存しない設定（`.gitignore`）にしています。メモには、作業フォルダの場所（フルパス）も書かれます。
+>
+> パスワードや API キーなどの秘密情報は、引き継ぎメモにも書かないでください。
 
 利用枠の上限で急に止まった場合でも、受け取る側に「`git log` と `git diff` を見て、前のエージェントがどこまで進めたか教えて」と頼めば、状況を整理してくれます。
 
@@ -94,10 +98,10 @@ HANDOFF.md を読んで、作業の続きをして
 
 | やりたいこと | 方法 |
 |---|---|
-| 作業ごとにエージェントを選ぶ | worktree を作るときにエージェントを選ぶ（CLI では `orca worktree create --agent <ID>`） |
+| 作業ごとにエージェントを選ぶ | worktree を作るときにエージェントを選ぶ（CLI では `orca worktree create --name <作業名> --agent <ID>`） |
 | 同じ作業フォルダにチェック役を追加 | `orca agent launch --agent <別のID> --worktree name:<作業名>` |
 | 入っているエージェントの確認 | `orca agent installed` |
-| 同じサービスのアカウントを複数使い分ける | `orca account add --agent claude`（または `codex`）で追加し、`orca account select` で切り替え |
+| 同じサービスのアカウントを複数使い分ける | `orca account add --agent claude`（または `codex`）で追加し、`orca account select --agent claude --account <メールアドレスなど>` で切り替え |
 | Antigravity のアカウント | Orca の設定の「AI Provider Accounts」から、`agy` でログイン中のアカウントを保存 |
 | 過去の会話を探す | `orca search "キーワード"`（エージェントをまたいで会話を検索できる） |
 

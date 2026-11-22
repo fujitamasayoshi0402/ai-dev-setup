@@ -92,37 +92,22 @@ templates の new-project を使って、my-app という名前で新しいプ�
 
 #### 方法2: 自分でコピーする
 
-**1. コピーする。** 同じ名前のフォルダがすでにある場合は、上書きしないように何もせず止まります。
+**1. コピーして、最初のコミットまでを一度に行います。** 次のコマンドは、途中で失敗したらそこで止まります。同じ名前のフォルダがすでにある場合も、上書きせずに止まります。
 
 ```zsh
-mkdir ~/orca/projects/my-app && cp -R ~/orca/projects/ai-dev-setup/templates/new-project/. ~/orca/projects/my-app/
+mkdir ~/orca/projects/my-app && cp -R ~/orca/projects/ai-dev-setup/templates/new-project/. ~/orca/projects/my-app/ && git -C ~/orca/projects/my-app init && git -C ~/orca/projects/my-app add . && git -C ~/orca/projects/my-app commit -m "最初のコミット"
 ```
 
 ```powershell
-$dest = "C:\dev\orca\projects\my-app"; if (Test-Path $dest) { Write-Host "すでに $dest があります。別の名前にしてください" } else { New-Item -ItemType Directory $dest | Out-Null; Copy-Item -Path C:\dev\orca\projects\ai-dev-setup\templates\new-project\* -Destination $dest -Recurse; Write-Host "コピーしました" }
+$src = "C:\dev\orca\projects\ai-dev-setup\templates\new-project"; $dest = "C:\dev\orca\projects\my-app"; if (Test-Path $dest) { Write-Host "すでに $dest があります。別の名前にしてください" } else { try { New-Item -ItemType Directory $dest -ErrorAction Stop | Out-Null; Copy-Item -Path "$src\*" -Destination $dest -Recurse -ErrorAction Stop; git -C $dest init; git -C $dest add .; git -C $dest commit -m "最初のコミット"; if ($LASTEXITCODE -eq 0) { Write-Host "完了しました" } else { Write-Host "コミットに失敗しました" } } catch { Write-Host "失敗しました: $_" } }
 ```
 
-> Mac で `File exists` と出た場合も、同じ名前のフォルダがすでにあります。別の名前にしてやり直してください。
+- 最初のコミットまで行うのは、これをしないと Orca で作る作業フォルダ（worktree）に雛形のファイルが入らないためです
+- Mac で `File exists` と出た場合は、同じ名前のフォルダがすでにあります。別の名前にしてやり直してください
 
-**2. Git で管理を始めて、最初のコミットをする。** これをしないと、Orca で作る作業フォルダ（worktree）に雛形のファイルが入りません。
+> `Please tell me who you are` と出た場合は、名前とメールアドレスの設定がまだです。セットアップの「Git を入れる」にある `git config --global user.name ...` を実行してから、`my-app` フォルダで `git commit -m "最初のコミット"` をもう一度実行します。
 
-```zsh
-cd ~/orca/projects/my-app
-git init
-git add .
-git commit -m "最初のコミット"
-```
-
-```powershell
-cd C:\dev\orca\projects\my-app
-git init
-git add .
-git commit -m "最初のコミット"
-```
-
-> `Please tell me who you are` と出た場合は、名前とメールアドレスの設定がまだです。セットアップの「Git を入れる」にある `git config --global user.name ...` を実行してから、もう一度 `git commit` します。
-
-**3. Orca に登録する。** Orca の「Add project」で `my-app` を登録し、エージェントに次のように頼むと `AGENTS.md` の「〇〇」を埋めてくれます。
+**2. Orca に登録する。** Orca の「Add project」で `my-app` を登録し、エージェントに次のように頼むと `AGENTS.md` の「〇〇」を埋めてくれます。
 
 ```
 AGENTS.md の「〇〇」の部分を、作りたいものに合わせて埋めて。わからないところは質問して

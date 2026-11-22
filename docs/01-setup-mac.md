@@ -67,7 +67,7 @@ claude
 Antigravity には、エディタ一体型のアプリ版と、ターミナルで使う CLI 版（`agy`）があります。**Orca から使うには CLI 版が必要**です。
 
 1. アプリ版: [antigravity.google/download](https://antigravity.google/download) から Mac 版をダウンロードしてインストールし、Google アカウントでログインします
-2. CLI 版: [公式のインストール手順](https://antigravity.google/docs/cli/install) に従って入れます
+2. CLI 版: [公式の Get started](https://antigravity.google/docs/getting-started) にある CLI のインストール手順 に従って入れます
 3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です
 
 ```zsh

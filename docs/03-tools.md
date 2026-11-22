@@ -70,7 +70,7 @@ claude
 
 | 置き場所 | 効く範囲 |
 |---|---|
-| ホームディレクトリ配下（例: `~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`、`~/.gemini/AGENTS.md`） | 自分の全プロジェクト（例: 「日本語で回答して」） |
+| ホームディレクトリ配下（例: `~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`。Antigravity は `~/.gemini/` 配下で、場所はバージョンによって違うため[公式ドキュメント](https://antigravity.google/docs/rules)を参照） | 自分の全プロジェクト（例: 「日本語で回答して」） |
 | リポジトリのルート | そのリポジトリ（チームで共有するのでコミットする） |
 
 > どのファイルを自動で読むかは、エージェントによって違います。
