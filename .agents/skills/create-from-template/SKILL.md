@@ -1,6 +1,6 @@
 ---
 name: create-from-template
-description: ai-dev-setup の templates/ にある雛形（new-project / obsidian-vault）から、新しいプロジェクトや Obsidian の保管庫を正しい場所に作る。「雛形から〇〇を作って」「新しいプロジェクトを作って」「Obsidian の保管庫を作って」と頼まれたときに使う。
+description: ai-dev-setup の templates/ にある雛形（new-project / obsidian-vault / consulting-workspace）から、新しいプロジェクトや Obsidian の保管庫、相談ワークスペースを正しい場所に作る。「雛形から〇〇を作って」「新しいプロジェクトを作って」「Obsidian の保管庫を作って」「相談ワークスペースを作って」と頼まれたときに使う。
 ---
 
 # 雛形から新しいプロジェクト・保管庫を作る
@@ -12,6 +12,7 @@ description: ai-dev-setup の templates/ にある雛形（new-project / obsidia
 1. **雛形を決める**（はっきりしなければ聞く）
    - アプリ・ツール・Web サイトなど → `templates/new-project/`
    - Obsidian でメモを管理する → `templates/obsidian-vault/`
+   - SEO・ブランディング・企画・デザインなど、相談から成果物を作る → `templates/consulting-workspace/`
 2. **名前を決める**。決まっていなければ聞く。英小文字・数字・ハイフンのみ（例: `my-app`、`my-vault`）
 3. **コピー先を決める**。ai-dev-setup の**元の場所（本体）の隣**にする（ai-dev-setup の中には作らない）
    - 今いるフォルダが Orca の worktree（`orca/workspaces/` の下）の場合があるので、まず `git worktree list --porcelain` を実行し、**最初に表示される `worktree` の行**を本体の場所とする
@@ -27,8 +28,11 @@ description: ai-dev-setup の templates/ にある雛形（new-project / obsidia
 6. **確認する**。コピー先に `AGENTS.md`・`CLAUDE.md`・`.gitignore` があることを確かめる
 7. **Git の準備**。コピー先で `git init` → `git add .` → `最初のコミット` というメッセージでコミットする
    - `git config user.name` と `git config user.email` が未設定でコミットできない場合は、利用者に名前とメールアドレスを聞いて `git config --global` で設定してから再実行する（GitHub を使う予定なら、GitHub の非公開用アドレス `xxxx+ユーザー名@users.noreply.github.com` をすすめる）
-8. **中身を埋める**（`new-project` の場合）。作りたいものを利用者に聞き、`AGENTS.md` と `README.md` の「〇〇」を埋めてコミットする。決まっていない項目は「〇〇」のまま残し、そのことを伝える
+8. **中身を埋める**（`new-project` の場合）。`AGENTS.md` の「〇〇」（何を作るか・誰のためか・大事にしたいこと・完了の条件）を、**専門用語を使わずに1つずつ質問して**埋め、`README.md` の「〇〇」も埋めてコミットする
+   - 決まっていない項目は「〇〇」のまま残し、そのことを伝える
+   - 「技術メモ」は利用者に聞かない。使う技術が決まった時点で AI が書く
 9. **次にやることを伝える**
    - 作った場所（フルパス）
    - Orca の「Add project」でそのフォルダを登録すること
    - `obsidian-vault` の場合は、Obsidian で「フォルダを保管庫として開く」から開き、保管庫の `README.md` の初期設定を行うこと
+   - `consulting-workspace` の場合は、最初に `10_context/profile.md` と `brand.md` を埋めること（「10_context を質問しながら一緒に埋めて」と頼めばよい）

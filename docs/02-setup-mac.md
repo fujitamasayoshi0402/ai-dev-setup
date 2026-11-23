@@ -1,3 +1,7 @@
+<!-- nav-top -->
+[目次](../README.md#読む順番) ＞ ① はじめる ＞ **02 Mac セットアップ**
+<!-- /nav-top -->
+
 # Mac セットアップ
 
 macOS（Apple Silicon / Intel）で AI 駆動開発を始めるための手順です。**プログラミング経験がなくても進められる**ように、3つのコースに分けています。
@@ -11,6 +15,8 @@ macOS（Apple Silicon / Intel）で AI 駆動開発を始めるための手順�
 まずは **基本コースだけ** で大丈夫です。足りないものが出てきたら、その時点で AI に「〇〇を入れて」と頼めば入れてくれます。
 
 ## ターミナルの開き方
+
+> 「ファイル」「フォルダ」「ターミナル」などの言葉に自信がない場合は、先に [はじめに: ファイル・フォルダ・ターミナルの基本](00-basics.md) を読んでください。
 
 `⌘ + Space` で Spotlight を開き、「ターミナル」と入力して Enter を押します。以降のコマンドは、ここにコピー＆ペーストして Enter で実行します。
 
@@ -46,7 +52,7 @@ git config --global init.defaultBranch main
 
 ### 2. AIコーディングエージェントを1つ入れる
 
-どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](03-tools.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。GitHub アカウントがあれば、無料プランのある **GitHub Copilot** も選べます。
+どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](01-choose-agent.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。GitHub アカウントがあれば、無料プランのある **GitHub Copilot** も選べます。
 
 #### Claude Code（Anthropic）
 
@@ -62,13 +68,23 @@ curl -fsSL https://claude.ai/install.sh | bash
 claude
 ```
 
-#### Antigravity（Google）
+#### Antigravity（Google の Gemini）
 
-Antigravity には、エディタ一体型のアプリ版と、ターミナルで使う CLI 版（`agy`）があります。**Orca から使うには CLI 版が必要**です。
+Antigravity は、[配布ページ](https://antigravity.google/download)で使い方ごとに分かれています。**Orca から使うには CLI 版（Antigravity CLI）が必要**です。
 
-1. アプリ版: [antigravity.google/download](https://antigravity.google/download) から Mac 版をダウンロードしてインストールし、Google アカウントでログインします
-2. CLI 版: [公式の Get started](https://antigravity.google/docs/getting-started) にある CLI のインストール手順に従って入れます
-3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です
+| 配布ページの名前 | どんなときに入れるか |
+|---|---|
+| **Antigravity CLI** | Orca やターミナルで使う（このガイドの基本） |
+| **Antigravity IDE (Standalone)** | エディタでファイルを見ながら使いたい |
+
+1. CLI 版を入れます（配布ページの Antigravity CLI と同じコマンドです）
+
+```zsh
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+```
+
+2. エディタでも使いたい場合は、配布ページから **Antigravity IDE (Standalone)** の Mac 版をダウンロードしてインストールします
+3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です。初回は、Gemini を使っている Google アカウントでログインします
 
 ```zsh
 agy --help
@@ -76,13 +92,15 @@ agy --help
 
 #### Codex（OpenAI）
 
-Codex の CLI 版は、Homebrew または Node.js（npm）を使って入れます（公式の手順: [Codex CLI](https://developers.openai.com/codex/cli)）。先に [ステップアップ](#ステップアップ) の Homebrew を入れてから、次を実行します。
+公式のインストーラーで入れます（公式の手順: [Codex CLI](https://learn.chatgpt.com/docs/codex/cli)）。
 
 ```zsh
-brew install --cask codex
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
 ```
 
-起動すると、初回は ChatGPT アカウントでのログインを求められます。
+> Homebrew を入れている場合は `brew install --cask codex` でも入ります。
+
+インストールが終わったら、**表示される案内に従い、ターミナルを閉じて開き直してから**起動します（開き直さないと `command not found` と出ることがあります）。初回は ChatGPT アカウントでのログインを求められます。
 
 ```zsh
 codex
@@ -90,13 +108,15 @@ codex
 
 #### GitHub Copilot（GitHub）
 
-GitHub Copilot の CLI 版です。**GitHub アカウントが必要**です（[ステップアップ](#ステップアップ) の手順でアカウントを作っておきます）。先に [ステップアップ](#ステップアップ) の Homebrew も入れてから、Homebrew で入れます（公式の手順: [Copilot CLI のインストール](https://docs.github.com/ja/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli)）。
+GitHub Copilot の CLI 版です。**このガイドでは GitHub アカウントでログインします**（[ステップアップ](#ステップアップ) の手順でアカウントを作っておきます。会社の Microsoft Entra アカウントでログインできる場合もあります: [ログイン方法](https://docs.github.com/ja/copilot/how-tos/copilot-cli/set-up-copilot-cli/authenticate-copilot-cli)）。公式のインストールスクリプトで入れます（公式の手順: [Copilot CLI のインストール](https://docs.github.com/ja/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli)）。
 
 ```zsh
-brew install copilot-cli
+curl -fsSL https://gh.io/copilot-install | bash
 ```
 
-起動すると、初回は GitHub アカウントでのログインを求められます（画面の案内に沿って `/login` を実行します）。
+> Homebrew を入れている場合は `brew install --cask copilot-cli` でも入ります。
+
+インストールが終わったら、**表示される案内に従い、ターミナルを閉じて開き直してから**起動します。初回は GitHub アカウントでのログインを求められます（画面の案内に沿って `/login` を実行します）。
 
 ```zsh
 copilot
@@ -128,19 +148,20 @@ git --version
 claude --version
 ```
 
-ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます（エージェントの違いを先に知りたい場合は [03-tools.md](03-tools.md)）。
+ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます。
 
 ### 5. 効率化アプリ（任意・おすすめ）
 
-各公式サイトからダウンロードできます（Homebrew があれば `brew install --cask raycast shottr` でも入ります）。
+各公式サイトからダウンロードできます（Homebrew があれば `brew install --cask raycast shottr clipy` でも入ります）。
 
 | アプリ | 用途 |
 |---|---|
 | [Raycast](https://www.raycast.com/) | ランチャー。アプリ起動・クリップボード履歴・ウィンドウ整列・よく使う文章の登録など |
 | [Alfred](https://www.alfredapp.com/) | Raycast と役割が近いランチャー。どちらか1つで十分 |
 | [Shottr](https://shottr.cc/) | スクリーンショット。注釈・モザイク・画像内の文字のコピー（OCR）ができる |
+| [Clipy](https://clipy-app.com/) | 無料のクリップボード履歴。過去にコピーした文章を呼び出せる。よく使う文章（スニペット）も登録できる |
 
-使い方は [03-tools.md](03-tools.md#効率化アプリ) を参照してください。
+使い方は [07-tools.md](07-tools.md#効率化アプリ) を参照してください。
 
 ---
 
@@ -191,6 +212,21 @@ git config --global user.email "xxxx+ユーザー名@users.noreply.github.com"
 git config --global push.autoSetupRemote true
 ```
 
+4. 作ったものを GitHub にバックアップします。いちばん簡単なのは、そのプロジェクトでエージェントに頼むことです。
+
+```
+このプロジェクトを GitHub の非公開リポジトリにバックアップして
+```
+
+自分で行う場合は、プロジェクトのフォルダ（例: `my-app`）に移動して、次を実行します。**非公開（private）**のリポジトリが作られ、これまでの変更がまとめて送られます。
+
+```zsh
+cd ~/orca/projects/my-app
+gh repo create my-app --private --source=. --remote=origin --push
+```
+
+GitHub のページ（`https://github.com/あなたのユーザー名/my-app`）を開いて、自分のファイルが表示されれば完了です。2回目からは、エージェントに「GitHub に送って（push して）」と頼むだけです。
+
 ---
 
 ## 開発者向け
@@ -228,3 +264,10 @@ brew install --cask visual-studio-code
 | `brew: command not found` | Homebrew の「Next steps」が未実行。`~/.zprofile` を確認 |
 | `git push` で認証エラー | `gh auth setup-git` を実行 |
 | 何をすればいいかわからない | エラー文をそのまま AI に貼って「どうすればいい？」と聞く |
+
+---
+
+<!-- nav-bottom -->
+| ← 前へ: [01 AI エージェントの選び方](01-choose-agent.md) | [目次](../README.md#読む順番) | 次へ: [04 Orca のセットアップ](04-orca.md) → |
+|:---|:---:|---:|
+<!-- /nav-bottom -->

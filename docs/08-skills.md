@@ -1,3 +1,7 @@
+<!-- nav-top -->
+[目次](../README.md#読む順番) ＞ ③ 広げる ＞ **08 スキルの取り込みと共有**
+<!-- /nav-top -->
+
 # スキルの取り込みと共有
 
 **スキル**は、AI エージェントに渡す「手順書のセット」です。`SKILL.md` というファイルに「どんなときに使うか」と「何をどの順番でやるか」を書いておくと、AI が必要なときに読んで、その手順どおりに動いてくれます。
@@ -9,13 +13,11 @@
 スキルの形式（`SKILL.md`）はエージェント間で共通ですが、読みにいく場所が違います。このガイドでは、**同じスキルを2か所に置く**ことで、どのエージェントからも使えるようにしています。
 
 ```mermaid
-flowchart LR
-    skill["同じスキル<br>（SKILL.md）"]
+flowchart TD
+    skill["同じスキル（SKILL.md）"]
     skill --> a[".agents/skills/"]
     skill --> c[".claude/skills/"]
-    a -- "読む" --> codex["Codex"]
-    a -- "読む" --> ag["Antigravity"]
-    a -- "読む" --> cop["GitHub Copilot"]
+    a -- "読む" --> others["Codex<br>Antigravity<br>GitHub Copilot"]
     c -- "読む" --> cc["Claude Code"]
 ```
 
@@ -37,7 +39,7 @@ my-app/
 
 > 名前が `.` で始まるフォルダは、Mac の Finder では表示されません。`⌘ + Shift + .` で表示・非表示を切り替えられます。
 
-雛形（`templates/new-project/`、`templates/obsidian-vault/`）には、このフォルダ構成と `handoff` スキルがあらかじめ入っています。
+雛形（`templates/new-project/`、`templates/obsidian-vault/`、`templates/consulting-workspace/`）には、このフォルダ構成と `handoff` スキルがあらかじめ入っています（相談ワークスペースには、相談用のスキルも入っています）。
 
 ## このガイドに入っているスキル
 
@@ -45,7 +47,7 @@ my-app/
 |---|---|---|
 | `create-from-template` | 雛形から新しいプロジェクトや保管庫を、正しい場所に作る | 「templates の new-project を使って my-app を作って」 |
 | `import-skill` | 他のリポジトリのスキルを、安全確認したうえで取り込む | 「https://github.com/owner/repo のスキルを取り込んで」 |
-| `handoff` | 別のエージェントに作業を引き継ぐメモを作る・読む（[08-multi-agent.md](08-multi-agent.md#作業を引き継ぐ)） | 「別のエージェントに引き継ぐので、引き継ぎメモを作って」 |
+| `handoff` | 別のエージェントに作業を引き継ぐメモを作る・読む（[09-multi-agent.md](09-multi-agent.md#作業を引き継ぐ)） | 「別のエージェントに引き継ぐので、引き継ぎメモを作って」 |
 
 ## 他のリポジトリからスキルを取り込む
 
@@ -146,3 +148,10 @@ description: 1週間分の日報を読んで、週報を作る。「週報を作
 
 - `description` には「何をするか」と「どんなときに使うか」を書く。AI はこれを見て、いつ使うかを判断します
 - 本文は、人に頼むときと同じように手順を番号つきで書く
+
+---
+
+<!-- nav-bottom -->
+| ← 前へ: [07 便利ツール](07-tools.md) | [目次](../README.md#読む順番) | 次へ: [09 複数のエージェントを使う](09-multi-agent.md) → |
+|:---|:---:|---:|
+<!-- /nav-bottom -->

@@ -1,3 +1,7 @@
+<!-- nav-top -->
+[目次](../README.md#読む順番) ＞ ③ 広げる ＞ **11 Obsidian（任意）**
+<!-- /nav-top -->
+
 # Obsidian（オプション）
 
 > このページは任意です。AI 駆動開発自体は Obsidian なしでも問題なく行えます。
@@ -59,6 +63,9 @@ winget install --id Obsidian.Obsidian -e
 2. Obsidian で「フォルダを保管庫として開く」から `my-vault` を開きます
 3. `my-vault/README.md` の「最初にやること」に沿って、テンプレートとデイリーノートを設定します
 4. Orca の「Add project」で `my-vault` を登録します
+5. **保管庫では、作業フォルダ（worktree）を新しく作らず、本体（`my-vault` そのもの）でエージェントを起動します**
+
+> **なぜ本体で起動するのか**: worktree は本体とは別のフォルダです。Obsidian で本体に書いた日報は worktree の AI からは見えず、worktree で AI が作ったメモも、本体に取り込むまで Obsidian には表示されません。**Obsidian と AI が同じフォルダを開いている**状態にしておくと、書いたものがすぐお互いに見えます。
 
 これで、Orca から保管庫でエージェントを起動し、次のように頼めます。
 
@@ -99,3 +106,10 @@ Obsidian で「フォルダを保管庫として開く」から `my-app/docs/` �
 - 調べた結果は「結論 → 根拠 → 参考URL」の順で書かせると後で読みやすい
 - 機密情報を含む Vault は公開リポジトリに push しない
 - 最初は `00_inbox` と `10_daily` だけ使えば十分。慣れたら他のフォルダも使う
+
+---
+
+<!-- nav-bottom -->
+| ← 前へ: [10 相談ワークスペース](10-consulting-workspace.md) | [目次](../README.md#読む順番) | （最後のページです） |
+|:---|:---:|---:|
+<!-- /nav-bottom -->

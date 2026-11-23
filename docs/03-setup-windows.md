@@ -1,3 +1,7 @@
+<!-- nav-top -->
+[目次](../README.md#読む順番) ＞ ① はじめる ＞ **03 Windows セットアップ**
+<!-- /nav-top -->
+
 # Windows セットアップ
 
 Windows 10 / 11 で AI 駆動開発を始めるための手順です。**プログラミング経験がなくても進められる**ように、3つのコースに分けています。
@@ -11,6 +15,8 @@ Windows 10 / 11 で AI 駆動開発を始めるための手順です。**プロ�
 まずは **基本コースだけ** で大丈夫です。足りないものが出てきたら、その時点で AI に「〇〇を入れて」と頼めば入れてくれます。
 
 ## ターミナルの開き方
+
+> 「ファイル」「フォルダ」「ターミナル」などの言葉に自信がない場合は、先に [はじめに: ファイル・フォルダ・ターミナルの基本](00-basics.md) を読んでください。
 
 スタートメニューで「ターミナル」（Windows Terminal）と検索して開きます。Windows 10 で見つからない場合は、Microsoft Store から「Windows Terminal」を入れてください。
 以降のコマンドは、ここ（PowerShell）にコピー＆ペーストして Enter で実行します。**管理者として実行する必要はありません**（WSL2 の手順だけは例外です）。
@@ -52,7 +58,7 @@ git config --global core.longpaths true
 
 ### 2. AIコーディングエージェントを1つ入れる
 
-どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](03-tools.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。GitHub アカウントがあれば、無料プランのある **GitHub Copilot** も選べます。
+どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](01-choose-agent.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。GitHub アカウントがあれば、無料プランのある **GitHub Copilot** も選べます。
 
 #### Claude Code（Anthropic）
 
@@ -68,13 +74,23 @@ irm https://claude.ai/install.ps1 | iex
 claude
 ```
 
-#### Antigravity（Google）
+#### Antigravity（Google の Gemini）
 
-Antigravity には、エディタ一体型のアプリ版と、ターミナルで使う CLI 版（`agy`）があります。**Orca から使うには CLI 版が必要**です。
+Antigravity は、[配布ページ](https://antigravity.google/download)で使い方ごとに分かれています。**Orca から使うには CLI 版（Antigravity CLI）が必要**です。
 
-1. アプリ版: [antigravity.google/download](https://antigravity.google/download) から Windows 版をダウンロードしてインストールし、Google アカウントでログインします
-2. CLI 版: [公式の Get started](https://antigravity.google/docs/getting-started) にある CLI のインストール手順に従って入れます
-3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です
+| 配布ページの名前 | どんなときに入れるか |
+|---|---|
+| **Antigravity CLI** | Orca やターミナルで使う（このガイドの基本） |
+| **Antigravity IDE (Standalone)** | エディタでファイルを見ながら使いたい |
+
+1. CLI 版を入れます（配布ページの Antigravity CLI と同じコマンドです）
+
+```powershell
+irm https://antigravity.google/cli/install.ps1 | iex
+```
+
+2. エディタでも使いたい場合は、配布ページから **Antigravity IDE (Standalone)** の Windows 版をダウンロードしてインストールします
+3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です。初回は、Gemini を使っている Google アカウントでログインします
 
 ```powershell
 agy --help
@@ -82,22 +98,37 @@ agy --help
 
 #### Codex（OpenAI）
 
-Codex の CLI 版は Node.js（npm）を使って入れます（公式の手順: [Codex CLI](https://developers.openai.com/codex/cli)）。先に [開発者向け](#開発者向け) の Node.js を入れてから、次を実行します。
+公式のインストーラーで入れます（公式の手順: [Codex CLI](https://learn.chatgpt.com/docs/codex/cli)）。
 
 ```powershell
-npm install -g @openai/codex
+powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
+```
+
+ターミナルを開き直してから起動します。初回は ChatGPT アカウントでのログインを求められます。
+
+```powershell
 codex
 ```
 
+> Node.js を入れている場合は `npm install -g @openai/codex` でも入ります。
+
 #### GitHub Copilot（GitHub）
 
-GitHub Copilot の CLI 版です。**GitHub アカウントが必要**です（[ステップアップ](#ステップアップ) の手順でアカウントを作っておきます）。winget で入れます（公式の手順: [Copilot CLI のインストール](https://docs.github.com/ja/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli)）。
+GitHub Copilot の CLI 版です。**このガイドでは GitHub アカウントでログインします**（[ステップアップ](#ステップアップ) の手順でアカウントを作っておきます。会社の Microsoft Entra アカウントでログインできる場合もあります: [ログイン方法](https://docs.github.com/ja/copilot/how-tos/copilot-cli/set-up-copilot-cli/authenticate-copilot-cli)）。公式の手順: [Copilot CLI のインストール](https://docs.github.com/ja/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli)
+
+**Windows では PowerShell 7 以降が必要です。** Windows に最初から入っている PowerShell は 5.1 なので、先に PowerShell 7 を入れます。
+
+```powershell
+winget install --id Microsoft.PowerShell -e
+```
+
+続けて Copilot CLI を入れます。
 
 ```powershell
 winget install --id GitHub.Copilot -e
 ```
 
-ターミナルを開き直してから起動します。初回は GitHub アカウントでのログインを求められます（画面の案内に沿って `/login` を実行します）。
+ターミナルを閉じて開き直し、タブの「∨」から **PowerShell 7**（「PowerShell」と表示されるもの。「Windows PowerShell」ではない方）を開いて起動します。初回は GitHub アカウントでのログインを求められます（画面の案内に沿って `/login` を実行します）。
 
 ```powershell
 copilot
@@ -134,7 +165,7 @@ git --version
 claude --version
 ```
 
-ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます（エージェントの違いを先に知りたい場合は [03-tools.md](03-tools.md)）。
+ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます。
 
 ### 5. 効率化アプリ（任意・おすすめ）
 
@@ -173,6 +204,21 @@ gh auth setup-git
 git config --global user.email "xxxx+ユーザー名@users.noreply.github.com"
 git config --global push.autoSetupRemote true
 ```
+
+4. 作ったものを GitHub にバックアップします。いちばん簡単なのは、そのプロジェクトでエージェントに頼むことです。
+
+```
+このプロジェクトを GitHub の非公開リポジトリにバックアップして
+```
+
+自分で行う場合は、プロジェクトのフォルダ（例: `my-app`）に移動して、次を実行します。**非公開（private）**のリポジトリが作られ、これまでの変更がまとめて送られます。
+
+```powershell
+cd C:\dev\orca\projects\my-app
+gh repo create my-app --private --source=. --remote=origin --push
+```
+
+GitHub のページ（`https://github.com/あなたのユーザー名/my-app`）を開いて、自分のファイルが表示されれば完了です。2回目からは、エージェントに「GitHub に送って（push して）」と頼むだけです。
 
 ---
 
@@ -214,7 +260,7 @@ Docker を使う開発など、Linux 前提のツールが必要なときだけ�
 wsl --install
 ```
 
-再起動後の Ubuntu の中では、[Mac 版](01-setup-mac.md) の手順のうち Homebrew 以外（`curl ... | bash` 形式のインストールなど）がほぼそのまま使えます。リポジトリは Windows 側（`C:\`）ではなく WSL 側（`~/`）に置くと高速です。
+再起動後の Ubuntu の中では、[Mac 版](02-setup-mac.md) の手順のうち Homebrew 以外（`curl ... | bash` 形式のインストールなど）がほぼそのまま使えます。リポジトリは Windows 側（`C:\`）ではなく WSL 側（`~/`）に置くと高速です。
 
 ---
 
@@ -228,3 +274,10 @@ wsl --install
 | `Filename too long` | `git config --global core.longpaths true` |
 | ユーザー名が日本語で動作が不安定 | 日本語や空白を含まない作業フォルダ（例: `C:\dev`）を使う |
 | 何をすればいいかわからない | エラー文をそのまま AI に貼って「どうすればいい？」と聞く |
+
+---
+
+<!-- nav-bottom -->
+| ← 前へ: [01 AI エージェントの選び方](01-choose-agent.md) | [目次](../README.md#読む順番) | 次へ: [04 Orca のセットアップ](04-orca.md) → |
+|:---|:---:|---:|
+<!-- /nav-bottom -->

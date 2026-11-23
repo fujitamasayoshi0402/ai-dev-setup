@@ -10,9 +10,10 @@
 
 ## 構成
 - `README.md` … 目次
-- `docs/` … 本文。ファイル名は `NN-内容.md`（読む順番の番号つき）
+- `docs/` … 本文。ファイル名は `NN-内容.md`（読む順番の番号つき）。① はじめる（00〜04）・② 使いこなす（05〜07）・③ 広げる（08〜11）の3段階
 - `templates/new-project/` … アプリなどを作るときにコピーする雛形
 - `templates/obsidian-vault/` … Obsidian の保管庫にコピーする雛形
+- `templates/consulting-workspace/` … 相談から成果物を作る仕事（SEO・ブランディングなど）にコピーする雛形
 - `.agents/skills/` … スキル（Codex・Antigravity・GitHub Copilot などが読む）。`SOURCES.md` に取り込み元を記録
 - `.claude/skills/` … Claude Code 用のスキル。`.agents/skills/` と同じ内容に保つ
 
@@ -23,18 +24,20 @@
 - 利用者の OS（Mac / Windows）と、入れたいエージェントがわからなければ最初に聞く
 - 手順は一度に全部出さず、1〜2ステップずつ案内し、結果を確認してから次へ進む
 - 専門用語には短い説明を添える。エラーが出たら原因と対処を短く伝える
+- ファイル・フォルダ・パス・ターミナルなどの基本に不慣れな様子なら、`docs/00-basics.md` の言葉と例えを使って説明する。ファイルの場所を伝えるときは、パスに加えて「Finder（エクスプローラー）で開く方法」も添える
 - 利用者のパソコンでコマンドを実行する前に、何をするコマンドか一言説明する
 - `docs/` に書かれていないことを聞かれたら、そう伝えたうえで一般的な方法を答える
 
 ### よくある依頼と対応
 | 依頼 | 対応 |
 |---|---|
-| 「どのエージェントを入れればいい？」 | `docs/03-tools.md` の「どのエージェントを選ぶか」の流れに沿って、仕事で使うか → 契約中のサービス → 予算（無料で試すなら GitHub アカウントの有無も）→ 使いたい画面 の順に1つずつ質問して提案する。料金は断定せず、公式の料金ページを案内する |
-| 「セットアップを手伝って」 | `docs/01-setup-mac.md` または `docs/02-setup-windows.md` の基本コースを順に案内する |
+| 「どのエージェントを入れればいい？」 | `docs/01-choose-agent.md` の「どのエージェントを選ぶか」の流れに沿って、仕事で使うか → 契約中のサービス → 予算（無料で試すなら GitHub アカウントの有無も）→ 使いたい画面 の順に1つずつ質問して提案する。料金は断定せず、公式の料金ページを案内する |
+| 「セットアップを手伝って」 | `docs/02-setup-mac.md` または `docs/03-setup-windows.md` の基本コースを順に案内する |
 | 「雛形から〇〇を作って」 | スキル `create-from-template`（`.agents/skills/create-from-template/SKILL.md`）の手順に従う |
 | 「〇〇のスキルを取り込んで」 | スキル `import-skill`（`.agents/skills/import-skill/SKILL.md`）の手順に従う |
 | 「引き継ぎメモを作って」「HANDOFF.md を読んで続けて」 | スキル `handoff`（`.agents/skills/handoff/SKILL.md`）の手順に従う |
-| 「このガイドを最新にして」 | 未コミットの変更がないか確認してから `git pull` する。変更があれば先に利用者に確認する |
+| 「AGENTS.md の書き方を教えて」「AGENTS.md を見直して」 | `docs/06-agents-md.md` のチェックリストと「よくある失敗」に沿って説明・指摘する。見直しでは、実在しないコマンドやフォルダがないかも確認する |
+| 「このガイドを最新にして」 | `git worktree list` の最初の行で本体（`main`）の場所を確認し、**本体で**更新する。本体に未コミットの変更がないか確認してから `git pull` する（変更があれば先に利用者に確認する）。今いるのが worktree の場合は古いままなので、更新後は本体か、新しく作った worktree で読み進めるよう伝える |
 
 ## このリポジトリを編集するとき（メンテナー向け）
 
@@ -46,13 +49,13 @@
 - コマンドは OS ごとにコードブロックを分ける（Mac は `zsh`、Windows は `powershell`）
 - インストールコマンドなど変わりやすい情報は、公式ドキュメントへのリンクも添える
 - 確認できていない情報は書かない。書く場合は「要確認」と明記する
-- ドキュメントを追加・改名したら `README.md` の目次とリンクも更新する
+- ドキュメントを追加・改名・並べ替えたら、`README.md` の目次（3段階の表）と、各ページの上下のナビ（`<!-- nav-top -->`・`<!-- nav-bottom -->` で囲んだ部分）も更新する
 - 図は Mermaid（```mermaid のコードブロック）で書く。GitHub と Obsidian の両方でそのまま表示できるため。ラベルは `"..."` で囲み、改行は `<br>` を使う
 
 ### スキルを追加・変更するとき
 - `.agents/skills/<名前>/` と `.claude/skills/<名前>/` の両方を同じ内容にする
 - 外部から取り込んだスキルは `.agents/skills/SOURCES.md` に記録する
-- `handoff` スキルは `templates/new-project/` と `templates/obsidian-vault/` にも同じものがある。変更したらすべて揃える
+- `handoff` スキルは `templates/new-project/`・`templates/obsidian-vault/`・`templates/consulting-workspace/` にも同じものがある。変更したらすべて揃える
 
 ### Git
 - `main` に直接コミットしない。ブランチを切って PR を出す

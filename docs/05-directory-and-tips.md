@@ -1,4 +1,8 @@
-# ディレクトリ管理と Tips
+<!-- nav-top -->
+[目次](../README.md#読む順番) ＞ ② 使いこなす ＞ **05 フォルダの管理と Tips**
+<!-- /nav-top -->
+
+# フォルダの管理と Tips（ディレクトリ管理）
 
 ## 1. 推奨ディレクトリ構成
 
@@ -9,7 +13,8 @@
 ├── projects/                 # 各プロジェクトの本体（main ブランチ）
 │   ├── ai-dev-setup/         # このガイド（雛形の置き場所）
 │   ├── my-app/               # 雛形 new-project から作ったプロジェクト
-│   └── my-vault/             # 雛形 obsidian-vault から作った保管庫（任意）
+│   ├── my-vault/             # 雛形 obsidian-vault から作った保管庫（任意）
+│   └── my-workspace/         # 雛形 consulting-workspace から作った相談ワークスペース（任意）
 └── workspaces/               # worktree（タスクごとの作業フォルダ）
     ├── my-app/
     │   ├── login-page/       # feature ブランチ
@@ -52,7 +57,7 @@ my-app/
 ├── README.md
 ├── AGENTS.md          # AI エージェント共通の指示書（コミットする）
 ├── CLAUDE.md          # Claude Code 用。中身は「@AGENTS.md」の1行だけ
-├── .agents/skills/    # スキル（Codex・Antigravity など）→ 07-skills.md
+├── .agents/skills/    # スキル（Codex・Antigravity など）→ 08-skills.md
 ├── .claude/
 │   ├── settings.json  # Claude Code の許可・禁止コマンド（チーム共有）
 │   └── skills/        # スキル（Claude Code 用。中身は .agents/skills と同じ）
@@ -60,7 +65,7 @@ my-app/
 ├── .gitattributes     # 改行コードを LF に統一
 ├── .editorconfig      # 文字コード・インデントを統一
 ├── docs/              # 仕様・設計メモ（AI にも読ませる）
-└── src/
+└── src/               # プログラムを書き始めるときに AI が作る（最初はない）
 ```
 
 | ファイル | ポイント |
@@ -68,7 +73,7 @@ my-app/
 | `AGENTS.md` | ルールの本体。Codex などはこのファイルを直接読む |
 | `CLAUDE.md` など | エージェントごとの指示ファイルは、`AGENTS.md` を参照するだけにして二重管理を防ぐ |
 | `.claude/settings.json` など | エージェントの設定。使うエージェントの分だけ置く |
-| `.agents/skills/`・`.claude/skills/` | スキルの置き場所。同じスキルを両方に置く（[07-skills.md](07-skills.md)） |
+| `.agents/skills/`・`.claude/skills/` | スキルの置き場所。同じスキルを両方に置く（[08-skills.md](08-skills.md)） |
 | `.gitignore` | `.env` と個人用の設定（`CLAUDE.local.md`、`.claude/settings.local.json`）は必ず除外 |
 | `.gitattributes` | Windows と Mac が混ざるチームでは必須 |
 
@@ -84,7 +89,7 @@ my-app/
 
 #### 方法1: AI に頼む（おすすめ）
 
-Orca で `ai-dev-setup` を開き、エージェントに頼みます。正しい場所に作る手順は、スキル `create-from-template`（[07-skills.md](07-skills.md)）に書いてあります。
+Orca で `ai-dev-setup` を開き、エージェントに頼みます。正しい場所に作る手順は、スキル `create-from-template`（[08-skills.md](08-skills.md)）に書いてあります。
 
 ```
 templates の new-project を使って、my-app という名前で新しいプロジェクトを作って
@@ -113,7 +118,7 @@ $src = "C:\dev\orca\projects\ai-dev-setup\templates\new-project"; $dest = "C:\de
 AGENTS.md の「〇〇」の部分を、作りたいものに合わせて埋めて。わからないところは質問して
 ```
 
-Obsidian の保管庫を作る場合は、`new-project` を `obsidian-vault`、`my-app` を `my-vault` に読み替えます（[06-obsidian-optional.md](06-obsidian-optional.md)）。
+Obsidian の保管庫を作る場合は、`new-project` を `obsidian-vault`、`my-app` を `my-vault` に読み替えます（[11-obsidian-optional.md](11-obsidian-optional.md)）。相談ワークスペースを作る場合は `consulting-workspace` と `my-workspace` に読み替えます。コピーしたら、`AGENTS.md` ではなく `10_context/profile.md` と `brand.md` を埋めます（[10-consulting-workspace.md](10-consulting-workspace.md)）。
 
 ## 3. 変更の保存（コミット）と作業の分け方
 
@@ -150,10 +155,10 @@ Git の操作は AI に頼めば大丈夫です。覚えておくのは「いつ
 | まず計画させる | 大きな作業は「まず計画だけ出して。実装はまだしないで」と頼み、確認してから進める（計画モードがあるエージェントも多い） |
 | 完了条件を明示する | 「〇〇が動くまで」「エラーがなくなるまで」と書くと、AI が自分で確認しながら進めてくれる |
 | タスクが変わったら新しい会話に | 古い話が残っていると精度が落ちる。会話のリセットや新しいタブを使う |
-| 繰り返し伝えることは指示ファイルへ | 毎回言っていることは `AGENTS.md` などにルールとして書く |
+| 繰り返し伝えることは指示ファイルへ | 毎回言っていることは `AGENTS.md` などにルールとして書く（[書き方のコツ](06-agents-md.md)） |
 | 手順化できる作業はまとめておく | よくやる手順は Skill やルールとして保存して再利用する |
 | 結果は必ず自分で確認する | 画面で動かしてみる・変更内容を見る。わからなければ「何を変えたか説明して」と聞く |
-| 別のエージェントに見てもらう | エージェントA が作ったものを、エージェントB にチェックしてもらう（[08-multi-agent.md](08-multi-agent.md)） |
+| 別のエージェントに見てもらう | エージェントA が作ったものを、エージェントB にチェックしてもらう（[09-multi-agent.md](09-multi-agent.md)） |
 | 秘密情報を貼らない | パスワードや API キーはチャットに直接書かない。`.env` ファイルに置く |
 | わからないことは AI に聞く | エラー文・専門用語・手順など、なんでも「わかりやすく説明して」と聞いてよい |
 
@@ -169,5 +174,12 @@ Git の操作は AI に頼めば大丈夫です。覚えておくのは「いつ
 
 - 取り返しのつかない操作は禁止（deny）にしておく
 - 禁止の設定は**最低限の安全策**です。別の書き方のコマンド（例: `rm -fr`）や別のツール経由では防げないことがあるので、「全部許可」に頼りすぎないようにします
-- 「全部許可」するモードは、worktree の中など影響範囲が限られた場所でだけ使う
+- **「全部許可」するモード（確認をすべて省くモード）は使わない**のが基本です。worktree は作業ファイルを分けるだけで、AI ができる操作の範囲は狭まりません（ほかのフォルダや Git の履歴にも手が届きます）。確認を省いてよいのは、コンテナや仮想マシンなど、AI がさわれる範囲を実際に制限した環境だけです
 - 設定ファイルの場所と書き方はエージェントごとに違います（例: Claude Code は `.claude/settings.json`、Codex は `~/.codex/config.toml`）。各公式ドキュメントを確認してください
+
+---
+
+<!-- nav-bottom -->
+| ← 前へ: [04 Orca のセットアップ](04-orca.md) | [目次](../README.md#読む順番) | 次へ: [06 AGENTS.md の書き方](06-agents-md.md) → |
+|:---|:---:|---:|
+<!-- /nav-bottom -->
