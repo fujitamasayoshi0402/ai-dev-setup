@@ -96,7 +96,7 @@ curl -fsSL https://chatgpt.com/codex/install.sh | sh
 
 > Homebrew を入れている場合は `brew install --cask codex` でも入ります。
 
-起動すると、初回は ChatGPT アカウントでのログインを求められます。
+インストールが終わったら、**表示される案内に従い、ターミナルを閉じて開き直してから**起動します（開き直さないと `command not found` と出ることがあります）。初回は ChatGPT アカウントでのログインを求められます。
 
 ```zsh
 codex
@@ -112,7 +112,7 @@ curl -fsSL https://gh.io/copilot-install | bash
 
 > Homebrew を入れている場合は `brew install --cask copilot-cli` でも入ります。
 
-起動すると、初回は GitHub アカウントでのログインを求められます（画面の案内に沿って `/login` を実行します）。
+インストールが終わったら、**表示される案内に従い、ターミナルを閉じて開き直してから**起動します。初回は GitHub アカウントでのログインを求められます（画面の案内に沿って `/login` を実行します）。
 
 ```zsh
 copilot
