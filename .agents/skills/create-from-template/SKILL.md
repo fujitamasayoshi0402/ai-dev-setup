@@ -28,7 +28,9 @@ description: ai-dev-setup の templates/ にある雛形（new-project / obsidia
 6. **確認する**。コピー先に `AGENTS.md`・`CLAUDE.md`・`.gitignore` があることを確かめる
 7. **Git の準備**。コピー先で `git init` → `git add .` → `最初のコミット` というメッセージでコミットする
    - `git config user.name` と `git config user.email` が未設定でコミットできない場合は、利用者に名前とメールアドレスを聞いて `git config --global` で設定してから再実行する（GitHub を使う予定なら、GitHub の非公開用アドレス `xxxx+ユーザー名@users.noreply.github.com` をすすめる）
-8. **中身を埋める**（`new-project` の場合）。作りたいものを利用者に聞き、`AGENTS.md` と `README.md` の「〇〇」を埋めてコミットする。決まっていない項目は「〇〇」のまま残し、そのことを伝える
+8. **中身を埋める**（`new-project` の場合）。`AGENTS.md` の「〇〇」（何を作るか・誰のためか・大事にしたいこと・完了の条件）を、**専門用語を使わずに1つずつ質問して**埋め、`README.md` の「〇〇」も埋めてコミットする
+   - 決まっていない項目は「〇〇」のまま残し、そのことを伝える
+   - 「技術メモ」は利用者に聞かない。使う技術が決まった時点で AI が書く
 9. **次にやることを伝える**
    - 作った場所（フルパス）
    - Orca の「Add project」でそのフォルダを登録すること
