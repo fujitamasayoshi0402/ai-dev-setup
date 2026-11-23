@@ -146,6 +146,8 @@ flowchart TD
 
 ルールを書き直すのは `AGENTS.md` だけで済み、どのエージェントにも同じルールが伝わります。
 
+書き方のコツや育て方は、[AGENTS.md の書き方](10-agents-md.md) にまとめています。
+
 ```markdown
 <!-- AGENTS.md（共通の指示書） -->
 # プロジェクト概要

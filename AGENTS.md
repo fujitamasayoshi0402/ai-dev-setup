@@ -36,6 +36,7 @@
 | 「雛形から〇〇を作って」 | スキル `create-from-template`（`.agents/skills/create-from-template/SKILL.md`）の手順に従う |
 | 「〇〇のスキルを取り込んで」 | スキル `import-skill`（`.agents/skills/import-skill/SKILL.md`）の手順に従う |
 | 「引き継ぎメモを作って」「HANDOFF.md を読んで続けて」 | スキル `handoff`（`.agents/skills/handoff/SKILL.md`）の手順に従う |
+| 「AGENTS.md の書き方を教えて」「AGENTS.md を見直して」 | `docs/10-agents-md.md` のチェックリストと「よくある失敗」に沿って説明・指摘する。見直しでは、実在しないコマンドやフォルダがないかも確認する |
 | 「このガイドを最新にして」 | 未コミットの変更がないか確認してから `git pull` する。変更があれば先に利用者に確認する |
 
 ## このリポジトリを編集するとき（メンテナー向け）
