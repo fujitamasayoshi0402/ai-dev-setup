@@ -6,7 +6,7 @@
 |---|---|---|
 | [`new-project/`](new-project/) | アプリ・ツール・Web サイトなどを作るとき | `~/orca/projects/my-app/` |
 | [`obsidian-vault/`](obsidian-vault/) | Obsidian でメモ・ナレッジを管理するとき | `~/orca/projects/my-vault/` |
-| [`consulting-workspace/`](consulting-workspace/) | SEO・ブランディング・企画・デザインなど、相談から成果物を作るとき（[説明](../docs/09-consulting-workspace.md)） | `~/orca/projects/my-workspace/` |
+| [`consulting-workspace/`](consulting-workspace/) | SEO・ブランディング・企画・デザインなど、相談から成果物を作るとき（[説明](../docs/10-consulting-workspace.md)） | `~/orca/projects/my-workspace/` |
 
 > Windows の場合、コピー先は `C:\dev\orca\projects\my-app\` のようになります。
 

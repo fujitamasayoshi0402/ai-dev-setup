@@ -1,3 +1,7 @@
+<!-- nav-top -->
+[目次](../README.md#読む順番) ＞ ① はじめる ＞ **04 Orca のセットアップ**
+<!-- /nav-top -->
+
 # Orca のセットアップ
 
 [Orca](https://github.com/stablyai/orca) は、**Git worktree を単位に複数の AI エージェントを並行で動かす**ためのデスクトップアプリです。
@@ -161,3 +165,10 @@ flowchart TD
 - **セットアップスクリプト**を設定しておくと、worktree 作成時に `npm install` や `.env` のコピーを自動実行できます
 - `.env` は worktree に自動でコピーされないことがあるので、上記スクリプトで対応するのがおすすめ
 - 実装とレビューを**別のエージェント（別モデル）で相互チェック**すると品質が上がります
+
+---
+
+<!-- nav-bottom -->
+| ← 前へ: [02 Mac セットアップ](02-setup-mac.md) / [03 Windows セットアップ](03-setup-windows.md) | [目次](../README.md#読む順番) | 次へ: [05 フォルダの管理と Tips](05-directory-and-tips.md) → |
+|:---|:---:|---:|
+<!-- /nav-bottom -->

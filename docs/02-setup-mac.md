@@ -1,3 +1,7 @@
+<!-- nav-top -->
+[目次](../README.md#読む順番) ＞ ① はじめる ＞ **02 Mac セットアップ**
+<!-- /nav-top -->
+
 # Mac セットアップ
 
 macOS（Apple Silicon / Intel）で AI 駆動開発を始めるための手順です。**プログラミング経験がなくても進められる**ように、3つのコースに分けています。
@@ -48,7 +52,7 @@ git config --global init.defaultBranch main
 
 ### 2. AIコーディングエージェントを1つ入れる
 
-どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](03-tools.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。GitHub アカウントがあれば、無料プランのある **GitHub Copilot** も選べます。
+どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](01-choose-agent.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。GitHub アカウントがあれば、無料プランのある **GitHub Copilot** も選べます。
 
 #### Claude Code（Anthropic）
 
@@ -144,7 +148,7 @@ git --version
 claude --version
 ```
 
-ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます（エージェントの違いを先に知りたい場合は [03-tools.md](03-tools.md)）。
+ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます。
 
 ### 5. 効率化アプリ（任意・おすすめ）
 
@@ -157,7 +161,7 @@ claude --version
 | [Shottr](https://shottr.cc/) | スクリーンショット。注釈・モザイク・画像内の文字のコピー（OCR）ができる |
 | [Clipy](https://clipy-app.com/) | 無料のクリップボード履歴。過去にコピーした文章を呼び出せる。よく使う文章（スニペット）も登録できる |
 
-使い方は [03-tools.md](03-tools.md#効率化アプリ) を参照してください。
+使い方は [07-tools.md](07-tools.md#効率化アプリ) を参照してください。
 
 ---
 
@@ -245,3 +249,10 @@ brew install --cask visual-studio-code
 | `brew: command not found` | Homebrew の「Next steps」が未実行。`~/.zprofile` を確認 |
 | `git push` で認証エラー | `gh auth setup-git` を実行 |
 | 何をすればいいかわからない | エラー文をそのまま AI に貼って「どうすればいい？」と聞く |
+
+---
+
+<!-- nav-bottom -->
+| ← 前へ: [01 AI エージェントの選び方](01-choose-agent.md) | [目次](../README.md#読む順番) | 次へ: [04 Orca のセットアップ](04-orca.md) → |
+|:---|:---:|---:|
+<!-- /nav-bottom -->

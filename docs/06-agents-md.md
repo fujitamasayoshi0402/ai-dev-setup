@@ -1,8 +1,12 @@
+<!-- nav-top -->
+[目次](../README.md#読む順番) ＞ ② 使いこなす ＞ **06 AGENTS.md の書き方**
+<!-- /nav-top -->
+
 # AGENTS.md の書き方（ベストプラクティスと Tips）
 
 `AGENTS.md` は、AI エージェントが作業を始めるたびに自動で読む**「常設の指示書」**です。ここに何をどう書くかで、AI の仕事ぶりが大きく変わります。
 
-> `AGENTS.md` は、多くのエージェントが読める共通の形式です（[agents.md](https://agents.md/)）。Claude Code 用の `CLAUDE.md` には `@AGENTS.md` の1行だけを書いて、中身を共通にするのがこのガイドのやり方です（[03-tools.md](03-tools.md#指示ファイル最重要)）。
+> `AGENTS.md` は、多くのエージェントが読める共通の形式です（[agents.md](https://agents.md/)）。Claude Code 用の `CLAUDE.md` には `@AGENTS.md` の1行だけを書いて、中身を共通にするのがこのガイドのやり方です（[下で説明](#エージェントごとに読むファイル)）。
 
 ## README.md との違い
 
@@ -13,6 +17,34 @@
 | たとえると | パンフレット | 新しく入った人への**引き継ぎ書** |
 
 「初日の新人に、口頭で伝えておきたいこと」を書くイメージです。
+
+## エージェントごとに読むファイル
+
+プロジェクトのルート（いちばん上のフォルダ）に置くと、毎回自動で読み込まれます。ただし、**どのファイルを読むかはエージェントによって違います**。
+
+| エージェント | 自動で読むファイル | `CLAUDE.md` を読むか |
+|---|---|---|
+| Claude Code | `CLAUDE.md` | ✅ 読む（`AGENTS.md` は直接は読まない） |
+| Codex | `AGENTS.md` | ❌ 初期設定では読まない |
+| Antigravity | `AGENTS.md`、`GEMINI.md`、`.agents/rules/*.md` | ❌ 読まない |
+| GitHub Copilot（CLI） | `AGENTS.md`、`.github/copilot-instructions.md` など | ✅ 読む |
+
+そこで、**ルールの本体は `AGENTS.md` に書き、`CLAUDE.md` には `@AGENTS.md` の1行だけを書きます**。これで、どのエージェントも同じルールを読みます。
+
+```mermaid
+flowchart TD
+    cc["Claude Code"] -- "読む" --> claudemd["CLAUDE.md<br>中身は1行だけ"]
+    others["Codex<br>Antigravity<br>GitHub Copilot"]
+    claudemd -- "@AGENTS.md で<br>読み込む" --> rules["AGENTS.md<br>ルールの本体"]
+    others -- "直接読む" --> rules
+```
+
+```markdown
+<!-- CLAUDE.md（Claude Code 用。AGENTS.md を読み込むだけ） -->
+@AGENTS.md
+```
+
+ルールを書き直すのは `AGENTS.md` だけで済みます。このガイドの雛形には、この2つのファイルが最初から入っています。
 
 ## 書くとよいこと（チェックリスト）
 
@@ -71,7 +103,7 @@
 `AGENTS.md` は毎回読み込まれるので、長いほど AI の「作業用の記憶」を圧迫します。エージェントによっては読む量に上限もあります（例: Codex は初期設定で 32KiB まで）。
 
 - 目安は**1〜2画面（100〜200行程度）**。これを超えそうなら分けます
-- 詳しい手順は [スキル](07-skills.md) や `docs/` に書き、`AGENTS.md` からは場所だけ示します（必要なときだけ読ませる）
+- 詳しい手順は [スキル](08-skills.md) や `docs/` に書き、`AGENTS.md` からは場所だけ示します（必要なときだけ読ませる）
 
 ```markdown
 - サイトを公開するときは、docs/公開のしかた.md を読んでから行う
@@ -89,7 +121,7 @@
 
 ```mermaid
 flowchart TD
-    global["自分の全プロジェクト共通<br>例: ~/.codex/AGENTS.md<br>~/.claude/CLAUDE.md"]
+    global["自分の全プロジェクト共通<br>例: ~/.codex/AGENTS.md"]
     root["プロジェクトのルート<br>AGENTS.md"]
     sub["サブフォルダ<br>例: frontend/AGENTS.md"]
     global --> root --> sub
@@ -97,7 +129,7 @@ flowchart TD
 
 | 置き場所 | 書くこと | 例 |
 |---|---|---|
-| 自分の全プロジェクト共通 | 自分の好み | 「日本語で答えて」「結論から短く」 |
+| 自分の全プロジェクト共通（ホームフォルダの下。例: `~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`、`~/.copilot/copilot-instructions.md`。Antigravity は [公式ドキュメント](https://antigravity.google/docs/rules) 参照） | 自分の好み | 「日本語で答えて」「結論から短く」 |
 | プロジェクトのルート | プロジェクト全体のルール | 作りたいもの・進め方のルール・技術メモ |
 | サブフォルダ（必要なときだけ） | その部分だけのルール | `frontend/` だけの書き方の決まり |
 
@@ -212,3 +244,10 @@ AGENTS.md に書いてあるルールを、3行で要約して
 こうしておくと、次に別の AI（または新しい会話）が作業するときも、同じ技術・同じ確認のしかたで進めてくれます。
 
 もっと大きな例として、このリポジトリのルートにある [`AGENTS.md`](../AGENTS.md) も参考になります（ガイド役としてのふるまいと、編集するときのルールを分けて書いています）。
+
+---
+
+<!-- nav-bottom -->
+| ← 前へ: [05 フォルダの管理と Tips](05-directory-and-tips.md) | [目次](../README.md#読む順番) | 次へ: [07 便利ツール](07-tools.md) → |
+|:---|:---:|---:|
+<!-- /nav-bottom -->

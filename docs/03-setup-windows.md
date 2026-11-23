@@ -1,3 +1,7 @@
+<!-- nav-top -->
+[目次](../README.md#読む順番) ＞ ① はじめる ＞ **03 Windows セットアップ**
+<!-- /nav-top -->
+
 # Windows セットアップ
 
 Windows 10 / 11 で AI 駆動開発を始めるための手順です。**プログラミング経験がなくても進められる**ように、3つのコースに分けています。
@@ -54,7 +58,7 @@ git config --global core.longpaths true
 
 ### 2. AIコーディングエージェントを1つ入れる
 
-どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](03-tools.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。GitHub アカウントがあれば、無料プランのある **GitHub Copilot** も選べます。
+どれか1つあれば始められます。**どれにするか迷ったら、[どのエージェントを選ぶか](01-choose-agent.md#どのエージェントを選ぶか)** の選び方の流れを見てください。すでに契約しているサービスがあればそれを、特になければインストールが簡単な **Claude Code** か **Antigravity** がおすすめです。GitHub アカウントがあれば、無料プランのある **GitHub Copilot** も選べます。
 
 #### Claude Code（Anthropic）
 
@@ -161,7 +165,7 @@ git --version
 claude --version
 ```
 
-ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます（エージェントの違いを先に知りたい場合は [03-tools.md](03-tools.md)）。
+ここまでできれば、AI 駆動開発を始められます。次は [04-orca.md](04-orca.md) へ進みます。
 
 ### 5. 効率化アプリ（任意・おすすめ）
 
@@ -241,7 +245,7 @@ Docker を使う開発など、Linux 前提のツールが必要なときだけ�
 wsl --install
 ```
 
-再起動後の Ubuntu の中では、[Mac 版](01-setup-mac.md) の手順のうち Homebrew 以外（`curl ... | bash` 形式のインストールなど）がほぼそのまま使えます。リポジトリは Windows 側（`C:\`）ではなく WSL 側（`~/`）に置くと高速です。
+再起動後の Ubuntu の中では、[Mac 版](02-setup-mac.md) の手順のうち Homebrew 以外（`curl ... | bash` 形式のインストールなど）がほぼそのまま使えます。リポジトリは Windows 側（`C:\`）ではなく WSL 側（`~/`）に置くと高速です。
 
 ---
 
@@ -255,3 +259,10 @@ wsl --install
 | `Filename too long` | `git config --global core.longpaths true` |
 | ユーザー名が日本語で動作が不安定 | 日本語や空白を含まない作業フォルダ（例: `C:\dev`）を使う |
 | 何をすればいいかわからない | エラー文をそのまま AI に貼って「どうすればいい？」と聞く |
+
+---
+
+<!-- nav-bottom -->
+| ← 前へ: [01 AI エージェントの選び方](01-choose-agent.md) | [目次](../README.md#読む順番) | 次へ: [04 Orca のセットアップ](04-orca.md) → |
+|:---|:---:|---:|
+<!-- /nav-bottom -->
