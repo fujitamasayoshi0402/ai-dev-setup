@@ -16,15 +16,15 @@ AI 駆動開発では、AI に「〇〇フォルダの中の△△ファイル�
 
 ```mermaid
 flowchart TD
-    home["あなたのホームフォルダ<br>（Mac: /Users/あなたの名前）"]
+    home["ホームフォルダ<br>Mac: /Users/名前"]
     home --> orca["orca"]
-    orca --> projects["projects<br>（プロジェクトの本体を置く）"]
-    orca --> workspaces["workspaces<br>（Orca が作業用に使う）"]
-    projects --> guide["ai-dev-setup<br>（このガイド）"]
-    projects --> app["my-app<br>（あなたのプロジェクト）"]
-    guide --> readme["README.md<br>（ファイル）"]
-    guide --> docs["docs<br>（フォルダ）"]
-    docs --> page["00-basics.md<br>（このページ）"]
+    orca --> projects["projects<br>本体を置く"]
+    orca --> workspaces["workspaces<br>Orca の作業用"]
+    projects --> guide["ai-dev-setup<br>このガイド"]
+    projects --> app["my-app<br>あなたの作品"]
+    guide --> readme["README.md<br>ファイル"]
+    guide --> docs["docs<br>フォルダ"]
+    docs --> page["00-basics.md<br>このページ"]
 ```
 
 > **Windows の場合**は、ホームフォルダではなく `C:\dev\orca` の下に置きます（ユーザー名に日本語や空白が入っていてもトラブルにならないように、短い場所にしています）。
@@ -92,10 +92,10 @@ AI は文字で考えて文字で答えるので、**文字で命令する CLI �
 ただ、あなたがコマンドを覚える必要はありません。あなたは**日本語で AI に頼むだけ**で、コマンドは AI が代わりに打ちます。
 
 ```mermaid
-flowchart LR
-    you(["あなた"]) -- "日本語で頼む<br>（GUI の画面で入力）" --> orca["Orca などのアプリ<br>（GUI）"]
+flowchart TD
+    you(["あなた"]) -- "日本語で頼む" --> orca["Orca などのアプリ<br>（GUI）"]
     orca --> agent["AI エージェント<br>（CLI 版）"]
-    agent -- "コマンドを<br>代わりに打つ" --> pc["パソコンの<br>ファイル・ツール"]
+    agent -- "コマンドを代わりに打つ" --> pc["パソコンの<br>ファイル・ツール"]
 ```
 
 このガイドで使う **Orca** は、CLI の AI エージェントを、GUI の画面からまとめて扱えるようにしたアプリです。両方のいいところを使えます。

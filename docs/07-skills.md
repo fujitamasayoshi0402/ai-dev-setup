@@ -9,13 +9,11 @@
 スキルの形式（`SKILL.md`）はエージェント間で共通ですが、読みにいく場所が違います。このガイドでは、**同じスキルを2か所に置く**ことで、どのエージェントからも使えるようにしています。
 
 ```mermaid
-flowchart LR
-    skill["同じスキル<br>（SKILL.md）"]
+flowchart TD
+    skill["同じスキル（SKILL.md）"]
     skill --> a[".agents/skills/"]
     skill --> c[".claude/skills/"]
-    a -- "読む" --> codex["Codex"]
-    a -- "読む" --> ag["Antigravity"]
-    a -- "読む" --> cop["GitHub Copilot"]
+    a -- "読む" --> others["Codex<br>Antigravity<br>GitHub Copilot"]
     c -- "読む" --> cc["Claude Code"]
 ```
 

@@ -25,15 +25,16 @@ Claude Code・Codex・Antigravity など、複数のエージェントを契約�
 ### 1. 作る AI とチェックする AI を分ける（いちばんおすすめ）
 
 ```mermaid
+%%{init: {"sequence": {"actorMargin": 20, "width": 90}}}%%
 sequenceDiagram
+    participant A as A（作る）
     actor you as あなた
-    participant A as エージェントA（作る）
-    participant B as エージェントB（チェック）
+    participant B as B（チェック）
     you->>A: 〇〇を作って
-    A-->>you: できました（コミット済み）
-    you->>B: 直前のコミットの変更をレビューして。<br>直さずに、問題点を重要な順に
+    A-->>you: できた（コミット済み）
+    you->>B: レビューして<br>（指摘だけ）
     B-->>you: 指摘の一覧
-    you->>A: レビューでこう指摘された。直して（指摘を貼る）
+    you->>A: 指摘を直して
     A-->>you: 直しました
 ```
 
@@ -81,10 +82,10 @@ flowchart LR
 別のエージェントに切り替えるときは、**引き継ぎメモ**を作ってもらいます。このガイドの `handoff` スキルを使うと、決まった形でまとめてくれます。
 
 ```mermaid
-flowchart LR
-    A(["エージェントA<br>（上限に達した など）"]) -- "① コミット＋<br>メモを書く" --> memo["HANDOFF.md<br>目的・やったこと・<br>次にやること・注意点"]
-    memo -- "② 同じ作業フォルダで<br>読む" --> B(["エージェントB"])
-    B -- "③ 状態を確かめて<br>続きをする" --> work["作業の続き"]
+flowchart TD
+    A(["エージェントA<br>（上限に達した など）"]) -- "① コミットして<br>メモを書く" --> memo["HANDOFF.md<br>目的・やったこと・<br>次にやること・注意点"]
+    memo -- "② 同じ作業フォルダで読む" --> B(["エージェントB"])
+    B -- "③ 状態を確かめて続ける" --> work["作業の続き"]
 ```
 
 **引き継ぐ側（今まで作業していたエージェント）に：**

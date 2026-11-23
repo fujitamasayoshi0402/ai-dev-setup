@@ -5,11 +5,11 @@ AI エージェントは、アプリづくりだけでなく、**SEO・ブラン
 ## 仕組み
 
 ```mermaid
-flowchart LR
+flowchart TD
     q["① 相談する"] --> p["② 案件フォルダに<br>目的・経過をまとめる"]
     p --> o["③ 型を使って<br>成果物を作る"]
     o --> k["④ 学んだことを<br>知見として貯める"]
-    k -. "次の相談で<br>AI が参照する" .-> q
+    k -. "次の相談で AI が参照" .-> q
 ```
 
 1つの案件が終わるたびに知見（`20_knowledge/`）が増えていき、次の相談のときに AI がそれを読んでから答えます。**使うほど、自分専用の相談相手に育っていく**イメージです。
@@ -79,19 +79,19 @@ templates の consulting-workspace を使って、my-workspace という名前�
 ```mermaid
 sequenceDiagram
     actor you as あなた
-    participant ai as AI エージェント
-    you->>ai: ブログで集客したい。SEO 記事について相談したい
-    ai->>ai: 10_context と 20_knowledge/seo を読む
-    ai-->>you: 目的・読者・期限について質問
+    participant ai as AI
+    you->>ai: SEO 記事について相談したい
+    Note over ai: 前提情報と<br>SEO の知見を読む
+    ai-->>you: 目的・読者・期限を質問
     you->>ai: 質問に答える
-    ai->>ai: 30_projects/2026-11-ブログ集客/ を作る
-    you->>ai: 「〇〇」で記事構成案を作って
-    ai-->>you: outputs/ に構成案を保存（要点を3行で報告）
-    you->>ai: タイトル案をもう少しやわらかく
+    Note over ai: 案件フォルダを作る
+    you->>ai: 記事構成案を作って
+    ai-->>you: outputs/ に保存して報告
+    you->>ai: タイトルをやわらかく
     ai-->>you: 修正しました
-    you->>ai: この案件で学んだことを知見にまとめて
-    ai-->>you: 20_knowledge/seo/ への追記内容を提示
-    you->>ai: OK
+    you->>ai: 学んだことを知見にまとめて
+    ai-->>you: 追記する内容を提示
+    you->>ai: OK（保存される）
 ```
 
 | やりたいこと | 頼み方の例 |

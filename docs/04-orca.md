@@ -8,15 +8,12 @@
 **worktree（ワークツリー）** は、1つのプロジェクトから作る「作業ごとの分身フォルダ」です。作業ごとにフォルダが分かれるので、AI が同時に別々の作業をしても変更が混ざりません。終わった作業だけを本体（main）に取り込みます。
 
 ```mermaid
-flowchart LR
-    main[("本体（main）<br>orca/projects/<br>my-app")]
-    a["作業フォルダ A<br>orca/workspaces/my-app/<br>login-page<br><br>エージェントA が作業"]
-    b["作業フォルダ B<br>orca/workspaces/my-app/<br>fix-header<br><br>エージェントB が作業"]
-    done[("本体（main）<br>A と B の変更が<br>反映される")]
-    main -- "worktree を作る" --> a
-    main -- "worktree を作る" --> b
-    a -- "終わったら取り込む<br>（マージ）" --> done
-    b -- "終わったら取り込む<br>（マージ）" --> done
+flowchart TD
+    main[("本体（main）<br>projects/my-app")]
+    main -- "worktree を作る" --> a["作業フォルダ A<br>login-page<br>エージェントA が作業"]
+    main -- "worktree を作る" --> b["作業フォルダ B<br>fix-header<br>エージェントB が作業"]
+    a -- "取り込む" --> done[("本体（main）<br>A と B の変更が入る")]
+    b -- "取り込む" --> done
 ```
 
 Orca は、この worktree の作成・エージェントの起動・取り込み・削除を、画面から操作できるようにしたアプリです。

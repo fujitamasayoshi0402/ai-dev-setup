@@ -9,28 +9,28 @@
 チャットの AI と違うのは、**あなたのパソコンの中で、ファイルを読み書きしたりコマンドを実行したりできる**ことです。
 
 ```mermaid
-flowchart LR
-    you["あなた"] -- "① 日本語で頼む<br>「〇〇を作って」" --> agent["AI エージェント"]
-    agent -- "② 読む・書く" --> files["プロジェクトの<br>ファイル"]
-    agent -- "③ 実行して確かめる" --> term["コマンド<br>（テスト・起動など）"]
-    term -- "結果" --> agent
-    agent -- "④ 結果を報告<br>確認が必要なら質問" --> you
-    you -. "⑤ 動きを確認して<br>次の指示" .-> agent
+flowchart TD
+    you(["あなた"]) -- "① 日本語で頼む" --> agent["AI エージェント"]
+    agent -- "② 読む・書く" --> files["ファイル"]
+    agent -- "③ 実行して確かめる" --> term["コマンド<br>テスト・起動など"]
+    agent -. "④ 結果を報告・質問" .-> you
 ```
 
 - 危ない操作（ファイルの削除など）の前には、多くのエージェントが「実行してよいですか？」と確認してきます
-- ④⑤をくり返して、少しずつ形にしていくのが基本の進め方です
+- ④の報告を見て、動きを確かめてから次の指示を出す。これをくり返して少しずつ形にしていくのが、基本の進め方です
 
 ### 主なエージェント
 
 > 表の「CLI」「GUI」「IDE」などの言葉の意味は、[はじめに: ファイル・フォルダ・ターミナルの基本](00-basics.md#gui-と-cli2つの操作のしかた) で説明しています。
 
-| エージェント | 提供元 | 形態 | 起動コマンド | 指示ファイル |
-|---|---|---|---|---|
-| Claude Code | Anthropic | CLI（＋IDE拡張・デスクトップ版） | `claude` | `CLAUDE.md` |
-| Codex | OpenAI | CLI（＋IDE拡張） | `codex` | `AGENTS.md` |
-| Antigravity | Google | エディタ一体型アプリ ＋ CLI | `agy` | `AGENTS.md`（または `GEMINI.md`、`.agents/rules/*.md`） |
-| GitHub Copilot | GitHub（Microsoft） | CLI（＋VS Code などのエディタ拡張） | `copilot` | `AGENTS.md`（`CLAUDE.md`・`.github/copilot-instructions.md` も読む） |
+| エージェント | 形態 | 起動 | 指示ファイル |
+|---|---|---|---|
+| Claude Code（Anthropic） | CLI・エディタ拡張・デスクトップ版 | `claude` | `CLAUDE.md` |
+| Codex（OpenAI） | CLI・エディタ拡張 | `codex` | `AGENTS.md` |
+| Antigravity（Google） | CLI・エディタ（IDE） | `agy` | `AGENTS.md` など |
+| GitHub Copilot（GitHub） | CLI・エディタ拡張 | `copilot` | `AGENTS.md` など |
+
+指示ファイルの詳しい対応は、下の「[指示ファイル](#指示ファイル最重要)」で説明しています。
 
 > この他にも Gemini CLI、Cursor など、さまざまなツールがあります。Orca などでターミナルから起動できる CLI 型なら、このガイドの手順はほぼそのまま使えます。
 
@@ -43,19 +43,14 @@ flowchart LR
 ```mermaid
 flowchart TD
     q0{"仕事で使う？"}
-    q0 -- "はい" --> work["会社が許可している<br>サービスを確認して選ぶ"]
-    q0 -- "いいえ（個人で使う）" --> q1{"すでに契約している<br>AI サービスがある？"}
-    q1 -- "Claude" --> cc["Claude Code"]
-    q1 -- "ChatGPT" --> codex["Codex"]
-    q1 -- "Google（Google AI など）" --> ag["Antigravity"]
-    q1 -- "GitHub Copilot" --> cop["GitHub Copilot"]
-    q1 -- "ない" --> q2{"まずはお金をかけずに<br>試したい？"}
-    q2 -- "はい" --> q2b{"GitHub アカウントを<br>持っている？"}
-    q2b -- "はい" --> cop2["GitHub Copilot<br>または Antigravity<br>（どちらも無料プランあり）"]
-    q2b -- "いいえ" --> ag2["Antigravity<br>（無料プランあり）"]
-    q2 -- "いいえ" --> q3{"どんな画面で使いたい？"}
-    q3 -- "エディタで<br>ファイルを見ながら" --> ag3["Antigravity"]
-    q3 -- "ターミナル（Orca）で<br>複数の作業を並べて" --> cli["Claude Code または Codex"]
+    q0 -- "いいえ" --> q1{"契約中の<br>AI サービスは？"}
+    q0 -- "はい" --> work["会社が許可した<br>サービスから選ぶ"]
+    q1 -- "ある" --> map["契約に合わせる<br>Claude → Claude Code<br>ChatGPT → Codex<br>Google → Antigravity<br>GitHub → Copilot"]
+    q1 -- "ない" --> q2{"無料で<br>試したい？"}
+    q2 -- "いいえ" --> q3{"使いたい<br>画面は？"}
+    q2 -- "はい" --> free["GitHub アカウント<br>あり → Copilot か<br>Antigravity<br>なし → Antigravity"]
+    q3 -- "エディタ" --> ag["Antigravity"]
+    q3 -- "ターミナル（Orca）" --> cli["Claude Code<br>または Codex"]
 ```
 
 - **すでに契約しているサービスがあれば、まずそれを使う**のがいちばん無駄がありません（契約しているプランで使えるかは、下の料金ページで確認してください）
@@ -142,14 +137,11 @@ claude
 プロジェクトのルートに置くと毎回自動で読み込まれる、「AIへの常設指示書」です。**中身は共通にして、各エージェント用のファイルからは参照するだけ**にすると管理が楽です。
 
 ```mermaid
-flowchart LR
-    rules["AGENTS.md<br>（ルールの本体）"]
-    claudemd["CLAUDE.md<br>中身は「@AGENTS.md」の1行"]
-    claudemd -- "読み込む" --> rules
-    cc["Claude Code"] -- "読む" --> claudemd
-    codex["Codex"] -- "読む" --> rules
-    ag["Antigravity"] -- "読む" --> rules
-    cop["GitHub Copilot"] -- "読む" --> rules
+flowchart TD
+    cc["Claude Code"] -- "読む" --> claudemd["CLAUDE.md<br>中身は1行だけ"]
+    others["Codex<br>Antigravity<br>GitHub Copilot"]
+    claudemd -- "@AGENTS.md で<br>読み込む" --> rules["AGENTS.md<br>ルールの本体"]
+    others -- "直接読む" --> rules
 ```
 
 ルールを書き直すのは `AGENTS.md` だけで済み、どのエージェントにも同じルールが伝わります。
@@ -226,16 +218,16 @@ GitHub を使う場合に入れます。GitHub を使わないなら不要です
 手元のパソコン（ローカル）と GitHub（リモート）の関係は次のとおりです。`gh` があると、AI がこの流れを代わりに操作できます。
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph local["あなたのパソコン"]
-        work["作業フォルダ"] -- "コミット<br>（変更を保存）" --> repo[("ローカルの<br>履歴")]
+        work["作業フォルダ"] -- "コミット<br>（保存）" --> repo[("手元の履歴")]
     end
     subgraph github["GitHub"]
-        remote[("リモートの<br>履歴")] --> pr["PR<br>（変更の確認・レビュー）"]
+        remote[("GitHub の履歴")] --> pr["PR<br>変更の確認"]
         pr -- "マージ" --> main[("main")]
     end
     repo -- "push（送る）" --> remote
-    main -- "pull（取り込む）" --> repo
+    main -. "pull（取り込む）" .-> repo
 ```
 
 | コマンド | 用途 |
@@ -272,10 +264,9 @@ AIエージェントも `gh` を使って PR の作成や CI の確認ができ�
 AI に指示を出す・結果を確認する、という往復を速くするためのアプリです。
 
 ```mermaid
-flowchart LR
-    err["エラーや<br>気になる画面"] -- "スクリーンショット<br>（Shottr など）" --> img["画像"]
-    img -- "貼り付け" --> agent["AI エージェント"]
-    snip["よく使う指示文<br>（スニペット）"] -- "ランチャーで呼び出し<br>（Raycast など）" --> agent
+flowchart TD
+    err["エラーや気になる画面"] -- "スクリーンショット<br>（Shottr など）" --> agent["AI エージェント"]
+    snip["よく使う指示文"] -- "ランチャーで呼び出し<br>（Raycast など）" --> agent
     agent -- "修正・回答" --> check["画面で確認"]
 ```
 
