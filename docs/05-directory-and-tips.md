@@ -65,7 +65,7 @@ my-app/
 ├── .gitattributes     # 改行コードを LF に統一
 ├── .editorconfig      # 文字コード・インデントを統一
 ├── docs/              # 仕様・設計メモ（AI にも読ませる）
-└── src/
+└── src/               # プログラムを書き始めるときに AI が作る（最初はない）
 ```
 
 | ファイル | ポイント |
@@ -118,7 +118,7 @@ $src = "C:\dev\orca\projects\ai-dev-setup\templates\new-project"; $dest = "C:\de
 AGENTS.md の「〇〇」の部分を、作りたいものに合わせて埋めて。わからないところは質問して
 ```
 
-Obsidian の保管庫を作る場合は、`new-project` を `obsidian-vault`、`my-app` を `my-vault` に読み替えます（[11-obsidian-optional.md](11-obsidian-optional.md)）。相談ワークスペースを作る場合は `consulting-workspace` と `my-workspace` に読み替えます（[10-consulting-workspace.md](10-consulting-workspace.md)）。
+Obsidian の保管庫を作る場合は、`new-project` を `obsidian-vault`、`my-app` を `my-vault` に読み替えます（[11-obsidian-optional.md](11-obsidian-optional.md)）。相談ワークスペースを作る場合は `consulting-workspace` と `my-workspace` に読み替えます。コピーしたら、`AGENTS.md` ではなく `10_context/profile.md` と `brand.md` を埋めます（[10-consulting-workspace.md](10-consulting-workspace.md)）。
 
 ## 3. 変更の保存（コミット）と作業の分け方
 
@@ -174,7 +174,7 @@ Git の操作は AI に頼めば大丈夫です。覚えておくのは「いつ
 
 - 取り返しのつかない操作は禁止（deny）にしておく
 - 禁止の設定は**最低限の安全策**です。別の書き方のコマンド（例: `rm -fr`）や別のツール経由では防げないことがあるので、「全部許可」に頼りすぎないようにします
-- 「全部許可」するモードは、worktree の中など影響範囲が限られた場所でだけ使う
+- **「全部許可」するモード（確認をすべて省くモード）は使わない**のが基本です。worktree は作業ファイルを分けるだけで、AI ができる操作の範囲は狭まりません（ほかのフォルダや Git の履歴にも手が届きます）。確認を省いてよいのは、コンテナや仮想マシンなど、AI がさわれる範囲を実際に制限した環境だけです
 - 設定ファイルの場所と書き方はエージェントごとに違います（例: Claude Code は `.claude/settings.json`、Codex は `~/.codex/config.toml`）。各公式ドキュメントを確認してください
 
 ---

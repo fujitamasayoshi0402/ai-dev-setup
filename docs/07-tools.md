@@ -86,7 +86,8 @@ flowchart TD
 
 | コマンド | 用途 |
 |---|---|
-| `gh repo create my-app --private --clone` | 非公開のリポジトリを作成して手元に取得 |
+| `gh repo create my-app --private --source=. --remote=origin --push` | 今いるプロジェクトを、非公開のリポジトリとして GitHub にバックアップ（初回） |
+| `gh repo create my-app --private --clone` | 空の非公開リポジトリを GitHub に作って、手元に取得 |
 | `gh pr create --fill` | PR を作成 |
 | `gh pr list` | PR の一覧 |
 | `gh pr checkout 12` | 12番の PR を手元に取得 |

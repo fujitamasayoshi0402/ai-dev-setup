@@ -7,7 +7,7 @@
 - `00_inbox/` … 相談したいこと・資料・メモをとりあえず置く場所
 - `10_context/` … 毎回読む前提情報（`profile.md`: 自分・会社・お客さん、`brand.md`: トーン＆マナー）
 - `20_knowledge/` … 相談で得た知見。テーマ別のフォルダ（例: `seo/`、`branding/`、`design/`）に貯める
-- `30_projects/` … 案件ごとのフォルダ（`YYYY-MM-DD-HHMM-テーマ/`。作成日時の `YYYY-MM-DD-HHMM` が案件 ID）。中に `brief.md`・`notes.md`・`materials/`（資料）・`outputs/`（成果物）
+- `30_projects/` … 案件ごとのフォルダ（`YYYY-MM-DD-HHMM-xxxx-テーマ/`。作成日時とランダムな4文字の `YYYY-MM-DD-HHMM-xxxx` が案件 ID）。中に `brief.md`・`notes.md`・`materials/`（資料）・`outputs/`（成果物）
   - フォルダ名にお客さんの名前と空白は入れない。お客さんの情報は `brief.md` の中にだけ書く
 - `90_templates/` … 成果物とメモの型。中身は書き換えない
 

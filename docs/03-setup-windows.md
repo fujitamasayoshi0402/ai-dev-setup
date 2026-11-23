@@ -205,6 +205,21 @@ git config --global user.email "xxxx+ユーザー名@users.noreply.github.com"
 git config --global push.autoSetupRemote true
 ```
 
+4. 作ったものを GitHub にバックアップします。いちばん簡単なのは、そのプロジェクトでエージェントに頼むことです。
+
+```
+このプロジェクトを GitHub の非公開リポジトリにバックアップして
+```
+
+自分で行う場合は、プロジェクトのフォルダ（例: `my-app`）に移動して、次を実行します。**非公開（private）**のリポジトリが作られ、これまでの変更がまとめて送られます。
+
+```powershell
+cd C:\dev\orca\projects\my-app
+gh repo create my-app --private --source=. --remote=origin --push
+```
+
+GitHub のページ（`https://github.com/あなたのユーザー名/my-app`）を開いて、自分のファイルが表示されれば完了です。2回目からは、エージェントに「GitHub に送って（push して）」と頼むだけです。
+
 ---
 
 ## 開発者向け

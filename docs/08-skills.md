@@ -39,7 +39,7 @@ my-app/
 
 > 名前が `.` で始まるフォルダは、Mac の Finder では表示されません。`⌘ + Shift + .` で表示・非表示を切り替えられます。
 
-雛形（`templates/new-project/`、`templates/obsidian-vault/`）には、このフォルダ構成と `handoff` スキルがあらかじめ入っています。
+雛形（`templates/new-project/`、`templates/obsidian-vault/`、`templates/consulting-workspace/`）には、このフォルダ構成と `handoff` スキルがあらかじめ入っています（相談ワークスペースには、相談用のスキルも入っています）。
 
 ## このガイドに入っているスキル
 

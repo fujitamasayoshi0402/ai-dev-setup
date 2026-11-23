@@ -102,7 +102,7 @@ git clone https://github.com/fujitamasayoshi0402/ai-dev-setup.git
 
 ### 最新版にする
 
-このガイドは随時更新されます。`ai-dev-setup` でエージェントに「このガイドを最新にして」と頼むと、最新版を取り込みます。自分で行う場合は次のとおりです。
+このガイドは随時更新されます。`ai-dev-setup` でエージェントに「このガイドを最新にして」と頼むと、最新版を取り込みます。自分で行う場合は、**本体のフォルダ**（`orca/projects/ai-dev-setup`）で次を実行します。
 
 ```zsh
 cd ~/orca/projects/ai-dev-setup
@@ -114,6 +114,7 @@ cd C:\dev\orca\projects\ai-dev-setup
 git pull
 ```
 
+> Orca で作った作業フォルダ（worktree）は、本体を更新しても古いままです。更新後は、本体か、新しく作った worktree で読み進めてください。
 > 雛形からコピーして作ったプロジェクトは、更新しても影響を受けません。ZIP でダウンロードした場合は、新しい ZIP を取り直してください。
 
 ## このリポジトリの構成
