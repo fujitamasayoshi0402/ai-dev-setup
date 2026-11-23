@@ -27,12 +27,12 @@ flowchart TD
 |---|---|---|---|
 | Claude Code（Anthropic） | CLI・エディタ拡張・デスクトップ版 | `claude` | `CLAUDE.md` |
 | Codex（OpenAI） | CLI・エディタ拡張 | `codex` | `AGENTS.md` |
-| Antigravity（Google） | CLI・エディタ（IDE） | `agy` | `AGENTS.md` など |
+| Antigravity（Google の Gemini） | CLI・エディタ（IDE） | `agy` | `AGENTS.md` など |
 | GitHub Copilot（GitHub） | CLI・エディタ拡張 | `copilot` | `AGENTS.md` など |
 
 指示ファイルの詳しい対応は、下の「[指示ファイル](#指示ファイル最重要)」で説明しています。
 
-> この他にも Gemini CLI、Cursor など、さまざまなツールがあります。Orca などでターミナルから起動できる CLI 型なら、このガイドの手順はほぼそのまま使えます。
+> この他にも Gemini CLI（Google のターミナル向けツール。Antigravity とは別のもの）、Cursor など、さまざまなツールがあります。Orca などでターミナルから起動できる CLI 型なら、このガイドの手順はほぼそのまま使えます。
 
 ### どのエージェントを選ぶか
 
@@ -45,7 +45,7 @@ flowchart TD
     q0{"仕事で使う？"}
     q0 -- "いいえ" --> q1{"契約中の<br>AI サービスは？"}
     q0 -- "はい" --> work["会社が許可した<br>サービスから選ぶ"]
-    q1 -- "ある" --> map["契約に合わせる<br>Claude → Claude Code<br>ChatGPT → Codex<br>Google → Antigravity<br>GitHub → Copilot"]
+    q1 -- "ある" --> map["契約に合わせる<br>Claude → Claude Code<br>ChatGPT → Codex<br>Gemini → Antigravity<br>GitHub → Copilot"]
     q1 -- "ない" --> q2{"無料で<br>試したい？"}
     q2 -- "いいえ" --> q3{"使いたい<br>画面は？"}
     q2 -- "はい" --> free["GitHub アカウント<br>あり → Copilot か<br>Antigravity<br>なし → Antigravity"]
@@ -62,7 +62,7 @@ flowchart TD
 
 | 観点 | Claude Code | Codex | Antigravity | GitHub Copilot |
 |---|---|---|---|---|
-| 提供元・使うアカウント | Anthropic（Claude） | OpenAI（ChatGPT） | Google | GitHub（このガイドでは GitHub アカウントでログイン） |
+| 提供元・使うアカウント | Anthropic（Claude） | OpenAI（ChatGPT） | Google（Gemini） | GitHub（このガイドでは GitHub アカウントでログイン） |
 | 無料で試せるか | 有料プランが前提 | 無料プランでも一部使える場合あり | 無料プランあり（使える量は少なめ・変わることがある） | 無料プラン（Copilot Free）あり（使える量に上限あり） |
 | 主な使い方 | ターミナル中心 | ターミナル中心 | エディタ一体型のアプリ（ターミナル用の CLI もある） | ターミナル（CLI）、または VS Code などのエディタの中 |
 | インストール | Mac・Windows とも、コマンド1行 | Mac・Windows とも、公式インストーラーのコマンド1行 | CLI はコマンド1行。エディタ版（IDE）はダウンロードするだけ | Mac はコマンド1行。Windows は PowerShell 7 を入れてから winget |
@@ -79,7 +79,7 @@ flowchart TD
 |---|---|---|
 | **Claude Code** | ターミナル中心。スキル・自動処理（Hooks）・サブエージェント・外部連携（MCP）・計画モードなど、**カスタマイズの幅が広い**。エディタ拡張やデスクトップ版もある | 自分好みに作り込みたい人、Orca で並行作業したい人 |
 | **Codex** | CLI 版は[オープンソース](https://github.com/openai/codex)。AI が実行できる範囲を制限する**サンドボックスと、実行前の承認の設定**が用意されている。ChatGPT のプランで使え、クラウド上で作業させる使い方もある | ChatGPT を契約している人、安全側の設定で使いたい人 |
-| **Antigravity** | **エディタ一体型のアプリ**で、ファイルを見ながら使える。複数のエージェントの作業をまとめて管理する画面や、[ブラウザを操作して画面を確かめる機能](https://antigravity.google/docs/browser)がある | ターミナルが苦手な人、画面を見ながら進めたい人、Web サイトを作る人 |
+| **Antigravity** | Google の AI「**Gemini**」を使う開発ツール。**エディタ一体型のアプリ**で、ファイルを見ながら使える。複数のエージェントの作業をまとめて管理する画面や、[ブラウザを操作して画面を確かめる機能](https://antigravity.google/docs/browser)がある | Gemini を使っている人、ターミナルが苦手な人、画面を見ながら進めたい人、Web サイトを作る人 |
 | **GitHub Copilot** | **GitHub との連携が深い**。[Issue を Copilot に割り当てると PR を作ってくれる](https://docs.github.com/ja/copilot/how-tos/use-copilot-agents/cloud-agent/create-a-pr)機能や、[PR のレビュー](https://docs.github.com/ja/copilot/concepts/agents/code-review)がある（使えるプランや条件は公式で確認）。VS Code などのエディタの中でも使える | GitHub をよく使う人、まず無料で試したい人 |
 
 #### 選んだあとにつまずきやすい点
@@ -93,7 +93,7 @@ flowchart TD
 
 #### 選ぶ前のチェックリスト
 
-- [ ] すでに契約している AI サービスはあるか（Claude / ChatGPT / Google / GitHub Copilot）
+- [ ] すでに契約している AI サービスはあるか（Claude / ChatGPT / Gemini / GitHub Copilot）
 - [ ] 月にいくらまでなら払えるか（まずは無料・月額 20 ドル前後のプランが目安）
 - [ ] エディタで見ながら使いたいか、ターミナルで使いたいか
 - [ ] **仕事で使う場合**、会社が許可しているサービスか（社外秘のコードや情報を扱ってよいか）

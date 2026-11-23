@@ -64,7 +64,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 claude
 ```
 
-#### Antigravity（Google）
+#### Antigravity（Google の Gemini）
 
 Antigravity は、[配布ページ](https://antigravity.google/download)で使い方ごとに分かれています。**Orca から使うには CLI 版（Antigravity CLI）が必要**です。
 
@@ -80,7 +80,7 @@ curl -fsSL https://antigravity.google/cli/install.sh | bash
 ```
 
 2. エディタでも使いたい場合は、配布ページから **Antigravity IDE (Standalone)** の Mac 版をダウンロードしてインストールします
-3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です。初回は Google アカウントでログインします
+3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です。初回は、Gemini を使っている Google アカウントでログインします
 
 ```zsh
 agy --help

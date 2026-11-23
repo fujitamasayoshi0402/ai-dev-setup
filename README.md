@@ -121,7 +121,7 @@ ai-dev-setup/
 
 - Mac または Windows のパソコン
 - 使いたい AI エージェントのアカウント（どれか1つでOK）
-  - 例: Claude（Claude Code）/ ChatGPT（Codex）/ Google アカウント（Antigravity）/ GitHub アカウント（GitHub Copilot）
+  - 例: Claude（Claude Code）/ ChatGPT（Codex）/ Gemini（Google アカウント）（Antigravity）/ GitHub アカウント（GitHub Copilot）
   - 無料枠の有無や料金プランはエージェントごとに違うので、各公式サイトで確認してください
 - GitHub アカウントは**任意**です（バックアップ・共有をしたくなったら作れば十分です）
 
