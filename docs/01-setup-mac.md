@@ -148,13 +148,14 @@ claude --version
 
 ### 5. 効率化アプリ（任意・おすすめ）
 
-各公式サイトからダウンロードできます（Homebrew があれば `brew install --cask raycast shottr` でも入ります）。
+各公式サイトからダウンロードできます（Homebrew があれば `brew install --cask raycast shottr clipy` でも入ります）。
 
 | アプリ | 用途 |
 |---|---|
 | [Raycast](https://www.raycast.com/) | ランチャー。アプリ起動・クリップボード履歴・ウィンドウ整列・よく使う文章の登録など |
 | [Alfred](https://www.alfredapp.com/) | Raycast と役割が近いランチャー。どちらか1つで十分 |
 | [Shottr](https://shottr.cc/) | スクリーンショット。注釈・モザイク・画像内の文字のコピー（OCR）ができる |
+| [Clipy](https://clipy-app.com/) | 無料のクリップボード履歴。過去にコピーした文章を呼び出せる。よく使う文章（スニペット）も登録できる |
 
 使い方は [03-tools.md](03-tools.md#効率化アプリ) を参照してください。
 
