@@ -66,11 +66,21 @@ claude
 
 #### Antigravity（Google）
 
-Antigravity には、エディタ一体型のアプリ版と、ターミナルで使う CLI 版（`agy`）があります。**Orca から使うには CLI 版が必要**です。
+Antigravity は、[配布ページ](https://antigravity.google/download)で使い方ごとに分かれています。**Orca から使うには CLI 版（Antigravity CLI）が必要**です。
 
-1. アプリ版: [antigravity.google/download](https://antigravity.google/download) から Mac 版をダウンロードしてインストールし、Google アカウントでログインします
-2. CLI 版: [公式の Get started](https://antigravity.google/docs/getting-started) にある CLI のインストール手順に従って入れます
-3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です
+| 配布ページの名前 | どんなときに入れるか |
+|---|---|
+| **Antigravity CLI** | Orca やターミナルで使う（このガイドの基本） |
+| **Antigravity IDE (Standalone)** | エディタでファイルを見ながら使いたい |
+
+1. CLI 版を入れます（配布ページの Antigravity CLI と同じコマンドです）
+
+```zsh
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+```
+
+2. エディタでも使いたい場合は、配布ページから **Antigravity IDE (Standalone)** の Mac 版をダウンロードしてインストールします
+3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です。初回は Google アカウントでログインします
 
 ```zsh
 agy --help
@@ -78,11 +88,13 @@ agy --help
 
 #### Codex（OpenAI）
 
-Codex の CLI 版は、Homebrew または Node.js（npm）を使って入れます（公式の手順: [Codex CLI](https://developers.openai.com/codex/cli)）。先に [ステップアップ](#ステップアップ) の Homebrew を入れてから、次を実行します。
+公式のインストーラーで入れます（公式の手順: [Codex CLI](https://learn.chatgpt.com/docs/codex/cli)）。
 
 ```zsh
-brew install --cask codex
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
 ```
+
+> Homebrew を入れている場合は `brew install --cask codex` でも入ります。
 
 起動すると、初回は ChatGPT アカウントでのログインを求められます。
 
@@ -92,11 +104,13 @@ codex
 
 #### GitHub Copilot（GitHub）
 
-GitHub Copilot の CLI 版です。**GitHub アカウントが必要**です（[ステップアップ](#ステップアップ) の手順でアカウントを作っておきます）。先に [ステップアップ](#ステップアップ) の Homebrew も入れてから、Homebrew で入れます（公式の手順: [Copilot CLI のインストール](https://docs.github.com/ja/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli)）。
+GitHub Copilot の CLI 版です。**このガイドでは GitHub アカウントでログインします**（[ステップアップ](#ステップアップ) の手順でアカウントを作っておきます。会社の Microsoft Entra アカウントでログインできる場合もあります: [ログイン方法](https://docs.github.com/ja/copilot/how-tos/copilot-cli/set-up-copilot-cli/authenticate-copilot-cli)）。公式のインストールスクリプトで入れます（公式の手順: [Copilot CLI のインストール](https://docs.github.com/ja/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli)）。
 
 ```zsh
-brew install copilot-cli
+curl -fsSL https://gh.io/copilot-install | bash
 ```
+
+> Homebrew を入れている場合は `brew install --cask copilot-cli` でも入ります。
 
 起動すると、初回は GitHub アカウントでのログインを求められます（画面の案内に沿って `/login` を実行します）。
 

@@ -30,7 +30,7 @@ flowchart LR
 | Antigravity | Google | エディタ一体型アプリ ＋ CLI | `agy` | `AGENTS.md`（または `GEMINI.md`、`.agents/rules/*.md`） |
 | GitHub Copilot | GitHub（Microsoft） | CLI（＋VS Code などのエディタ拡張） | `copilot` | `AGENTS.md`（`CLAUDE.md`・`.github/copilot-instructions.md` も読む） |
 
-> この他にも Gemini CLI、GitHub Copilot、Cursor など、さまざまなツールがあります。Orca などでターミナルから起動できる CLI 型なら、このガイドの手順はほぼそのまま使えます。
+> この他にも Gemini CLI、Cursor など、さまざまなツールがあります。Orca などでターミナルから起動できる CLI 型なら、このガイドの手順はほぼそのまま使えます。
 
 ### どのエージェントを選ぶか
 
@@ -65,10 +65,10 @@ flowchart TD
 
 | 観点 | Claude Code | Codex | Antigravity | GitHub Copilot |
 |---|---|---|---|---|
-| 提供元・使うアカウント | Anthropic（Claude） | OpenAI（ChatGPT） | Google | GitHub（GitHub アカウントが必要） |
+| 提供元・使うアカウント | Anthropic（Claude） | OpenAI（ChatGPT） | Google | GitHub（このガイドでは GitHub アカウントでログイン） |
 | 無料で試せるか | 有料プランが前提 | 無料プランでも一部使える場合あり | 無料プランあり（使える量は少なめ・変わることがある） | 無料プラン（Copilot Free）あり（使える量に上限あり） |
 | 主な使い方 | ターミナル中心 | ターミナル中心 | エディタ一体型のアプリ（ターミナル用の CLI もある） | ターミナル（CLI）、または VS Code などのエディタの中 |
-| インストール | Mac・Windows とも、コマンド1行 | Mac は Homebrew、Windows は Node.js が必要 | アプリはダウンロードするだけ。Orca で使うには CLI も入れる | Mac は Homebrew、Windows は winget でコマンド1行 |
+| インストール | Mac・Windows とも、コマンド1行 | Mac・Windows とも、公式インストーラーのコマンド1行 | CLI はコマンド1行。エディタ版（IDE）はダウンロードするだけ | Mac はコマンド1行。Windows は PowerShell 7 を入れてから winget |
 | Orca で使えるか | 使える | 使える | 使える（CLI 版が必要） | Orca のターミナルで `copilot` を起動して使える（エージェント一覧から選べるかは要確認） |
 | 料金・プランの確認先 | [Claude の料金](https://claude.com/pricing) | [Codex の料金](https://developers.openai.com/codex/pricing) | [Antigravity の料金](https://antigravity.google/pricing) | [Copilot のプラン](https://docs.github.com/ja/copilot/get-started/plans) |
 
@@ -90,9 +90,9 @@ flowchart TD
 | エージェント | つまずきやすい点 | 対処 |
 |---|---|---|
 | Claude Code | 有料プランが前提。使える量の上限に達すると、しばらく待つ必要がある | 上限のリセット時間を把握しておく。2つ目のエージェントで続ける（[08-multi-agent.md](08-multi-agent.md)） |
-| Codex | Windows では Node.js が必要。`CLAUDE.md` は初期設定では読まない | ルールは `AGENTS.md` に書く（このガイドの構成ならそのまま使える） |
-| Antigravity | Orca から使うには、アプリとは別に CLI 版（`agy`）が必要。無料プランの上限は変わりやすい | CLI 版も入れておく。上限は[公式の料金ページ](https://antigravity.google/pricing)で確認 |
-| GitHub Copilot | GitHub アカウントが必要。GitHub 上で Issue を任せる機能は、プランや設定によって使えないことがある | まずはターミナル（CLI 版）やエディタの中で使ってみる |
+| Codex | `CLAUDE.md` は初期設定では読まない | ルールは `AGENTS.md` に書く（このガイドの構成ならそのまま使える） |
+| Antigravity | 配布ページに種類が複数ある（CLI・IDE など）。Orca から使うには CLI 版（`agy`）が必要。無料プランの上限は変わりやすい | CLI 版も入れておく。上限は[公式の料金ページ](https://antigravity.google/pricing)で確認 |
+| GitHub Copilot | Windows では PowerShell 7 以降が必要。GitHub 上で Issue を任せる機能は、プランや設定によって使えないことがある | PowerShell 7 を入れてから使う。まずはターミナル（CLI 版）やエディタの中で使ってみる |
 
 #### 選ぶ前のチェックリスト
 
