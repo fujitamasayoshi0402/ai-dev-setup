@@ -34,7 +34,7 @@ flowchart TD
 | Antigravity（Google の Gemini） | CLI・エディタ（IDE） | `agy` | `AGENTS.md` など |
 | GitHub Copilot（GitHub） | CLI・エディタ拡張 | `copilot` | `AGENTS.md` など |
 
-指示ファイル（AI への常設の指示書）については、[AGENTS.md の書き方](06-agents-md.md#エージェントごとに読むファイル)で説明しています。
+指示ファイル（AI への常設の指示書）については、[AGENTS.md の書き方](08-agents-md.md#エージェントごとに読むファイル)で説明しています。
 
 > この他にも Cursor など、さまざまなツールがあります。Orca などでターミナルから起動できる CLI 型なら、このガイドの手順はほぼそのまま使えます。
 >
@@ -92,7 +92,7 @@ flowchart TD
 
 | エージェント | つまずきやすい点 | 対処 |
 |---|---|---|
-| Claude Code | 有料プランが前提。使える量の上限に達すると、しばらく待つ必要がある | 上限のリセット時間を把握しておく。2つ目のエージェントで続ける（[09-multi-agent.md](09-multi-agent.md)） |
+| Claude Code | 有料プランが前提。使える量の上限に達すると、しばらく待つ必要がある | 上限のリセット時間を把握しておく。2つ目のエージェントで続ける（[12-multi-agent.md](12-multi-agent.md)） |
 | Codex | `CLAUDE.md` は初期設定では読まない | ルールは `AGENTS.md` に書く（このガイドの構成ならそのまま使える） |
 | Antigravity | 配布ページに種類が複数ある（CLI・IDE など）。Orca から使うには CLI 版（`agy`）が必要。無料プランの上限は変わりやすい | CLI 版も入れておく。上限は[公式の料金ページ](https://antigravity.google/pricing)で確認 |
 | GitHub Copilot | Windows では PowerShell 7 以降が必要。GitHub 上で Issue を任せる機能は、プランや設定によって使えないことがある | PowerShell 7 を入れてから使う。まずはターミナル（CLI 版）やエディタの中で使ってみる |
@@ -106,7 +106,7 @@ flowchart TD
 
 ### 2つ目を選ぶなら
 
-慣れてきて2つ目を契約するなら、**1つ目とは別の提供元**を選ぶと、チェック役として効果的です（作った AI と考え方が違うので、見落としに気づきやすい）。使い分け方は [09-multi-agent.md](09-multi-agent.md) を参照してください。
+慣れてきて2つ目を契約するなら、**1つ目とは別の提供元**を選ぶと、チェック役として効果的です（作った AI と考え方が違うので、見落としに気づきやすい）。使い分け方は [12-multi-agent.md](12-multi-agent.md) を参照してください。
 
 ---
 

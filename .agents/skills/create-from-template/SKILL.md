@@ -1,6 +1,6 @@
 ---
 name: create-from-template
-description: ai-dev-setup の templates/ にある雛形（new-project / obsidian-vault / consulting-workspace）から、新しいプロジェクトや Obsidian の保管庫、相談ワークスペースを正しい場所に作る。「雛形から〇〇を作って」「新しいプロジェクトを作って」「Obsidian の保管庫を作って」「相談ワークスペースを作って」と頼まれたときに使う。
+description: ai-dev-setup の templates/ にある雛形（ai-workroom / new-project / obsidian-vault）から、AI 仕事部屋や新しいプロジェクト、Obsidian の保管庫を正しい場所に作る。「雛形から〇〇を作って」「新しいプロジェクトを作って」「Obsidian の保管庫を作って」「AI 仕事部屋を作って」と頼まれたときに使う。
 ---
 
 # 雛形から新しいプロジェクト・保管庫を作る
@@ -12,7 +12,7 @@ description: ai-dev-setup の templates/ にある雛形（new-project / obsidia
 1. **雛形を決める**（はっきりしなければ聞く）
    - アプリ・ツール・Web サイトなど → `templates/new-project/`
    - Obsidian でメモを管理する → `templates/obsidian-vault/`
-   - SEO・ブランディング・企画・デザインなど、相談から成果物を作る → `templates/consulting-workspace/`
+   - AI に仕事（企画・文章・ブログ・SNS・調べもの・SEO・デザインの準備など）を手伝ってもらう → `templates/ai-workroom/`（名前の例: `my-workroom`）
 2. **名前を決める**。決まっていなければ聞く。英小文字・数字・ハイフンのみ（例: `my-app`、`my-vault`）
 3. **コピー先を決める**。ai-dev-setup の**元の場所（本体）の隣**にする（ai-dev-setup の中には作らない）
    - 今いるフォルダが Orca の worktree（`orca/workspaces/` の下）の場合があるので、まず `git worktree list --porcelain` を実行し、**最初に表示される `worktree` の行**を本体の場所とする
@@ -35,4 +35,4 @@ description: ai-dev-setup の templates/ にある雛形（new-project / obsidia
    - 作った場所（フルパス）
    - Orca の「Add project」でそのフォルダを登録すること
    - `obsidian-vault` の場合は、Obsidian で「フォルダを保管庫として開く」から開き、保管庫の `README.md` の初期設定を行うこと
-   - `consulting-workspace` の場合は、最初に `10_context/profile.md` と `brand.md` を埋めること（「10_context を質問しながら一緒に埋めて」と頼めばよい）
+   - `ai-workroom` の場合は、作業フォルダ（worktree）を作らずに部屋そのものでエージェントを起動すること、そして最初に `about/profile.md` と `brand.md` を埋めること（部屋で「about の profile.md と brand.md を、質問しながら一緒に埋めて」と頼めばよい）

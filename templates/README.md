@@ -4,9 +4,9 @@
 
 | 雛形 | 使う場面 | コピー先の例 |
 |---|---|---|
+| [`ai-workroom/`](ai-workroom/) | **AI 仕事部屋**。企画・文章・SNS・調べもの・SEO など、AI に仕事を手伝ってもらうとき（[説明](../docs/05-ai-workroom.md)） | `~/orca/projects/my-workroom/` |
 | [`new-project/`](new-project/) | アプリ・ツール・Web サイトなどを作るとき | `~/orca/projects/my-app/` |
 | [`obsidian-vault/`](obsidian-vault/) | Obsidian でメモ・ナレッジを管理するとき | `~/orca/projects/my-vault/` |
-| [`consulting-workspace/`](consulting-workspace/) | SEO・ブランディング・企画・デザインなど、相談から成果物を作るとき（[説明](../docs/10-consulting-workspace.md)） | `~/orca/projects/my-workspace/` |
 
 > Windows の場合、コピー先は `C:\dev\orca\projects\my-app\` のようになります。
 
@@ -18,10 +18,10 @@
 │   └── templates/
 │       ├── new-project/          ──┐
 │       ├── obsidian-vault/       ──┼─┐
-│       └── consulting-workspace/ ──┼─┼─┐
+│       └── ai-workroom/          ──┼─┼─┐
 ├── my-app/            ←────────────┘ │ │  新しいプロジェクト
 ├── my-vault/          ←──────────────┘ │  Obsidian の保管庫
-└── my-workspace/      ←────────────────┘  相談ワークスペース
+└── my-workroom/       ←────────────────┘  AI 仕事部屋
 ```
 
 **ポイント:** コピー先は `ai-dev-setup` の中ではなく、**隣**（同じ `projects/` の下）です。
@@ -39,7 +39,7 @@ templates の obsidian-vault を使って、my-vault という名前で Obsidian
 ```
 
 ```
-templates の consulting-workspace を使って、my-workspace という名前で相談ワークスペースを作って
+templates の ai-workroom を使って、my-workroom という名前で AI 仕事部屋を作って
 ```
 
-自分でコピーする手順は [05-directory-and-tips.md](../docs/05-directory-and-tips.md#テンプレートから新しいプロジェクトを作る) を参照してください。
+自分でコピーする手順は [09-build-projects.md](../docs/09-build-projects.md#テンプレートから新しいプロジェクトを作る) を参照してください。
