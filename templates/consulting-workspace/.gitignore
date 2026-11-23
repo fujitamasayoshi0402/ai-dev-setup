@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# 秘密情報
+.env
+.env.*
+
+# Obsidian の個人的な画面状態（共有しない）
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.trash/
+
+# プラグインの設定（API キーやトークンが保存されることがあるため除外）
+.obsidian/plugins/*/data.json
+
+# AI エージェントの個人用設定
+CLAUDE.local.md
+.claude/settings.local.json
+
+# 作業の引き継ぎメモ（作業フォルダごとの一時ファイル）
+HANDOFF.md

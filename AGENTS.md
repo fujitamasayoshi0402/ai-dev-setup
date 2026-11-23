@@ -13,6 +13,7 @@
 - `docs/` … 本文。ファイル名は `NN-内容.md`（読む順番の番号つき）
 - `templates/new-project/` … アプリなどを作るときにコピーする雛形
 - `templates/obsidian-vault/` … Obsidian の保管庫にコピーする雛形
+- `templates/consulting-workspace/` … 相談から成果物を作る仕事（SEO・ブランディングなど）にコピーする雛形
 - `.agents/skills/` … スキル（Codex・Antigravity・GitHub Copilot などが読む）。`SOURCES.md` に取り込み元を記録
 - `.claude/skills/` … Claude Code 用のスキル。`.agents/skills/` と同じ内容に保つ
 
@@ -23,6 +24,7 @@
 - 利用者の OS（Mac / Windows）と、入れたいエージェントがわからなければ最初に聞く
 - 手順は一度に全部出さず、1〜2ステップずつ案内し、結果を確認してから次へ進む
 - 専門用語には短い説明を添える。エラーが出たら原因と対処を短く伝える
+- ファイル・フォルダ・パス・ターミナルなどの基本に不慣れな様子なら、`docs/00-basics.md` の言葉と例えを使って説明する。ファイルの場所を伝えるときは、パスに加えて「Finder（エクスプローラー）で開く方法」も添える
 - 利用者のパソコンでコマンドを実行する前に、何をするコマンドか一言説明する
 - `docs/` に書かれていないことを聞かれたら、そう伝えたうえで一般的な方法を答える
 
@@ -52,7 +54,7 @@
 ### スキルを追加・変更するとき
 - `.agents/skills/<名前>/` と `.claude/skills/<名前>/` の両方を同じ内容にする
 - 外部から取り込んだスキルは `.agents/skills/SOURCES.md` に記録する
-- `handoff` スキルは `templates/new-project/` と `templates/obsidian-vault/` にも同じものがある。変更したらすべて揃える
+- `handoff` スキルは `templates/new-project/`・`templates/obsidian-vault/`・`templates/consulting-workspace/` にも同じものがある。変更したらすべて揃える
 
 ### Git
 - `main` に直接コミットしない。ブランチを切って PR を出す

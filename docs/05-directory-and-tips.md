@@ -9,7 +9,8 @@
 ├── projects/                 # 各プロジェクトの本体（main ブランチ）
 │   ├── ai-dev-setup/         # このガイド（雛形の置き場所）
 │   ├── my-app/               # 雛形 new-project から作ったプロジェクト
-│   └── my-vault/             # 雛形 obsidian-vault から作った保管庫（任意）
+│   ├── my-vault/             # 雛形 obsidian-vault から作った保管庫（任意）
+│   └── my-workspace/         # 雛形 consulting-workspace から作った相談ワークスペース（任意）
 └── workspaces/               # worktree（タスクごとの作業フォルダ）
     ├── my-app/
     │   ├── login-page/       # feature ブランチ
@@ -113,7 +114,7 @@ $src = "C:\dev\orca\projects\ai-dev-setup\templates\new-project"; $dest = "C:\de
 AGENTS.md の「〇〇」の部分を、作りたいものに合わせて埋めて。わからないところは質問して
 ```
 
-Obsidian の保管庫を作る場合は、`new-project` を `obsidian-vault`、`my-app` を `my-vault` に読み替えます（[06-obsidian-optional.md](06-obsidian-optional.md)）。
+Obsidian の保管庫を作る場合は、`new-project` を `obsidian-vault`、`my-app` を `my-vault` に読み替えます（[06-obsidian-optional.md](06-obsidian-optional.md)）。相談ワークスペースを作る場合は `consulting-workspace` と `my-workspace` に読み替えます（[09-consulting-workspace.md](09-consulting-workspace.md)）。
 
 ## 3. 変更の保存（コミット）と作業の分け方
 
