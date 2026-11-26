@@ -90,7 +90,7 @@ irm https://antigravity.google/cli/install.ps1 | iex
 ```
 
 2. エディタでも使いたい場合は、配布ページから **Antigravity IDE (Standalone)** の Windows 版をダウンロードしてインストールします
-3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です。初回は、Gemini を使っている Google アカウントでログインします
+3. ターミナルを開き直してから、次のコマンドで使い方が表示されれば OK です。初回は Google アカウントでログインします。Google AI Pro / Ultra（Google One）を契約している場合は、**契約している Google アカウント**でログインします（[料金プランについて](01-choose-agent.md#antigravity-の料金プランはgoogle-ai-pro--ultra)）
 
 ```powershell
 agy --help

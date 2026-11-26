@@ -51,7 +51,7 @@ flowchart TD
     q0{"仕事で使う？"}
     q0 -- "いいえ" --> q1{"契約中の<br>AI サービスは？"}
     q0 -- "はい" --> work["会社が許可した<br>サービスから選ぶ"]
-    q1 -- "ある" --> map["契約に合わせる<br>Claude → Claude Code<br>ChatGPT → Codex<br>Gemini → Antigravity<br>GitHub → Copilot"]
+    q1 -- "ある" --> map["契約に合わせる<br>Claude → Claude Code<br>ChatGPT → Codex<br>Google AI Pro など<br>→ Antigravity<br>GitHub → Copilot"]
     q1 -- "ない" --> q2{"無料で<br>試したい？"}
     q2 -- "いいえ" --> q3{"使いたい<br>画面は？"}
     q2 -- "はい" --> free["GitHub アカウント<br>あり → Copilot か<br>Antigravity<br>なし → Antigravity"]
@@ -68,14 +68,37 @@ flowchart TD
 
 | 観点 | Claude Code | Codex | Antigravity | GitHub Copilot |
 |---|---|---|---|---|
-| 提供元・使うアカウント | Anthropic（Claude） | OpenAI（ChatGPT） | Google（Gemini） | GitHub（このガイドでは GitHub アカウントでログイン） |
+| 提供元・使うアカウント | Anthropic（Claude） | OpenAI（ChatGPT） | Google（Gemini）。個人の Google アカウント | GitHub（このガイドでは GitHub アカウントでログイン） |
 | 無料で試せるか | 有料プランが前提 | 無料プランでも一部使える場合あり | 無料プランあり（使える量は少なめ・変わることがある） | 無料プラン（Copilot Free）あり（使える量に上限あり） |
 | 主な使い方 | ターミナル中心 | ターミナル中心 | エディタ一体型のアプリ（ターミナル用の CLI もある） | ターミナル（CLI）、または VS Code などのエディタの中 |
 | インストール | Mac・Windows とも、コマンド1行 | Mac・Windows とも、公式インストーラーのコマンド1行 | CLI はコマンド1行。エディタ版（IDE）はダウンロードするだけ | Mac はコマンド1行。Windows は PowerShell 7 を入れてから winget |
 | Orca で使えるか | 使える | 使える | 使える（CLI 版が必要） | Orca のターミナルで `copilot` を起動して使える（エージェント一覧から選べるかは要確認） |
-| 料金・プランの確認先 | [Claude の料金](https://claude.com/pricing) | [Codex の料金](https://developers.openai.com/codex/pricing) | [Antigravity の料金](https://antigravity.google/pricing) | [Copilot のプラン](https://docs.github.com/ja/copilot/get-started/plans) |
+| 料金・プランの確認先 | [Claude の料金](https://claude.com/pricing) | [Codex の料金](https://developers.openai.com/codex/pricing) | [Antigravity の料金](https://antigravity.google/pricing)（有料は Google AI Pro / Ultra。[下で説明](#antigravity-の料金プランはgoogle-ai-pro--ultra)） | [Copilot のプラン](https://docs.github.com/ja/copilot/get-started/plans) |
 
 > 料金や、どのプランで使えるか・使える量の上限は、よく変わります。契約する前に、必ず各公式の料金ページで確認してください。
+
+### Antigravity の料金プランは「Google AI Pro / Ultra」
+
+Antigravity には、**Antigravity だけの有料プランはありません**。有料で使う場合は、Google の AI のプラン「**Google AI Pro**」または「**Google AI Ultra**」を契約します。この2つは **Google One**（Google のサブスクリプション）のプランです。
+
+```mermaid
+flowchart TD
+    a["Antigravity の<br>料金ページから申し込む"] --> plan["同じ契約<br>Google AI Pro / Ultra<br>（Google One のプラン）"]
+    g["Google One から<br>申し込む"] --> plan
+    plan --> use["契約した<br>Google アカウントで<br>Antigravity にログイン"]
+```
+
+| 迷いやすいこと | 答え |
+|---|---|
+| Antigravity の料金ページと Google One、どちらで契約する？ | **どちらでも同じ**です。Antigravity の料金ページの申し込みボタンも、Google One の契約につながっています |
+| すでに Google One（Google AI Pro など）を契約している | そのままで大丈夫です。**契約している Google アカウントで Antigravity にログイン**します（プランの特典はアカウントに付くため） |
+| まだ何も契約していない | まずは無料（For Individuals）で試せます。使える量が足りなくなったら、Google AI Pro を検討します |
+| Pro と Ultra の違いは？ | Ultra のほうが、使える量（上限）が大きいプランです。まずは Pro で十分です |
+| Google AI Plus など、ほかのプランでも使える？ | Antigravity の料金ページに載っている有料プランは Pro と Ultra だけです。ほかのプランで使える量が増えるかは**要確認**です |
+| 会社の Google アカウント（Google Workspace）で使いたい | Google AI Pro / Ultra は**個人の Google アカウント**向けです。会社で使う場合は、Google Cloud 経由の法人向けの方法（Gemini Enterprise など）を会社の担当者に確認してください |
+
+- 料金ページ: [Antigravity の料金](https://antigravity.google/pricing)・[Google AI のプラン（Google One）](https://one.google.com/about/plans)
+- 料金や使える量は変わることがあるので、契約する前に公式ページで確認してください
 
 ### それぞれの特徴
 
@@ -99,7 +122,7 @@ flowchart TD
 
 ### 選ぶ前のチェックリスト
 
-- [ ] すでに契約している AI サービスはあるか（Claude / ChatGPT / Gemini / GitHub Copilot）
+- [ ] すでに契約している AI サービスはあるか（Claude / ChatGPT / Google AI Pro・Ultra（Google One）/ GitHub Copilot）
 - [ ] 月にいくらまでなら払えるか（まずは無料・月額 20 ドル前後のプランが目安）
 - [ ] エディタで見ながら使いたいか、ターミナルで使いたいか
 - [ ] **仕事で使う場合**、会社が許可しているサービスか（社外秘のコードや情報を扱ってよいか）
