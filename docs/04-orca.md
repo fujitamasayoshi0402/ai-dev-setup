@@ -4,8 +4,16 @@
 
 # Orca のセットアップ
 
-[Orca](https://github.com/stablyai/orca) は、**Git worktree を単位に複数の AI エージェントを並行で動かす**ためのデスクトップアプリです。
-「1タスク = 1 worktree = 1 エージェント」で作業を分けるので、エージェント同士がファイルを取り合わず、並行作業が安全にできます。
+[Orca](https://github.com/stablyai/orca) は、**AI エージェントを画面から起動・管理する**ためのデスクトップアプリです。フォルダを登録して、ボタンからエージェントを起動できます。
+
+## まず必要なのは2つだけ
+
+このガイドの基本の使い方（[AI 仕事部屋](05-ai-workroom.md)）で必要なのは、次の2つだけです。
+
+1. **インストールと初期設定**（このページの 1・2）
+2. **フォルダを登録して、そのフォルダでエージェントを起動する**（このページの 3）
+
+このあと出てくる **worktree**（作業ごとに分身のフォルダを作る機能）は、アプリやサイトづくりで**複数の作業を同時に進める**ときの機能です。AI 仕事部屋や Obsidian の保管庫では使わず、フォルダそのものでエージェントを起動します。最初は読み飛ばしても大丈夫です。
 
 ## worktree とは
 
@@ -62,7 +70,7 @@ brew install --cask stablyai/orca/orca
    ```zsh
    orca skills install --all
    ```
-4. **作業フォルダ（worktree）の保存先を設定します**。[ディレクトリ構成](05-directory-and-tips.md#1-推奨ディレクトリ構成)に合わせるため、Orca の設定（Settings）で次のようにします
+4. **作業フォルダ（worktree）の保存先を設定します**。[ディレクトリ構成](09-build-projects.md#1-推奨ディレクトリ構成)に合わせるため、Orca の設定（Settings）で次のようにします
    - ワークスペースの保存先（Workspace directory）: `~/orca/workspaces`（Windows は `C:\dev\orca\workspaces`）
    - プロジェクトごとにフォルダを分ける設定（Nest workspaces）: オン
 
@@ -169,6 +177,6 @@ flowchart TD
 ---
 
 <!-- nav-bottom -->
-| ← 前へ: [02 Mac セットアップ](02-setup-mac.md) / [03 Windows セットアップ](03-setup-windows.md) | [目次](../README.md#読む順番) | 次へ: [05 フォルダの管理と Tips](05-directory-and-tips.md) → |
+| ← 前へ: [02 Mac セットアップ](02-setup-mac.md) / [03 Windows セットアップ](03-setup-windows.md) | [目次](../README.md#読む順番) | 次へ: [05 AI 仕事部屋](05-ai-workroom.md) → |
 |:---|:---:|---:|
 <!-- /nav-bottom -->

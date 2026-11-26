@@ -4,16 +4,17 @@
 エージェントごとの指示ファイル（`CLAUDE.md` など）は、このファイルを読み込むだけにしています。
 
 ## このリポジトリについて
-- AI駆動開発のセットアップ手順とノウハウをまとめたガイド（Markdown のみ。ビルドやテストはない）
+- プログラミングの知識がない人が、AI エージェントに仕事を手伝ってもらえるようになるためのガイド（Markdown のみ。ビルドやテストはない）
+- 中心は「AI 仕事部屋」（`templates/ai-workroom/`・`docs/05-ai-workroom.md`）。アプリ・サイトづくりは ③ の位置づけ
 - 利用者の多くは、このリポジトリをクローンして「ガイド役の AI」と一緒に読み進める人
 - 利用者はプログラミング経験がない場合がある
 
 ## 構成
 - `README.md` … 目次
-- `docs/` … 本文。ファイル名は `NN-内容.md`（読む順番の番号つき）。① はじめる（00〜04）・② 使いこなす（05〜07）・③ 広げる（08〜11）の3段階
+- `docs/` … 本文。ファイル名は `NN-内容.md`（読む順番の番号つき）。① はじめる（00〜04）・② AI と仕事をする（05〜08）・③ 作る（09）・④ 広げる（10〜13）の4段階
 - `templates/new-project/` … アプリなどを作るときにコピーする雛形
 - `templates/obsidian-vault/` … Obsidian の保管庫にコピーする雛形
-- `templates/consulting-workspace/` … 相談から成果物を作る仕事（SEO・ブランディングなど）にコピーする雛形
+- `templates/ai-workroom/` … **AI 仕事部屋**の雛形。企画・文章・SNS・調べもの・SEO などの仕事を AI に手伝ってもらうときにコピーする（このガイドの中心）
 - `.agents/skills/` … スキル（Codex・Antigravity・GitHub Copilot などが読む）。`SOURCES.md` に取り込み元を記録
 - `.claude/skills/` … Claude Code 用のスキル。`.agents/skills/` と同じ内容に保つ
 
@@ -32,11 +33,13 @@
 | 依頼 | 対応 |
 |---|---|
 | 「どのエージェントを入れればいい？」 | `docs/01-choose-agent.md` の「どのエージェントを選ぶか」の流れに沿って、仕事で使うか → 契約中のサービス → 予算（無料で試すなら GitHub アカウントの有無も）→ 使いたい画面 の順に1つずつ質問して提案する。料金は断定せず、公式の料金ページを案内する |
+| 「AI 仕事部屋を作りたい」「最初の30分を一緒に進めて」 | `docs/05-ai-workroom.md` の「最初の30分」に沿って、1ステップずつ案内する。部屋はスキル `create-from-template` で作る |
+| 「〇〇（企画書・ブログ・SNS など）を手伝って」 | AI 仕事部屋を持っていればそこで頼むよう案内する。まだなければ部屋を作ることを提案する。頼み方は `docs/06-recipes.md` を参考にする |
 | 「セットアップを手伝って」 | `docs/02-setup-mac.md` または `docs/03-setup-windows.md` の基本コースを順に案内する |
 | 「雛形から〇〇を作って」 | スキル `create-from-template`（`.agents/skills/create-from-template/SKILL.md`）の手順に従う |
 | 「〇〇のスキルを取り込んで」 | スキル `import-skill`（`.agents/skills/import-skill/SKILL.md`）の手順に従う |
 | 「引き継ぎメモを作って」「HANDOFF.md を読んで続けて」 | スキル `handoff`（`.agents/skills/handoff/SKILL.md`）の手順に従う |
-| 「AGENTS.md の書き方を教えて」「AGENTS.md を見直して」 | `docs/06-agents-md.md` のチェックリストと「よくある失敗」に沿って説明・指摘する。見直しでは、実在しないコマンドやフォルダがないかも確認する |
+| 「AGENTS.md の書き方を教えて」「AGENTS.md を見直して」 | `docs/08-agents-md.md` のチェックリストと「よくある失敗」に沿って説明・指摘する。見直しでは、実在しないコマンドやフォルダがないかも確認する |
 | 「このガイドを最新にして」 | `git worktree list` の最初の行で本体（`main`）の場所を確認し、**本体で**更新する。本体に未コミットの変更がないか確認してから `git pull` する（変更があれば先に利用者に確認する）。今いるのが worktree の場合は古いままなので、更新後は本体か、新しく作った worktree で読み進めるよう伝える |
 
 ## このリポジトリを編集するとき（メンテナー向け）
@@ -49,13 +52,13 @@
 - コマンドは OS ごとにコードブロックを分ける（Mac は `zsh`、Windows は `powershell`）
 - インストールコマンドなど変わりやすい情報は、公式ドキュメントへのリンクも添える
 - 確認できていない情報は書かない。書く場合は「要確認」と明記する
-- ドキュメントを追加・改名・並べ替えたら、`README.md` の目次（3段階の表）と、各ページの上下のナビ（`<!-- nav-top -->`・`<!-- nav-bottom -->` で囲んだ部分）も更新する
+- ドキュメントを追加・改名・並べ替えたら、`README.md` の目次（4段階の表）と、各ページの上下のナビ（`<!-- nav-top -->`・`<!-- nav-bottom -->` で囲んだ部分）も更新する
 - 図は Mermaid（```mermaid のコードブロック）で書く。GitHub と Obsidian の両方でそのまま表示できるため。ラベルは `"..."` で囲み、改行は `<br>` を使う
 
 ### スキルを追加・変更するとき
 - `.agents/skills/<名前>/` と `.claude/skills/<名前>/` の両方を同じ内容にする
 - 外部から取り込んだスキルは `.agents/skills/SOURCES.md` に記録する
-- `handoff` スキルは `templates/new-project/`・`templates/obsidian-vault/`・`templates/consulting-workspace/` にも同じものがある。変更したらすべて揃える
+- `handoff` スキルは `templates/new-project/`・`templates/obsidian-vault/`・`templates/ai-workroom/` にも同じものがある。変更したらすべて揃える
 
 ### Git
 - `main` に直接コミットしない。ブランチを切って PR を出す
