@@ -40,6 +40,32 @@ flowchart TD
 >
 > **Gemini CLI について**: Google のターミナル向けツール「Gemini CLI」は、2026年6月18日に個人向け（無料・Google AI Pro・Ultra）の受付を終了し、**Antigravity CLI（`agy`）に移行**しました。個人で Gemini を使う場合は Antigravity を選んでください。Gemini CLI は、企業向けのライセンスや API キーを使う場合に限って引き続き使えます（[公式の告知](https://github.com/google-gemini/gemini-cli/discussions/28017)）。
 
+### 画面のイメージ
+
+CLI 版のエージェントは、ターミナルの中で動きます。どれも**下の入力欄に日本語で頼むと、フォルダの中を読んで答えてくれる**という使い方は同じです。
+
+ここでは [AI 仕事部屋](05-ai-workroom.md)のフォルダで、それぞれに同じことを頼んでみました（「このフォルダには何がありますか？ファイルは変更せずに、3行で教えて」）。
+
+**Claude Code**（`claude`）
+
+![Claude Code に頼んだところ](images/01-claude-code.png)
+
+**Codex**（`codex`）
+
+![Codex に頼んだところ](images/01-codex.png)
+
+**Antigravity CLI**（`agy`）
+
+![Antigravity CLI に頼んだところ](images/01-antigravity-cli.png)
+
+GitHub Copilot CLI（`copilot`）も、同じようにターミナルの中で動きます。
+
+初めてのフォルダで起動すると、「このフォルダを信頼しますか？」と聞かれることがあります（下は Claude Code の例）。自分で作ったフォルダなら、矢印キーで「Yes, I trust this folder」を選んで Enter を押します。
+
+![フォルダを信頼するか聞かれる画面](images/01-trust-folder.png)
+
+> 画面の見た目は、バージョンや設定によって変わります。写っているモデル名やバージョンは、撮影したとき（2026年11月）のものです。Orca から起動した場合も、Orca の画面の中に同じ画面が表示されます。
+
 ## どのエージェントを選ぶか
 
 どれも「頼むと作ってくれる」という基本は同じです。性能や得意分野はアップデートで頻繁に入れ替わるので、**ランキングよりも、自分の状況に合うかどうか**で選ぶのがおすすめです。
