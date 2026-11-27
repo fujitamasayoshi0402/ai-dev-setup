@@ -1,5 +1,5 @@
 <!-- nav-top -->
-[目次](../README.md#読む順番) ＞ ④ 広げる ＞ **13 Obsidian（任意）**
+[目次](../README.md#読む順番) ＞ ④ 広げる ＞ **14 Obsidian（任意）**
 <!-- /nav-top -->
 
 # Obsidian（オプション）
@@ -110,6 +110,6 @@ Obsidian で「フォルダを保管庫として開く」から `my-app/docs/` �
 ---
 
 <!-- nav-bottom -->
-| ← 前へ: [12 複数のエージェントを使う](12-multi-agent.md) | [目次](../README.md#読む順番) | （最後のページです） |
+| ← 前へ: [13 サブエージェントの使い方](13-subagents.md) | [目次](../README.md#読む順番) | （最後のページです） |
 |:---|:---:|---:|
 <!-- /nav-bottom -->

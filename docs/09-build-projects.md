@@ -122,7 +122,7 @@ $src = "C:\dev\orca\projects\ai-dev-setup\templates\new-project"; $dest = "C:\de
 AGENTS.md の「〇〇」の部分を、作りたいものに合わせて埋めて。わからないところは質問して
 ```
 
-Obsidian の保管庫を作る場合は、`new-project` を `obsidian-vault`、`my-app` を `my-vault` に読み替えます（[13-obsidian-optional.md](13-obsidian-optional.md)）。AI 仕事部屋の作り方は [05-ai-workroom.md](05-ai-workroom.md) を参照してください。
+Obsidian の保管庫を作る場合は、`new-project` を `obsidian-vault`、`my-app` を `my-vault` に読み替えます（[14-obsidian-optional.md](14-obsidian-optional.md)）。AI 仕事部屋の作り方は [05-ai-workroom.md](05-ai-workroom.md) を参照してください。
 
 ## 3. 権限設定の考え方
 
