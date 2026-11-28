@@ -165,7 +165,7 @@ ai-dev-setup/
 ├── .gitignore                # 秘密情報・個人設定を除外
 ├── .gitattributes            # 改行コードを LF に統一
 ├── .editorconfig             # 文字コード・インデントを統一
-├── docs/                     # 本文（番号順に読む）
+├── docs/                     # 本文（番号順に読む）。画面の画像は docs/images/
 └── templates/                # 雛形（コピーして使う。ここでは作業しない）
     ├── ai-workroom/          # AI 仕事部屋（AI に仕事を手伝ってもらうとき用）
     ├── new-project/          # アプリ・サイトを作るとき用
